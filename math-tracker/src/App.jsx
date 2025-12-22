@@ -26,7 +26,7 @@ import { resources } from './data/content'; // Keeping resources for now
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { quizQuestions, answerKey } from './data/quiz';
 import { quiz2Questions, quiz2AnswerKey } from './data/quiz2';
-import { modules } from './data/modules';
+
 
 // --- Components ---
 
@@ -486,58 +486,35 @@ const Modules = () => {
   return (
     <div className="p-8 space-y-8 animate-in fade-in duration-500">
       <header className="space-y-2">
-        <h2 className="text-3xl font-bold text-white">Módulos de estudio</h2>
+        <h2 className="text-3xl font-bold text-white">Traductor Matemático</h2>
         <p className="text-pro-muted">
-          Guía operativa sin emojis ni adornos: micro-habilidades clave, trampas típicas y antídotos para preparar Saber 11° Matemáticas.
+          Herramienta interactiva para desarrollar intuición algebraica y practicar traducción de lenguaje natural a lenguaje matemático.
         </p>
       </header>
 
-      <div className="space-y-6">
-        {modules.map((mod) => (
-          <div key={mod.id} className="bg-pro-card border border-slate-700 rounded-2xl p-6 space-y-4">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="text-xs font-semibold text-violet-300 uppercase tracking-wide">{mod.id}</div>
-                <h3 className="text-2xl font-bold text-white">{mod.title}</h3>
-                <p className="text-pro-muted mt-1">{mod.objective}</p>
-              </div>
-            </div>
-            <div className="space-y-3">
-              {mod.items.map((item, idx) => (
-                <div key={`${mod.id}-${idx}`} className="border border-slate-700 rounded-xl p-4 bg-slate-800/40">
-                  <div className="text-xs text-pro-muted uppercase font-semibold mb-2">Contexto</div>
-                  <div className="text-white font-semibold">{item.context}</div>
+      <div className="bg-pro-card border border-slate-700 rounded-2xl p-8 text-center space-y-6">
+        <div className="mx-auto w-16 h-16 bg-violet-500/20 rounded-full flex items-center justify-center mb-4">
+          <BookOpen className="w-8 h-8 text-violet-400" />
+        </div>
 
-                  <div className="mt-2 text-sm text-slate-200">
-                    <span className="font-semibold text-violet-300">Micro-habilidad: </span>
-                    {item.subtopic}
-                  </div>
-                  <div className="mt-1 text-sm text-rose-300">
-                    <span className="font-semibold">Trampa: </span>
-                    {item.trap}
-                  </div>
-                  <div className="mt-1 text-sm text-green-300">
-                    <span className="font-semibold">Antídoto: </span>
-                    {item.antidote}
-                  </div>
-                </div>
-              ))}
-            </div>
-            {mod.lessons && mod.lessons.length > 0 && (
-              <div className="space-y-3 pt-3 border-t border-slate-700">
-                {mod.lessons.map((lesson, lIdx) => (
-                  <div key={`${mod.id}-lesson-${lIdx}`} className="border border-slate-700 rounded-xl p-4 bg-slate-900/40">
-                    <div className="text-xs text-pro-muted uppercase font-semibold mb-2">Lección</div>
-                    <div className="text-white font-bold text-lg mb-2">{lesson.title}</div>
-                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-slate-200">
-                      {lesson.body}
-                    </pre>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+        <h3 className="text-2xl font-bold text-white">Entrenamiento Intensivo</h3>
+        <p className="text-slate-300 max-w-lg mx-auto">
+          Accede a nuestra herramienta especializada que combina lecciones estructuradas con un generador infinito de ejercicios.
+        </p>
+
+        <a
+          href="/traductor.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-semibold transition-all hover:scale-105 shadow-lg shadow-violet-900/20"
+        >
+          <span>Abrir Traductor Matemático</span>
+          <ExternalLink className="w-5 h-5" />
+        </a>
+
+        <p className="text-xs text-slate-500 mt-4">
+          Se abrirá en una nueva pestaña para mejor experiencia visual
+        </p>
       </div>
     </div>
   );
@@ -574,8 +551,8 @@ const Quiz = ({
                 key={q.id}
                 onClick={() => switchQuiz(q.id)}
                 className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeQuiz === q.id
-                    ? 'bg-violet-600 text-white shadow-lg shadow-violet-900/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
+                  ? 'bg-violet-600 text-white shadow-lg shadow-violet-900/30'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
                   }`}
               >
                 Simulacro {q.label}
@@ -646,8 +623,8 @@ const Quiz = ({
                 key={q.id}
                 onClick={() => switchQuiz(q.id)}
                 className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-all ${activeQuiz === q.id
-                    ? 'bg-violet-600 text-white border-violet-500 shadow-sm shadow-violet-900/40'
-                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:border-violet-500/50'
+                  ? 'bg-violet-600 text-white border-violet-500 shadow-sm shadow-violet-900/40'
+                  : 'bg-slate-800 text-slate-300 border-slate-700 hover:border-violet-500/50'
                   }`}
               >
                 Simulacro {q.label}
@@ -710,8 +687,8 @@ const Quiz = ({
               onClick={() => finalizeQuiz(totalQuestions)}
               disabled={answeredCount < totalQuestions}
               className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg ${answeredCount < totalQuestions
-                  ? 'bg-slate-700 text-slate-400 cursor-not-allowed border border-slate-600'
-                  : 'bg-violet-600 hover:bg-violet-700 text-white border border-violet-500/50'
+                ? 'bg-slate-700 text-slate-400 cursor-not-allowed border border-slate-600'
+                : 'bg-violet-600 hover:bg-violet-700 text-white border border-violet-500/50'
                 }`}
             >
               <CheckCircle2 size={16} />
@@ -769,10 +746,10 @@ const Quiz = ({
             <div
               key={q.id}
               className={`border rounded-2xl p-5 bg-pro-card transition-colors ${submitted && selected
-                  ? isCorrect
-                    ? 'border-green-500/50 bg-green-500/5'
-                    : 'border-rose-500/50 bg-rose-500/5'
-                  : 'border-slate-700'
+                ? isCorrect
+                  ? 'border-green-500/50 bg-green-500/5'
+                  : 'border-rose-500/50 bg-rose-500/5'
+                : 'border-slate-700'
                 }`}
             >
               <div className="flex flex-wrap gap-3 items-center mb-3">
@@ -801,14 +778,14 @@ const Quiz = ({
                       onClick={() => setAnswer(q.id, opt.id)}
                       disabled={submitted}
                       className={`w-full text-left px-3 py-3 rounded-xl border transition-all ${submitted
-                          ? isSelected
-                            ? isAnswer
-                              ? 'border-green-500 bg-green-500/10 text-white'
-                              : 'border-rose-500 bg-rose-500/10 text-white'
-                            : 'border-slate-700 bg-slate-800/30 text-slate-300'
-                          : isSelected
-                            ? 'border-violet-500 bg-violet-600/15 text-white shadow-sm shadow-violet-900/40'
-                            : 'border-slate-700 hover:border-violet-500/60 bg-slate-800/50 text-slate-200'
+                        ? isSelected
+                          ? isAnswer
+                            ? 'border-green-500 bg-green-500/10 text-white'
+                            : 'border-rose-500 bg-rose-500/10 text-white'
+                          : 'border-slate-700 bg-slate-800/30 text-slate-300'
+                        : isSelected
+                          ? 'border-violet-500 bg-violet-600/15 text-white shadow-sm shadow-violet-900/40'
+                          : 'border-slate-700 hover:border-violet-500/60 bg-slate-800/50 text-slate-200'
                         } ${submitted ? 'cursor-not-allowed' : ''}`}
                     >
                       <div className="flex items-start gap-2">

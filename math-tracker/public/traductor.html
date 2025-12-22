@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Traductor Matemático | Saber 11 Master</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Babel para JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- MathJax Configuration (CONFIGURACIÓN ROBUSTA) -->
+    <script>
+        window.MathJax = {
+            loader: { load: ['[tex]/ams'] },
+            tex: {
+                packages: { '[+]': ['ams'] },
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            chtml: {
+                scale: 1.1,
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            },
+            options: {
+                enableMenu: false,
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            startup: {
+                typeset: false
+            }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        mjx-container {
+            outline: none !important;
+        }
+
+        .math-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+
+        /* Typography for "Book Mode" */
+        .prose-custom h3 {
+            color: #1e293b;
+            font-weight: 800;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .prose-custom h4 {
+            color: #334155;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .prose-custom p {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .prose-custom strong {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .prose-custom ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        .prose-custom li {
+            margin-bottom: 0.5rem;
+        }
+
+        .prose-custom ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        .btn-bounce:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONOS ---
+        const Icon = ({ path, size = 24, className = "", color = "currentColor" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                {path}
+            </svg>
+        );
+
+        const Icons = {
+            Brain: <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-4z M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-4z" />,
+            Calc: <path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1-2-2z M8 6h8 M16 14v4 M12 14v4 M8 14v4" />,
+            Trend: <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></>,
+            Geo: <><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></>,
+            Chart: <><path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" /></>,
+            Menu: <><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></>,
+            X: <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>,
+            Target: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>,
+            Bulb: <><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z" /></>,
+            ArrowRight: <><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></>,
+            Check: <polyline points="20 6 9 17 4 12" />,
+            Scale: <><path d="M6 20h12" /><path d="M12 3v17" /><path d="M6 10l-4-4" /><path d="M18 10l4-4" /></>,
+            Book: <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        };
+
+        // --- COMPONENTE DE RENDERIZADO MATEMÁTICO ---
+        const MathRender = ({ content, className = "" }) => {
+            const containerRef = useRef(null);
+
+            useEffect(() => {
+                if (window.MathJax && window.MathJax.typesetPromise && containerRef.current) {
+                    containerRef.current.innerHTML = content;
+                    window.MathJax.typesetPromise([containerRef.current])
+                        .catch((err) => console.log('MathJax Error:', err));
+                }
+            }, [content]);
+
+            return <div ref={containerRef} className={className} />;
+        };
+
+        // --- CONTENIDO EDUCATIVO AMPLIADO ---
+        const educationalModules = [
+            {
+                id: "algebra",
+                title: "Tratado de Traducción Algebraica",
+                icon: "Calc",
+                color: "bg-blue-700",
+                concept: "Del Lenguaje Natural al Formalismo Matemático",
+                summary: "Este módulo es la piedra angular de tu preparación. Analizaremos cómo el ICFES codifica lógica compleja en oraciones simples y cómo 'traducir' eso a ecuaciones, desigualdades y conjuntos sin caer en trampas semánticas.",
+                chapters: [
+                    {
+                        title: "Capítulo I: La Paradoja de la Cantidad (El Error Inverso)",
+                        content: `
+                            <p>El error más común en el examen Saber 11 (presente en la <strong>Pregunta 21</strong> del simulacro) es la traducción literal de multiplicadores de cantidad.</p>
+                            <h4>1. El Principio de la Balanza</h4>
+                            <p>El signo igual ($=$) no significa "resultado". Significa "equilibrio". Si tienes dos grupos desiguales, para equilibrarlos algebraicamente, debes aplicar la operación inversa al grupo que el lenguaje sugiere.</p>
+                            <p><strong>Analicemos la estructura:</strong> "Hay el doble de A que de B".</p>
+                            <ul>
+                                <li><strong>Intuición (Incorrecta):</strong> El cerebro oye "doble de A" y escribe $2A = B$.</li>
+                                <li><strong>Lógica Rigurosa:</strong> Si hay más A, el grupo A es "pesado". El grupo B es "liviano". Para que la balanza se equilibre, debes duplicar el peso en el lado liviano (B).</li>
+                            </ul>
+                            <h4>2. La Prueba de la Sustitución (Verificación)</h4>
+                            <p>Nunca confíes solo en tu instinto. Usa números reales para probar tu ecuación. Supón que hay 100 Esferos. Como dice "el doble de esferos que cuadernos", entonces debe haber 50 Cuadernos.</p>
+                            <ul>
+                                <li>Opción incorrecta ($C=2E$): $50 = 2(100) \\to 50 = 200$. <strong>FALSO.</strong></li>
+                                <li>Opción correcta ($E=2C$): $100 = 2(50) \\to 100 = 100$. <strong>VERDADERO.</strong></li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Capítulo II: Tasas de Cambio Relativas",
+                        content: `
+                            <p>En la <strong>Pregunta 19</strong>, el examen evalúa tu capacidad para traducir relaciones de cambio dinámico.</p>
+                            <h4>1. La Estructura "Por Cada X, Y"</h4>
+                            <p>Cuando el texto dice: "Por cada 3 puntos que anota P, Q anota 5 puntos", nos está dando una <strong>Razón de Cambio</strong> ($m$).</p>
+                            <p>Matemáticamente, esto se define como la pendiente:</p>
+                            <p class="text-center text-lg my-4">$$m = \\frac{\\text{Cambio en Salida (Q)}}{\\text{Cambio en Entrada (P)}} = \\frac{5}{3}$$</p>
+                            <p>Esto implica que la ganancia de Q es $\\frac{5}{3}$ veces la ganancia de P.</p>
+                            <h4>2. Modelado de la Ecuación Completa</h4>
+                            <p>Una ecuación lineal rigurosa siempre tiene dos componentes:</p>
+                            <ol>
+                                <li><strong>Estado Inicial ($b$):</strong> Lo que ya tenías (P tenía 8, Q tenía 2).</li>
+                                <li><strong>Dinámica de Cambio ($mx$):</strong> Lo que ganas en el proceso.</li>
+                            </ol>
+                            <p class="text-center">$$Q(x) = 2 + \\frac{5}{3}x$$</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo III: Abstracción Dimensional",
+                        content: `
+                            <p>La <strong>Pregunta 17</strong> ($R=XZ, S=XW...$) evalúa el Análisis Dimensional.</p>
+                            <h4>1. Análisis Dimensional</h4>
+                            <p>Si te pierdes despejando, usa las dimensiones. Si $X, Z, W$ son Longitudes ($L$), entonces $R=XZ$ es un Área ($L^2$).</p>
+                            <p>El problema pide hallar $X$ (Longitud). Probemos la opción D: $$\\sqrt{RS/T} \\to \\sqrt{(L^2 \\cdot L^2)/L^2} = \\sqrt{L^2} = L$$</p>
+                            <h4>2. Técnica de Aislamiento de Variables</h4>
+                            <p>Multiplica las ecuaciones que contienen la variable deseada y divide por la que tiene las variables "basura".</p>
+                            <p class="text-center text-lg my-4">$$\\frac{R \\cdot S}{T} = \\frac{(XZ) \\cdot (XW)}{ZW} = X^2$$</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo IV: Simplificación Funcional",
+                        content: `
+                            <p>La <strong>Pregunta 43</strong> muestra una función compuesta: $A(x) = x \\cdot f(x)$ donde $f(x) = 8/x$.</p>
+                            <h4>El Principio de Sustitución Inmediata</h4>
+                            <p>El rigor matemático exige <strong>sustituir antes de analizar</strong>.</p>
+                            <p class="text-center text-lg my-4">$$A(x) = x \\cdot \\left(\\frac{8}{x}\\right) = 8$$</p>
+                            <p>Bajo la condición rigurosa $x \\neq 0$, la variable se anula. El resultado es una constante.</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo V: La Invarianza del Porcentaje",
+                        content: `
+                            <p>Basado en <strong>Preguntas 2 y 14</strong>. El porcentaje es una medida relativa.</p>
+                            <p>Si una inversión aumenta un 4% en dólares, aumenta un 4% en pesos (si la tasa es constante). El factor de conversión ($k$) multiplica tanto al valor inicial como al final, cancelándose al calcular la proporción.</p>
+                            <p class="text-center">$$\\frac{k \\cdot V_{final}}{k \\cdot V_{inicial}} = \\frac{V_{final}}{V_{inicial}}$$</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo VI: Grados de Libertad",
+                        content: `
+                            <p><strong>Pregunta 15</strong>. Una parábola ($y=ax^2+bx+c$) tiene 3 incógnitas. Necesitas 3 datos (puntos) para definirla. Con solo 2 puntos, tienes infinitas soluciones posibles.</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo VII: Decodificación Tabular",
+                        content: `
+                            <p><strong>Pregunta 20</strong>. Para hallar una ecuación desde una tabla:</p>
+                            <ol>
+                                <li>Calcula los cambios ($\Delta$).</li>
+                                <li>Calcula la pendiente $m = \Delta y / \Delta x$.</li>
+                                <li>Verifica sustituyendo un punto.</li>
+                            </ol>
+                        `
+                    },
+                    // --- NUEVOS CAPÍTULOS AÑADIDOS ---
+                    {
+                        title: "Capítulo VIII: La Lógica de la Exclusión (Conjuntos)",
+                        content: `
+                            <p>La <strong>Pregunta 38</strong> (la cafetería) es un clásico problema de Teoría de Conjuntos que evalúa tu comprensión de los conectores lógicos "Y", "O" y "SOLO".</p>
+                            <h4>1. La Falacia de la Suma Simple</h4>
+                            <p>Nos dicen: 70 piden Pizza ($P$), 50 piden Bebida Fría ($F$). Si sumas $70+50=120$, parecería que todos están cubiertos. ¡Error! Hay 30 personas que piden ambas cosas ($P \\cap F$). Al sumar simple, estás contando a estas 30 personas dos veces.</p>
+                            <h4>2. El Principio de Inclusión-Exclusión</h4>
+                            <p>Para hallar el total de la unión ($P \\cup F$, o "los que comieron algo"), la fórmula rigurosa es:</p>
+                            <p class="text-center text-lg my-4">$$N(P \\cup F) = N(P) + N(F) - N(P \\cap F)$$</p>
+                            <p class="text-center">$$120_{total} \\neq 70 + 50 - 30 = 90$$</p>
+                            <p>Esto nos dice que 90 personas pidieron Pizza o Bebida Fría. Como hay 120 clientes en total, $120 - 90 = 30$ clientes no pidieron ninguna de las dos (posiblemente solo bebida caliente).</p>
+                            <h4>3. La Operación "SOLO" (Diferencia de Conjuntos)</h4>
+                            <p>Si te preguntan "¿Cuántos pidieron SOLO pizza?", la traducción algebraica es la resta de conjuntos:</p>
+                            <p class="text-center font-bold text-blue-800">$$N(P - F) = N(P) - N(P \\cap F) = 70 - 30 = 40$$</p>
+                            <p><strong>Lección:</strong> Nunca operes con los totales brutos si existe una intersección ("ambos"). Desglosa siempre en regiones disyuntas.</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo IX: Arquitectura Combinatoria (El Dilema del Orden)",
+                        content: `
+                            <p>Las <strong>Preguntas 25, 39 y 45</strong> te obligan a decidir entre dos universos matemáticos: Permutación vs. Combinación. Confundirlos es fatal.</p>
+                            <h4>1. El Algoritmo de Decisión</h4>
+                            <p>Ante cualquier problema de conteo, hazte una sola pregunta: <strong>¿Cambia el resultado si invierto el orden?</strong></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                                <div class="bg-red-50 p-4 rounded border border-red-200">
+                                    <h5 class="font-bold text-red-900">SÍ importa el orden (Permutación)</h5>
+                                    <p class="text-sm">Códigos, números, podios, jerarquías (presidente/vicepresidente).</p>
+                                    <p class="text-xs mt-2">Ej: Clave 1-2-3 $\\neq$ Clave 3-2-1.</p>
+                                    <p class="font-mono mt-2 text-center text-red-800">$$nPr = \\frac{n!}{(n-r)!}$$</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h5 class="font-bold text-green-900">NO importa el orden (Combinación)</h5>
+                                    <p class="text-sm">Comités, grupos de trabajo, ensaladas de frutas, cartas en mano.</p>
+                                    <p class="text-xs mt-2">Ej: Comité {Ana, Juan} $=$ Comité {Juan, Ana}.</p>
+                                    <p class="font-mono mt-2 text-center text-green-800">$$nCr = \\frac{n!}{r!(n-r)!}$$</p>
+                                </div>
+                            </div>
+                            <h4>2. Aplicación a la Pregunta 45 (Comités)</h4>
+                            <p>Se eligen 2 de grado 10 y 3 de grado 11. ¿Importa quién es elegido primero? No. Es un grupo. Usamos Combinación ($C$).</p>
+                            <p>Como los eventos son independientes (elegir de 10 no afecta elegir de 11), usamos el <strong>Principio Multiplicativo</strong>:</p>
+                            <p class="text-center">$$Total = (C_{6,2}) \\times (C_{5,3})$$</p>
+                        `
+                    },
+                    {
+                        title: "Capítulo X: Probabilidad Compuesta (Independencia Estocástica)",
+                        content: `
+                            <p>La <strong>Pregunta 46</strong> plantea un escenario donde un jugador debe ganar el partido 1 <strong>Y</strong> el partido 2. Este conector "Y" es la clave de la traducción algebraica.</p>
+                            <h4>1. Eventos Independientes</h4>
+                            <p>El problema dice explícitamente "Se asume independencia". Esto significa que el resultado del primer partido no afecta la probabilidad del segundo. En el lenguaje de la probabilidad:</p>
+                            <p class="text-center font-bold text-xl my-4">$$P(A \\cap B) = P(A) \\cdot P(B)$$</p>
+                            <p>La intersección (que ocurran ambos) se traduce en <strong>MULTIPLICACIÓN</strong>.</p>
+                            <h4>2. El Error de la Suma</h4>
+                            <p>Sumar probabilidades ($1/3 + 1/5$) se usa para la unión de eventos mutuamente excluyentes ("Ganar el primero O ganar el segundo"). Si sumaras aquí, podrías obtener probabilidades mayores a 1, lo cual es absurdo.</p>
+                            <p><strong>Regla de Oro:</strong></p>
+                            <ul>
+                                <li>Conector "Y" (secuencial/simultáneo) $\\to$ Multiplicación.</li>
+                                <li>Conector "O" (alternativas) $\\to$ Suma (restando intersección si la hay).</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Capítulo XI: Traducción Trigonométrica (Sintaxis Geométrica)",
+                        content: `
+                            <p>En la <strong>Pregunta 18</strong>, te piden la distancia AC de un triángulo no rectángulo. Aquí no sirve Pitágoras. Debes elegir entre la Ley de Senos y la Ley de Cosenos basándote en la "sintaxis" de los datos.</p>
+                            <h4>1. ¿Cuándo usar Ley de Senos?</h4>
+                            <p>Úsala cuando tienes una <strong>"Pareja Completa"</strong> (un lado y su ángulo opuesto conocidos) y un dato extra.</p>
+                            <p class="text-center">$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$$</p>
+                            <p>En la Pregunta 18: Conocemos lado $c=AB=4$. Necesitamos el ángulo opuesto $C=75^\\circ$. ¡Pareja completa! ($4$ y $75^\\circ$). Queremos hallar $b=AC$, y conocemos su ángulo opuesto $B=65^\\circ$.</p>
+                            <p>Traducción directa:</p>
+                            <p class="text-center">$$\\frac{AC}{\\sin(65^\\circ)} = \\frac{4}{\\sin(75^\\circ)} \\implies AC = \\frac{4 \\sin(65^\\circ)}{\\sin(75^\\circ)}$$</p>
+                            <h4>2. ¿Cuándo usar Ley de Cosenos?</h4>
+                            <p>Úsala cuando NO tienes parejas completas. Típicamente:</p>
+                            <ul>
+                                <li><strong>LAL:</strong> Lado-Ángulo-Lado (el ángulo está atrapado entre los lados conocidos).</li>
+                                <li><strong>LLL:</strong> Conoces los tres lados.</li>
+                            </ul>
+                        `
+                    }
+                ],
+                tips: [
+                    "Si dice 'Doble de A que de B', escribe $A = 2B$ (nunca al revés).",
+                    "Si dice 'Ni A ni B', busca fuera de la unión $(A \\cup B)^c$.",
+                    "Si el orden importa (Claves), usa Permutación. Si no (Grupos), Combinación.",
+                    "Eventos independientes con 'Y' se multiplican ($P(A) \\cdot P(B)$).",
+                    "Usa Ley de Senos si tienes una pareja lado-ángulo opuesto completa.",
+                    "El porcentaje de aumento no cambia si cambias la moneda."
+                ]
+            },
+            {
+                id: "variacion",
+                title: "Teoría del Cambio y Modelado",
+                icon: "Trend",
+                color: "bg-emerald-700",
+                concept: "Cálculo Diferencial Intuitivo",
+                summary: "Todo en el examen cambia de dos formas: sumando (Lineal) o multiplicando (Exponencial). Este módulo te enseña a detectar la 'huella digital' matemática de cada fenómeno en el texto.",
+                chapters: [
+                    {
+                        title: "Capítulo I: La Huella Lineal",
+                        content: `<p>Si el problema dice 'aumenta 2 grados <strong>por cada</strong> metro' o 'cobra $500 <strong>por cada</strong> minuto', la relación es lineal ($y = mx + b$). La palabra clave es 'constante' o 'por cada'. En la Pregunta 8, la temperatura baja de forma constante.</p>`
+                    },
+                    {
+                        title: "Capítulo II: La Huella Exponencial",
+                        content: `<p>Si el problema habla de <strong>porcentajes acumulados</strong> ('aumenta 3% cada año'), es exponencial. El crecimiento no es fijo, depende del tamaño actual. En la Pregunta 49, el precio no sube $X pesos, sube un % del valor anterior.</p>`
+                    }
+                ]
+            },
+            {
+                id: "intro",
+                title: "Filosofía del Examen",
+                icon: "Brain",
+                color: "bg-purple-800",
+                concept: "Metacognición",
+                summary: "Entender el examen es más importante que memorizar datos. Aquí analizamos la estructura psicológica de las preguntas.",
+                chapters: [
+                    {
+                        title: "Capítulo I: Lectura Crítica Matemática",
+                        content: `<p>El 50% de los errores no son de cálculo, son de lectura. Ignorar unidades, confundir radio con diámetro, o no ver un 'NO' en la pregunta.</p>`
+                    }
+                ]
+            },
+            {
+                id: "geometria",
+                title: "Geometría Analítica y Escalar",
+                icon: "Geo",
+                color: "bg-orange-600",
+                concept: "Relaciones Espaciales",
+                summary: "El espacio no se comporta linealmente. Las áreas y volúmenes tienen reglas de crecimiento explosivo que el examen adora evaluar.",
+                chapters: [
+                    {
+                        title: "Capítulo I: Ley Cuadrático-Cúbica",
+                        content: `<p>Si duplicas el lado de un cuadrado, su área se cuadruplica ($2^2=4$). Si duplicas el lado de un cubo, su volumen se octuplica ($2^3=8$). Esta es la trampa de la Pregunta 7.</p>`
+                    }
+                ]
+            },
+            {
+                id: "datos",
+                title: "Estadística Inferencial",
+                icon: "Chart",
+                color: "bg-rose-700",
+                concept: "Interpretación de Datos",
+                summary: "La estadística en el ICFES no es calcular, es interpretar qué significan la media y la desviación en la vida real.",
+                chapters: [
+                    {
+                        title: "Capítulo I: Invarianza de la Dispersión",
+                        content: `<p>Si sumas un valor constante a todos los datos, el promedio sube, pero la dispersión (desviación estándar) se mantiene intacta. Pregunta 24.</p>`
+                    }
+                ]
+            }
+        ];
+
+        // --- GENERADOR DE PREGUNTAS (SIMULADOR INFINITO) ---
+
+        const generateQuestion = (type) => {
+            const r = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+            const templates = {
+                algebra_translation: () => {
+                    const ratio = r(2, 5);
+                    const ratioText = ["doble", "triple", "cuádruple", "quíntuple"][ratio - 2];
+                    const isAcademic = Math.random() > 0.5;
+                    const contextBig = isAcademic ? "Estudiantes (E)" : "Manzanas (M)";
+                    const contextSmall = isAcademic ? "Profesores (P)" : "Peras (P)";
+                    const varBig = isAcademic ? "E" : "M";
+                    const varSmall = "P";
+
+                    return {
+                        id: Math.random(),
+                        category: "Álgebra | Traducción",
+                        text: `En un colegio hay el ${ratioText} de ${contextBig} que de ${contextSmall}. El rector necesita expresar esto en una ecuación. Un alumno sugiere: $${varSmall} = ${ratio}${varBig}$.`,
+                        options: [
+                            { id: "A", text: `La ecuación es correcta, pues refleja la proporción dicha.` },
+                            { id: "B", text: `La ecuación es incorrecta. La correcta es $${varBig} = ${ratio}${varSmall}$.`, correct: true },
+                            { id: "C", text: `La ecuación es incorrecta. Debería ser $${varBig} = ${varSmall}/${ratio}$.` },
+                            { id: "D", text: `La ecuación es correcta solo si ${varSmall} > ${varBig}.` }
+                        ],
+                        explanation: `Principios de la Balanza: El grupo grande es ${varBig}. El pequeño es ${varSmall}. Para igualarlos, debes multiplicar al pequeño. $${varBig} = ${ratio} \\times ${varSmall}$.`
+                    };
+                },
+                algebra_rates: () => {
+                    const gainA = r(2, 4);
+                    const gainB = r(5, 7);
+                    const initA = r(10, 20);
+                    const initB = r(1, 5);
+                    return {
+                        id: Math.random(),
+                        category: "Álgebra | Tasas",
+                        text: `Al inicio, el Tanque A tiene ${initA} litros y el Tanque B tiene ${initB} litros. Se abre una llave: por cada ${gainA} litros que entran a A, entran ${gainB} litros a B. Si $x$ es la cantidad que entra a A, ¿cuál es la ecuación para el total de B?`,
+                        options: [
+                            { id: "A", text: `Total B = ${initB} + (${gainB}/${gainA})x`, correct: true },
+                            { id: "B", text: `Total B = ${initB} + (${gainA}/${gainB})x` },
+                            { id: "C", text: `Total B = ${initA} + ${gainB}x` },
+                            { id: "D", text: `Total B = ${initB} + ${gainB}x` }
+                        ],
+                        explanation: `La tasa de cambio es relativa. Pendiente $\\Delta B / \\Delta A = ${gainB}/${gainA}$. Multiplicas esa pendiente por lo que entra en A ($x$) y sumas el inicio.`
+                    };
+                },
+                algebra_sets: () => {
+                    const total = r(80, 150);
+                    const setA = r(50, 60);
+                    const setB = r(40, 50);
+                    const intersection = r(10, 30);
+                    const union = setA + setB - intersection;
+
+                    return {
+                        id: Math.random(),
+                        category: "Conjuntos | Lógica",
+                        text: `En un grupo de ${total} personas, ${setA} estudian Inglés, ${setB} estudian Francés y ${intersection} estudian ambos idiomas. ¿Cuántas personas estudian SOLO Inglés?`,
+                        options: [
+                            { id: "A", text: `${setA - intersection}`, correct: true },
+                            { id: "B", text: `${setA + setB - intersection}` },
+                            { id: "C", text: `${total - intersection}` },
+                            { id: "D", text: `${setA}` }
+                        ],
+                        explanation: `Para hallar "Solo A", debes tomar el total de A y RESTAR la intersección (los que también hacen B). $N(A - B) = ${setA} - ${intersection} = ${setA - intersection}$.`
+                    };
+                },
+                algebra_abstract: () => {
+                    return {
+                        id: Math.random(),
+                        category: "Álgebra | Abstracta",
+                        text: `Se definen tres variables: $M = ab$, $N = bc$, $P = ac$. ¿Cómo puedes hallar $b$ en términos de M, N y P?`,
+                        options: [
+                            { id: "A", text: `$b = \\sqrt{(M \\cdot N) / P}$`, correct: true },
+                            { id: "B", text: `$b = (M + N) / P$` },
+                            { id: "C", text: `$b = \\sqrt{MNP}$` },
+                            { id: "D", text: `$b = (M \\cdot P) / N$` }
+                        ],
+                        explanation: `Multiplica las ecuaciones que tienen $b$ ($M$ y $N$): $M \\cdot N = a \\cdot b^2 \\cdot c$. Divide por la sobra ($P = ac$): $b^2$.`
+                    }
+                },
+                combinatorics_logic: () => {
+                    return {
+                        id: Math.random(),
+                        category: "Probabilidad | Conteo",
+                        text: "Un profesor va a seleccionar 3 estudiantes de un grupo de 10. Para un caso (Caso 1), los estudiantes formarán la directiva (Presidente, Tesorero, Secretario). Para otro caso (Caso 2), formarán un comité de limpieza. ¿Qué método de conteo se usa?",
+                        options: [
+                            { id: "A", text: "Caso 1: Combinación, Caso 2: Permutación" },
+                            { id: "B", text: "Caso 1: Permutación, Caso 2: Combinación", correct: true },
+                            { id: "C", text: "Ambos son Permutaciones" },
+                            { id: "D", text: "Ambos son Combinaciones" }
+                        ],
+                        explanation: "En la directiva, el orden/jerarquía importa (ser Presidente es distinto a ser Tesorero) -> Permutación. En el comité de limpieza, el orden no importa (todos limpian igual) -> Combinación."
+                    };
+                }
+            };
+
+            const keys = Object.keys(templates);
+            const randomType = keys[Math.floor(Math.random() * keys.length)];
+            return templates[randomType]();
+        };
+
+        // --- COMPONENTES UI (Iguales al original, estructura mantenida) ---
+
+        const MenuButton = ({ onClick }) => (
+            <button onClick={onClick} className="fixed top-4 left-4 z-50 p-3 bg-slate-900 text-white rounded-full shadow-lg hover:bg-slate-800 transition-all md:hidden">
+                <Icon path={Icons.Menu} />
+            </button>
+        );
+
+        const Sidebar = ({ isOpen, setView, activeView, closeSidebar }) => (
+            <>
+                {isOpen && <div className="fixed inset-0 bg-black/60 z-30 md:hidden fade-in" onClick={closeSidebar}></div>}
+                <aside className={`fixed inset-y-0 left-0 z-40 w-80 bg-slate-900 text-slate-100 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 flex flex-col shadow-2xl`}>
+                    <div className="p-8 border-b border-slate-800">
+                        <h2 className="font-black text-2xl text-white mb-2 tracking-tight">El Traductor</h2>
+                        <p className="text-slate-400 text-sm font-medium">Edición Libro Maestro</p>
+                    </div>
+
+                    <nav className="flex-1 overflow-y-auto p-4 space-y-3">
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 ml-2 mt-2">Capítulos de Estudio</div>
+                        {educationalModules.map((mod) => (
+                            <button
+                                key={mod.id}
+                                onClick={() => { setView('learn', mod.id); closeSidebar(); }}
+                                className={`w-full flex items-start gap-4 px-4 py-4 rounded-xl transition-all group relative overflow-hidden ${activeView.id === mod.id && activeView.mode === 'learn' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
+                            >
+                                <div className={`mt-1 relative z-10 transition-transform group-hover:scale-110 ${activeView.id === mod.id ? 'text-white' : 'text-slate-500 group-hover:text-blue-400'}`}>
+                                    <Icon path={Icons[mod.icon]} size={20} />
+                                </div>
+                                <div className="text-left relative z-10">
+                                    <span className="block font-bold text-base">{mod.title}</span>
+                                    <span className={`block text-xs mt-1 leading-snug ${activeView.id === mod.id ? 'text-blue-100' : 'text-slate-600 group-hover:text-slate-400'}`}>{mod.concept}</span>
+                                </div>
+                                {activeView.id === mod.id && <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 z-0"></div>}
+                            </button>
+                        ))}
+
+                        <div className="my-8 border-t border-slate-800"></div>
+                        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 ml-2">Evaluación</div>
+                        <button
+                            onClick={() => { setView('quiz'); closeSidebar(); }}
+                            className={`w-full flex items-center gap-4 px-4 py-5 rounded-xl transition-all ${activeView.mode === 'quiz' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800/50 text-slate-300 hover:bg-indigo-900/30 hover:text-white border border-slate-800'}`}
+                        >
+                            <Icon path={Icons.Target} className="text-indigo-400" />
+                            <div className="text-left">
+                                <span className="block font-bold">Simulador Infinito</span>
+                                <span className="block text-xs text-slate-500 mt-1">Generación Procedural</span>
+                            </div>
+                        </button>
+                    </nav>
+                </aside>
+            </>
+        );
+
+        const BookChapter = ({ title, content }) => (
+            <div className="mb-12 pl-6 border-l-4 border-slate-200 hover:border-blue-600 transition-all duration-300">
+                <h3 className="text-xl font-bold text-slate-900 mb-4">{title}</h3>
+                <MathRender className="prose-custom" content={content} />
+            </div>
+        );
+
+        const LearningView = ({ module }) => {
+            return (
+                <div className="w-full h-screen overflow-y-auto bg-white">
+                    <div className={`${module.color} text-white p-8 md:p-16 relative overflow-hidden shadow-2xl`}>
+                        <div className="absolute top-0 right-0 p-32 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="max-w-4xl mx-auto relative z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/20 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+                                <Icon path={Icons.Book} size={14} /> Módulo Maestro
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">{module.title}</h1>
+                            <p className="text-xl md:text-2xl text-white/90 font-medium leading-relaxed max-w-2xl">{module.summary}</p>
+                        </div>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto p-8 md:p-16 pb-32">
+                        {module.chapters ? (
+                            module.chapters.map((chapter, index) => (
+                                <BookChapter key={index} title={chapter.title} content={chapter.content} />
+                            ))
+                        ) : (
+                            <div className="text-center py-20 text-slate-500">
+                                Contenido en construcción para este módulo.
+                            </div>
+                        )}
+
+                        <div className="mt-20 p-8 bg-slate-50 rounded-2xl border border-slate-200 shadow-sm">
+                            <h4 className="font-bold text-slate-900 mb-6 flex items-center gap-2 text-lg">
+                                <Icon path={Icons.Brain} className="text-slate-600" /> Reglas de Oro para el Examen
+                            </h4>
+                            <ul className="space-y-4">
+                                {module.tips && module.tips.map((tip, i) => (
+                                    <li key={i} className="flex gap-4 text-slate-700 items-start">
+                                        <div className="mt-1 p-1 bg-green-100 rounded-full text-green-700 shrink-0">
+                                            <Icon path={Icons.Check} size={14} />
+                                        </div>
+                                        <div className="text-base"><MathRender content={tip} /></div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const QuizView = () => {
+            const [question, setQuestion] = useState(null);
+            const [selected, setSelected] = useState(null);
+            const [score, setScore] = useState(0);
+            const [streak, setStreak] = useState(0);
+
+            const nextQuestion = () => {
+                setQuestion(generateQuestion());
+                setSelected(null);
+            };
+
+            useEffect(() => {
+                nextQuestion();
+            }, []);
+
+            const handleSelect = (opt) => {
+                if (selected) return;
+                setSelected(opt);
+                if (opt.correct) {
+                    setScore(s => s + 10);
+                    setStreak(s => s + 1);
+                } else {
+                    setStreak(0);
+                }
+            };
+
+            if (!question) return <div className="flex h-screen items-center justify-center text-slate-500">Cargando simulador...</div>;
+
+            return (
+                <div className="w-full h-screen overflow-y-auto bg-slate-50 flex items-center justify-center p-4">
+                    <div className="max-w-2xl w-full">
+                        <div className="flex justify-between items-end mb-6 px-2">
+                            <div>
+                                <h2 className="text-2xl font-black text-slate-800">Simulador</h2>
+                                <p className="text-slate-500 text-sm">Práctica infinita (Nuevos temas incluidos)</p>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="text-right">
+                                    <span className="text-xs font-bold text-slate-400 uppercase">Puntos</span>
+                                    <div className="text-xl font-black text-indigo-600">{score}</div>
+                                </div>
+                                <div className="text-right">
+                                    <span className="text-xs font-bold text-slate-400 uppercase">Racha</span>
+                                    <div className="text-xl font-black text-orange-500">{streak}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden relative">
+                            <div className="p-8 md:p-10">
+                                <span className="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full mb-6 uppercase tracking-wide border border-indigo-100">
+                                    {question.category}
+                                </span>
+                                <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-relaxed">
+                                    <MathRender content={question.text} />
+                                </h3>
+
+                                <div className="space-y-3">
+                                    {question.options.map((opt) => (
+                                        <button
+                                            key={opt.id}
+                                            onClick={() => handleSelect(opt)}
+                                            disabled={!!selected}
+                                            className={`w-full p-5 rounded-2xl text-left border-2 transition-all relative group
+                                                ${selected
+                                                    ? opt.correct
+                                                        ? 'bg-green-50 border-green-500 text-green-900'
+                                                        : opt === selected
+                                                            ? 'bg-red-50 border-red-500 text-red-900'
+                                                            : 'bg-slate-50 border-slate-100 text-slate-400 opacity-50'
+                                                    : 'bg-white border-slate-100 hover:border-indigo-500 hover:shadow-md text-slate-700 font-medium btn-bounce'
+                                                }
+                                            `}
+                                        >
+                                            <div className="flex items-start gap-4">
+                                                <span className={`font-black text-lg ${selected && opt.correct ? 'text-green-600' : 'text-slate-300 group-hover:text-indigo-500'}`}>{opt.id}</span>
+                                                <span className="mt-0.5"><MathRender content={opt.text} /></span>
+                                            </div>
+
+                                            {selected && opt.correct && (
+                                                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-green-600 bg-white rounded-full p-1 shadow-sm">
+                                                    <Icon path={Icons.Check} />
+                                                </div>
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {selected && (
+                                <div className="bg-slate-900 p-8 md:p-10 text-white slide-up">
+                                    <div className="flex gap-4 mb-4">
+                                        <div className={`p-2 rounded-lg ${selected.correct ? 'bg-green-500' : 'bg-red-500'}`}>
+                                            <Icon path={selected.correct ? Icons.Check : Icons.X} size={24} className="text-white" />
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-lg">
+                                                {selected.correct ? '¡Correcto!' : 'Análisis del Error'}
+                                            </div>
+                                            <div className="text-slate-400 text-sm">Entendiendo la lógica del ICFES</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-slate-300 mb-8 leading-relaxed border-l-2 border-slate-700 pl-4">
+                                        <MathRender content={question.explanation} />
+                                    </div>
+
+                                    <button
+                                        onClick={nextQuestion}
+                                        className="w-full py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-indigo-50 transition-colors flex items-center justify-center gap-2"
+                                    >
+                                        Siguiente Desafío <Icon path={Icons.ArrowRight} />
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [sidebarOpen, setSidebarOpen] = useState(false);
+            const [mode, setMode] = useState('learn'); // 'learn' or 'quiz'
+            const [moduleId, setModuleId] = useState('algebra');
+
+            const activeView = { mode, id: moduleId };
+            const currentModule = educationalModules.find(m => m.id === moduleId);
+
+            const handleSetView = (newMode, newId) => {
+                setMode(newMode);
+                if (newId) setModuleId(newId);
+            };
+
+            return (
+                <div className="flex h-screen bg-white overflow-hidden">
+                    <MenuButton onClick={() => setSidebarOpen(true)} />
+                    <Sidebar
+                        isOpen={sidebarOpen}
+                        closeSidebar={() => setSidebarOpen(false)}
+                        activeView={activeView}
+                        setView={handleSetView}
+                    />
+
+                    <main className="flex-1 h-full relative">
+                        {mode === 'learn' ? (
+                            <LearningView module={currentModule} />
+                        ) : (
+                            <QuizView />
+                        )}
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
