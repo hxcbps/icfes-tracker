@@ -14,11 +14,19 @@ import {
   Calculator,
   Shapes,
   Variable,
-  PieChart as PieChartIcon
+  PieChart as PieChartIcon,
+  NotebookPen,
+  RefreshCw,
+  CheckCircle,
+  XCircle,
+  Layers
 } from 'lucide-react';
 import { icfesData } from './data/icfes_data';
 import { resources } from './data/content'; // Keeping resources for now
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { quizQuestions, answerKey } from './data/quiz';
+import { quiz2Questions, quiz2AnswerKey } from './data/quiz2';
+import { modules } from './data/modules';
 
 // --- Components ---
 
@@ -28,6 +36,8 @@ const Sidebar = ({ activeTab, setActiveTab, level, points }) => {
     { id: 'tracker', label: 'Matriz de Estudio', icon: <MapIcon size={20} /> },
     { id: 'resources', label: 'Arsenal', icon: <BookOpen size={20} /> },
     { id: 'bitacora', label: 'Bitácora de Errores', icon: <AlertTriangle size={20} /> },
+    { id: 'quiz', label: 'Simulacro', icon: <NotebookPen size={20} /> },
+    { id: 'modules', label: 'Módulos', icon: <Layers size={20} /> },
   ];
 
   return (
@@ -102,7 +112,7 @@ const Dashboard = ({ progress }) => {
   // In a real app we'd map items to competencies more strictly, here we simulate the report's weights
   const competencyData = icfesData.competencies.map(c => ({
     name: c.name,
-    value: c.percentage, // Static for now, showing the GOAL
+    value: Number(c.percentage) || 0, // Goal weight
     color: c.color
   }));
 
@@ -472,24 +482,440 @@ const Bitacora = ({ progress, addError, deleteError }) => {
   );
 };
 
+const Modules = () => {
+  return (
+    <div className="p-8 space-y-8 animate-in fade-in duration-500">
+      <header className="space-y-2">
+        <h2 className="text-3xl font-bold text-white">Módulos de estudio</h2>
+        <p className="text-pro-muted">
+          Guía operativa sin emojis ni adornos: micro-habilidades clave, trampas típicas y antídotos para preparar Saber 11° Matemáticas.
+        </p>
+      </header>
+
+      <div className="space-y-6">
+        {modules.map((mod) => (
+          <div key={mod.id} className="bg-pro-card border border-slate-700 rounded-2xl p-6 space-y-4">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-xs font-semibold text-violet-300 uppercase tracking-wide">{mod.id}</div>
+                <h3 className="text-2xl font-bold text-white">{mod.title}</h3>
+                <p className="text-pro-muted mt-1">{mod.objective}</p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              {mod.items.map((item, idx) => (
+                <div key={`${mod.id}-${idx}`} className="border border-slate-700 rounded-xl p-4 bg-slate-800/40">
+                  <div className="text-xs text-pro-muted uppercase font-semibold mb-2">Contexto</div>
+                  <div className="text-white font-semibold">{item.context}</div>
+
+                  <div className="mt-2 text-sm text-slate-200">
+                    <span className="font-semibold text-violet-300">Micro-habilidad: </span>
+                    {item.subtopic}
+                  </div>
+                  <div className="mt-1 text-sm text-rose-300">
+                    <span className="font-semibold">Trampa: </span>
+                    {item.trap}
+                  </div>
+                  <div className="mt-1 text-sm text-green-300">
+                    <span className="font-semibold">Antídoto: </span>
+                    {item.antidote}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {mod.lessons && mod.lessons.length > 0 && (
+              <div className="space-y-3 pt-3 border-t border-slate-700">
+                {mod.lessons.map((lesson, lIdx) => (
+                  <div key={`${mod.id}-lesson-${lIdx}`} className="border border-slate-700 rounded-xl p-4 bg-slate-900/40">
+                    <div className="text-xs text-pro-muted uppercase font-semibold mb-2">Lección</div>
+                    <div className="text-white font-bold text-lg mb-2">{lesson.title}</div>
+                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-slate-200">
+                      {lesson.body}
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Quiz = ({
+  answers,
+  submitted,
+  setAnswer,
+  clearAnswers,
+  finalizeQuiz,
+  quizMeta,
+  activeQuiz,
+  switchQuiz,
+  availableQuizzes
+}) => {
+  // Mostrar solo enlace externo para Simulacro 1 y 2
+  if (quizMeta.id === 'sim1' || quizMeta.id === 'sim2') {
+    const link = quizMeta.id === 'sim1' ? '/simulacro1.html' : '/simulacro2.html';
+    const label = quizMeta.id === 'sim1' ? 'Simulacro 1' : 'Simulacro 2';
+    return (
+      <div className="p-8 space-y-6 animate-in fade-in duration-500">
+        <header className="space-y-4">
+          <div>
+            <h2 className="text-3xl font-bold text-white">{label} (vista completa)</h2>
+            <p className="text-pro-muted mt-2">
+              Abre el cuadernillo con cronómetro y calificación en la página dedicada.
+            </p>
+          </div>
+
+          <div className="bg-slate-800/60 p-1 rounded-xl flex gap-1 w-fit mb-6 border border-slate-700/50">
+            {availableQuizzes.map(q => (
+              <button
+                key={q.id}
+                onClick={() => switchQuiz(q.id)}
+                className={`px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeQuiz === q.id
+                    ? 'bg-violet-600 text-white shadow-lg shadow-violet-900/30'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
+                  }`}
+              >
+                Simulacro {q.label}
+              </button>
+            ))}
+          </div>
+
+          <a
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-violet-600 hover:bg-violet-700 border border-violet-500/60 rounded-lg px-4 py-2 shadow-sm shadow-violet-900/30 transition"
+          >
+            {label}
+            <ExternalLink size={16} />
+          </a>
+        </header>
+      </div>
+    );
+  }
+
+  const questions = quizMeta.questions;
+  const key = quizMeta.answerKey;
+  const totalQuestions = questions.length;
+  const answeredCount = Object.keys(answers).length;
+  const correctCount = questions.filter(q => answers[q.id] === key[q.id]).length;
+  const incorrectCount = answeredCount - correctCount;
+
+  const sessionStats = [1, 2].map(session => {
+    const sessionQuestions = questions.filter(q => q.session === session);
+    const sessionAnswered = sessionQuestions.filter(q => answers[q.id]).length;
+    const sessionCorrect = sessionQuestions.filter(q => answers[q.id] === key[q.id]).length;
+    return {
+      session,
+      total: sessionQuestions.length,
+      answered: sessionAnswered,
+      correct: sessionCorrect
+    };
+  });
+
+  const wrongItems = questions.filter(q => answers[q.id] && answers[q.id] !== key[q.id]);
+
+  return (
+    <div className="p-8 space-y-8 animate-in fade-in duration-500">
+      <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="space-y-3">
+          <div>
+            <h2 className="text-3xl font-bold text-white">Simulacro {quizMeta.label} (50 ítems)</h2>
+            <p className="text-pro-muted mt-2">
+              Selección múltiple con única respuesta. Guarda en tu navegador y evalúa contra la clave oficial.
+            </p>
+            {quizMeta.id === 'sim1' && (
+              <div className="mt-2">
+                <a
+                  href="/simulacro1.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-white underline-offset-4 hover:underline"
+                >
+                  Abrir Simulacro 1 en vista completa
+                </a>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {availableQuizzes.map(q => (
+              <button
+                key={q.id}
+                onClick={() => switchQuiz(q.id)}
+                className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-all ${activeQuiz === q.id
+                    ? 'bg-violet-600 text-white border-violet-500 shadow-sm shadow-violet-900/40'
+                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:border-violet-500/50'
+                  }`}
+              >
+                Simulacro {q.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <div className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-2 text-center">
+            <div className="text-xs text-pro-muted uppercase">Respondidas</div>
+            <div className="text-lg font-bold text-white">{answeredCount}/{totalQuestions}</div>
+          </div>
+          <div className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-2 text-center">
+            <div className="text-xs text-green-400 uppercase font-semibold">Correctas</div>
+            <div className="text-lg font-bold text-white">{submitted ? correctCount : '-'}</div>
+          </div>
+          <div className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-2 text-center">
+            <div className="text-xs text-rose-400 uppercase font-semibold">Incorrectas</div>
+            <div className="text-lg font-bold text-white">
+              {submitted ? (incorrectCount < 0 ? 0 : incorrectCount) : '-'}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {sessionStats.map(stat => (
+          <div key={stat.session} className="bg-pro-card border border-slate-700 rounded-xl p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-sm font-semibold text-white">Sesión {stat.session}</div>
+              <div className="text-xs text-pro-muted">{stat.answered}/{stat.total} respondidas</div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-green-500"
+                  style={{ width: `${(stat.correct / stat.total) * 100}%` }}
+                ></div>
+              </div>
+              <div className="text-xs text-slate-400">{stat.correct} correctas</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-between items-center bg-slate-800/40 border border-slate-700 rounded-xl px-4 py-3">
+        <div className="text-sm text-pro-muted">
+          Tus respuestas se guardan localmente en este navegador. Marca “Finalizar” para ver calificación; puedes limpiar para reiniciar.
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={clearAnswers}
+            className="flex items-center gap-2 text-sm px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-white border border-slate-500/50"
+          >
+            <RefreshCw size={16} />
+            Nuevo intento
+          </button>
+          {!submitted ? (
+            <button
+              onClick={() => finalizeQuiz(totalQuestions)}
+              disabled={answeredCount < totalQuestions}
+              className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg ${answeredCount < totalQuestions
+                  ? 'bg-slate-700 text-slate-400 cursor-not-allowed border border-slate-600'
+                  : 'bg-violet-600 hover:bg-violet-700 text-white border border-violet-500/50'
+                }`}
+            >
+              <CheckCircle2 size={16} />
+              Finalizar simulacro
+            </button>
+          ) : (
+            <span className="text-sm text-green-300 flex items-center gap-2">
+              <CheckCircle size={16} />
+              Simulacro finalizado
+            </span>
+          )}
+        </div>
+      </div>
+
+      {submitted && (
+        <div className="bg-pro-card border border-slate-700 rounded-2xl p-5">
+          <div className="flex items-center gap-3 mb-3">
+            <CheckCircle className="text-green-400" size={18} />
+            <div>
+              <div className="text-lg font-bold text-white">Resultados finales</div>
+              <div className="text-sm text-pro-muted">
+                {correctCount} correctas, {incorrectCount < 0 ? 0 : incorrectCount} incorrectas.
+              </div>
+            </div>
+          </div>
+          {wrongItems.length === 0 ? (
+            <div className="text-sm text-green-300">¡Todo correcto! Excelente.</div>
+          ) : (
+            <div className="text-sm text-slate-300">
+              Ítems a revisar:
+              <div className="mt-2 space-y-2">
+                {wrongItems.map(item => (
+                  <div key={item.id} className="p-3 rounded-lg bg-slate-800/60 border border-slate-700">
+                    <div className="text-xs text-pro-muted mb-1">
+                      Ítem {item.id} - Sesión {item.session} ({item.block})
+                    </div>
+                    <div className="text-white font-semibold">{item.prompt}</div>
+                    <div className="text-xs text-rose-300 mt-1">
+                      Tu respuesta: {answers[item.id]} · Correcta: {item.answer}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="space-y-6">
+        {quizQuestions.map((q) => {
+          const selected = answers[q.id];
+          const isCorrect = submitted && selected === q.answer;
+          const showFeedback = submitted && selected;
+          return (
+            <div
+              key={q.id}
+              className={`border rounded-2xl p-5 bg-pro-card transition-colors ${submitted && selected
+                  ? isCorrect
+                    ? 'border-green-500/50 bg-green-500/5'
+                    : 'border-rose-500/50 bg-rose-500/5'
+                  : 'border-slate-700'
+                }`}
+            >
+              <div className="flex flex-wrap gap-3 items-center mb-3">
+                <span className="text-xs font-bold px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Ítem {q.id} - Sesión {q.session}
+                </span>
+                <span className="text-xs text-pro-muted">{q.block}</span>
+                {showFeedback && (
+                  <span
+                    className={`flex items-center gap-1 text-xs font-semibold ${isCorrect ? 'text-green-400' : 'text-rose-400'
+                      }`}
+                  >
+                    {isCorrect ? <CheckCircle size={14} /> : <XCircle size={14} />}
+                    {isCorrect ? 'Correcto' : 'Incorrecto'}
+                  </span>
+                )}
+              </div>
+              <p className="text-white font-medium mb-3">{q.prompt}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {q.options.map((opt) => {
+                  const isSelected = selected === opt.id;
+                  const isAnswer = q.answer === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      onClick={() => setAnswer(q.id, opt.id)}
+                      disabled={submitted}
+                      className={`w-full text-left px-3 py-3 rounded-xl border transition-all ${submitted
+                          ? isSelected
+                            ? isAnswer
+                              ? 'border-green-500 bg-green-500/10 text-white'
+                              : 'border-rose-500 bg-rose-500/10 text-white'
+                            : 'border-slate-700 bg-slate-800/30 text-slate-300'
+                          : isSelected
+                            ? 'border-violet-500 bg-violet-600/15 text-white shadow-sm shadow-violet-900/40'
+                            : 'border-slate-700 hover:border-violet-500/60 bg-slate-800/50 text-slate-200'
+                        } ${submitted ? 'cursor-not-allowed' : ''}`}
+                    >
+                      <div className="flex items-start gap-2">
+                        <span className={`text-sm font-bold ${isSelected ? '' : 'text-violet-300'}`}>{opt.id}.</span>
+                        <span className="text-sm leading-relaxed">{opt.text}</span>
+                      </div>
+                      {showFeedback && isSelected && !isCorrect && isAnswer && (
+                        <div className="mt-2 text-xs text-green-300">Esta era la clave correcta.</div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              {showFeedback && (
+                <div className="mt-3 text-xs text-pro-muted">
+                  Tu respuesta: {selected}. Clave oficial: {q.answer}.
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 
 // --- Main App ---
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
-  // Persisted Logic
-  const [progress, setProgress] = useState(() => {
-    const saved = localStorage.getItem('icfes-progress-v2'); // New key for new data schema
-    return saved ? JSON.parse(saved) : {
-      checkedItems: [], // Array of string IDs
-      errors: []
+  const safeLoad = (key, fallback) => {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return fallback;
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? { ...fallback, ...parsed } : fallback;
+    } catch (err) {
+      console.warn('No se pudo leer localStorage', err);
+      return fallback;
+    }
+  };
+
+  const quizCatalog = {
+    sim1: { id: 'sim1', label: '1', questions: quizQuestions, answerKey },
+    sim2: { id: 'sim2', label: '2', questions: quiz2Questions, answerKey: quiz2AnswerKey }
+  };
+
+  const defaultQuizState = {
+    activeQuiz: 'sim1',
+    data: {
+      sim1: { answers: {}, submitted: false },
+      sim2: { answers: {}, submitted: false }
+    }
+  };
+
+  const normalizeQuizState = (raw) => {
+    if (raw && raw.answers) {
+      return {
+        activeQuiz: 'sim1',
+        data: {
+          sim1: { answers: raw.answers || {}, submitted: !!raw.submitted },
+          sim2: { answers: {}, submitted: false }
+        }
+      };
+    }
+    const base = raw && typeof raw === 'object' ? raw : {};
+    const mergedData = {
+      ...defaultQuizState.data,
+      ...(base.data || {})
     };
-  });
+    if (!mergedData.sim1) mergedData.sim1 = { answers: {}, submitted: false };
+    if (!mergedData.sim2) mergedData.sim2 = { answers: {}, submitted: false };
+    const activeQuiz = quizCatalog[base.activeQuiz] ? base.activeQuiz : 'sim1';
+    return { activeQuiz, data: mergedData };
+  };
+
+  // Persisted Logic
+  const [progress, setProgress] = useState(() =>
+    safeLoad('icfes-progress-v2', { checkedItems: [], errors: [] })
+  );
+
+  const [quizState, setQuizState] = useState(() =>
+    normalizeQuizState(safeLoad('icfes-quiz-v1', defaultQuizState))
+  );
 
   useEffect(() => {
-    localStorage.setItem('icfes-progress-v2', JSON.stringify(progress));
+    try {
+      localStorage.setItem('icfes-progress-v2', JSON.stringify(progress));
+    } catch (err) {
+      console.warn('No se pudo guardar progreso', err);
+    }
   }, [progress]);
+
+  const quizOptions = Object.values(quizCatalog).map(q => ({ id: q.id, label: q.label }));
+  const activeQuizId = quizState.activeQuiz;
+  const activeQuizMeta = quizCatalog[activeQuizId] || quizCatalog.sim1;
+  const activeQuizData = quizState.data[activeQuizId] || { answers: {}, submitted: false };
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('icfes-quiz-v1', JSON.stringify(quizState));
+    } catch (err) {
+      console.warn('No se pudo guardar simulacro', err);
+    }
+  }, [quizState]);
 
   const toggleItem = (itemId) => {
     const isChecked = progress.checkedItems.includes(itemId);
@@ -508,6 +934,65 @@ function App() {
 
   const deleteError = (id) => {
     setProgress(prev => ({ ...prev, errors: prev.errors.filter(e => e.id !== id) }));
+  };
+
+  const setAnswer = (questionId, optionId) => {
+    setQuizState(prev => {
+      const activeId = prev.activeQuiz;
+      const quizData = prev.data[activeId] || { answers: {}, submitted: false };
+      if (quizData.submitted) return prev;
+      return {
+        ...prev,
+        data: {
+          ...prev.data,
+          [activeId]: { ...quizData, answers: { ...quizData.answers, [questionId]: optionId } }
+        }
+      };
+    });
+  };
+
+  const clearAnswers = () => {
+    setQuizState(prev => {
+      const activeId = prev.activeQuiz;
+      return {
+        ...prev,
+        data: { ...prev.data, [activeId]: { answers: {}, submitted: false } }
+      };
+    });
+  };
+
+  const finalizeQuiz = (questionCount) => {
+    setQuizState(prev => {
+      const activeId = prev.activeQuiz;
+      const quizData = prev.data[activeId] || { answers: {}, submitted: false };
+      if (quizData.submitted) return prev;
+      if (Object.keys(quizData.answers).length < questionCount) return prev;
+      return {
+        ...prev,
+        data: {
+          ...prev.data,
+          [activeId]: { ...quizData, submitted: true }
+        }
+      };
+    });
+  };
+
+  const switchQuiz = (quizId) => {
+    if (!quizCatalog[quizId]) return;
+    setQuizState(prev => {
+      const nextData = {
+        ...defaultQuizState.data,
+        ...(prev.data || {})
+      };
+      if (!nextData[quizId]) {
+        nextData[quizId] = { answers: {}, submitted: false };
+      }
+      return {
+        ...prev,
+        activeQuiz: quizId,
+        data: nextData
+      };
+    });
   };
 
   // Calculate fake level based on item count for now
@@ -539,6 +1024,20 @@ function App() {
         {activeTab === 'tracker' && <Tracker progress={progress} toggleItem={toggleItem} />}
         {activeTab === 'resources' && <Resources />}
         {activeTab === 'bitacora' && <Bitacora progress={progress} addError={addError} deleteError={deleteError} />}
+        {activeTab === 'quiz' && (
+          <Quiz
+            answers={activeQuizData.answers}
+            submitted={activeQuizData.submitted}
+            setAnswer={setAnswer}
+            clearAnswers={clearAnswers}
+            finalizeQuiz={finalizeQuiz}
+            quizMeta={activeQuizMeta}
+            activeQuiz={activeQuizId}
+            switchQuiz={switchQuiz}
+            availableQuizzes={quizOptions}
+          />
+        )}
+        {activeTab === 'modules' && <Modules />}
       </main>
     </div>
   );

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulacro Matemáticas Saber 11</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .ascii-art {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            line-height: 1.2;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-radio:checked + div {
+            background-color: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .correct-answer {
+            background-color: #dcfce7 !important;
+            border-color: #22c55e !important;
+        }
+        .incorrect-answer {
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
+        }
+        header {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold text-blue-900">Saber 11 - Matemáticas</h1>
+                <p class="text-xs text-gray-500 hidden sm:block">Simulacro SMUR - 50 Preguntas</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-mono text-sm font-bold" id="timer">
+                    02:30:00
+                </div>
+                <button onclick="gradeExam()" id="submitBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow-md">
+                    Finalizar Prueba
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto mt-24 mb-12 px-4 space-y-8" id="questions-container"></main>
+
+    <div id="resultsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Resultados</h2>
+            <div class="my-6">
+                <div class="text-5xl font-bold text-blue-600 mb-2" id="scoreDisplay">0/50</div>
+                <p class="text-gray-600" id="percentageDisplay">0%</p>
+            </div>
+            <p class="text-sm text-gray-500 mb-6">Revisa el cuestionario para ver las respuestas correctas e incorrectas.</p>
+            <button onclick="closeModal()" class="w-full bg-gray-800 text-white py-2 rounded hover:bg-gray-700">
+                Revisar Respuestas
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const questionsData = [
+            {
+                id: 1,
+                context: "RESPONDA LAS PREGUNTAS 1 A 4 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n\nUna empresa de telefonía ofrece tres planes de datos:\n• Plan A: Cargo fijo de $20.000 y $5.000 por GB.\n• Plan B: Cargo fijo de $35.000 y $2.000 por GB.\n• Plan C: Sin cargo fijo, paga $8.000 por GB.",
+                figure: `Costo ($)
+   |
+50k|           / (Línea 2)
+   |          /
+40k|         /
+   |        /      / (Línea 1)
+30k|       /      /
+   |      /      /
+20k|-----/------/
+   |    /      /
+10k|   /      /
+   |__/______/_________
+     0  2   4   6   8   Gigas (g)`,
+                text: "La <b>Línea 1</b> de la gráfica corresponde al modelo matemático del:",
+                options: { A: "Plan A", B: "Plan B", C: "Plan C", D: "Plan A y C simultáneamente" },
+                correct: "A"
+            },
+            {
+                id: 2,
+                text: "Un usuario consume exactamente 6 GB al mes. ¿Cuál es el orden de los planes desde el más barato al más caro para este usuario?",
+                options: { A: "Plan C < Plan A < Plan B", B: "Plan B < Plan A < Plan C", C: "Plan B < Plan C < Plan A", D: "Plan A < Plan B < Plan C" },
+                correct: "B"
+            },
+            {
+                id: 3,
+                text: "¿A partir de cuántas gigas el <b>Plan B</b> se vuelve más económico que el <b>Plan A</b>?",
+                options: { A: "Más de 3 GB", B: "Más de 4 GB", C: "Más de 5 GB", D: "Más de 6 GB" },
+                correct: "C"
+            },
+            {
+                id: 4,
+                text: "Si se crea un <b>Plan D</b> que cobra lo mismo que el Plan A por las primeras 4 GB, y luego cobra $2.000 por cada GB adicional, la ecuación para \\(g > 4\\) sería:",
+                options: { A: "\\(C = 40.000 + 2.000(g - 4)\\)", B: "\\(C = 20.000 + 5.000g + 2.000\\)", C: "\\(C = 40.000 + 2.000g\\)", D: "\\(C = 20.000 + 2.000(g - 4)\\)" },
+                correct: "A"
+            },
+            {
+                id: 5,
+                context: "RESPONDA LAS PREGUNTAS 5 A 8 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n\nSe construye una piscina con forma de prisma rectangular. Se sabe que \\(1 \\text{ m}^3 = 1.000 \\text{ litros}\\).",
+                figure: `       __________________
+      /                 /|
+     /                 / |
+  10m (Largo)        /  | 2m (Prof.)
+   /                /   /
+  /________________/   /
+  |                |  / 5m (Ancho)
+  |   AGUA         | /
+  |________________|/`,
+                text: "El volumen total de la piscina es:",
+                options: { A: "17 m³", B: "50 m³", C: "100 m³", D: "200 m³" },
+                correct: "C"
+            },
+            { id: 6, text: "Se va a enchapar (cubrir con baldosas) el interior de la piscina (piso y las 4 paredes, sin tapa). El área total a cubrir es:", options: { A: "100 m²", B: "110 m²", C: "160 m²", D: "60 m²" }, correct: "B" },
+            { id: 7, text: "Si se usa una manguera que vierte 500 litros por minuto, ¿cuánto tiempo tarda en llenarse la piscina completamente?", options: { A: "100 minutos", B: "200 minutos", C: "3 horas y 20 minutos", D: "5 horas" }, correct: "C" },
+            { id: 8, text: "Al llenar la piscina hasta una altura de 1.5 metros, ¿qué porcentaje de la capacidad total se ha ocupado?", options: { A: "60%", B: "75%", C: "80%", D: "85%" }, correct: "B" },
+            {
+                id: 9,
+                context: "RESPONDA LAS PREGUNTAS 9 A 11 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n\nEn una bolsa hay balotas numeradas del 1 al 10.\n• Evento A: Sacar un número par.\n• Evento B: Sacar un número mayor que 6.",
+                text: "¿Cuál es la probabilidad de que ocurra el evento A?",
+                options: { A: "\\(1/2\\)", B: "\\(2/5\\)", C: "\\(3/10\\)", D: "\\(1/5\\)" },
+                correct: "A"
+            },
+            { id: 10, text: "¿Cuál es la probabilidad de sacar una balota que cumpla la condición del Evento A <b>Y</b> la condición del Evento B al mismo tiempo?", options: { A: "\\(1/10\\)", B: "\\(1/5\\)", C: "\\(3/10\\)", D: "\\(2/5\\)" }, correct: "B" },
+            { id: 11, text: "Se saca una balota, se mira el número y <b>no se devuelve</b> a la bolsa. Luego se saca una segunda balota. ¿Cuál es la probabilidad de sacar el número 10 en el primer intento y el número 9 en el segundo?", options: { A: "\\(1/100\\)", B: "\\(1/90\\)", C: "\\(1/19\\)", D: "\\(2/10\\)" }, correct: "B" },
+            { id: 12, text: "En un triángulo rectángulo, un cateto mide 6 cm y la hipotenusa mide 10 cm. El área del triángulo es:", options: { A: "24 cm²", B: "30 cm²", C: "48 cm²", D: "60 cm²" }, correct: "A" },
+            { id: 13, text: "La inecuación \\(-2x + 4 > 10\\) tiene como solución:", options: { A: "\\(x > -3\\)", B: "\\(x < -3\\)", C: "\\(x > 3\\)", D: "\\(x < 3\\)" }, correct: "B" },
+            { id: 14, text: "Un mapa tiene una escala de 1:50.000. Si dos ciudades están separadas por 4 cm en el mapa, la distancia real es:", options: { A: "2 km", B: "20 km", C: "200 m", D: "200 km" }, correct: "A" },
+            { id: 15, text: "Se define la operación \\(\\Delta\\) como \\(a \\Delta b = a^2 - b\\). El valor de \\((3 \\Delta 2) \\Delta 5\\) es:", options: { A: "2", B: "44", C: "4", D: "0" }, correct: "B" },
+            { id: 16, text: "En un grupo de 50 personas, 30 comen carne, 20 comen pollo y 5 no comen ninguna de las dos. ¿Cuántas personas comen carne y pollo?", options: { A: "0", B: "5", C: "10", D: "15" }, correct: "B" },
+            {
+                id: 17,
+                context: "RESPONDA LAS PREGUNTAS 17 A 20 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n\nTabla de notas de 5 estudiantes:",
+                figure: `| Estudiante | Nota 1 | Nota 2 | Nota 3 |
+| :---       | :---:  | :---:  | :---:  |
+| Ana        | 3.0    | 4.0    | 5.0    |
+| Beto       | 2.0    | 2.0    | 5.0    |
+| Carla      | 4.0    | 4.0    | 4.0    |
+| Dani       | 1.0    | 5.0    | ?      |
+| Edu        | 3.0    | 3.0    | 3.0    |`,
+                text: "Para que Dani tenga el mismo promedio que Carla, su Nota 3 debe ser:",
+                options: { A: "4.0", B: "5.0", C: "6.0", D: "3.0" },
+                correct: "C"
+            },
+            { id: 18, text: "¿Cuál afirmación es verdadera sobre la desviación estándar (dispersión) de las notas de Carla y Edu?", options: { A: "La desviación de Carla es mayor.", B: "La desviación de Edu es mayor.", C: "Ambas desviaciones son iguales a cero.", D: "No se puede calcular." }, correct: "C" },
+            { id: 19, text: "Si se elimina la nota más baja de Beto, su nuevo promedio:", options: { A: "Aumenta.", B: "Disminuye.", C: "Se mantiene igual.", D: "Se duplica." }, correct: "A" },
+            { id: 20, text: "El profesor decide subir 0.5 a todas las notas definitivas. Esto afecta:", options: { A: "La media, pero no la desviación estándar.", B: "La desviación estándar, pero no la media.", C: "Tanto la media como la desviación estándar.", D: "Ni la media ni la desviación estándar." }, correct: "A" },
+            {
+                id: 21,
+                context: "RESPONDA LAS PREGUNTAS 21 A 23 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n\nEl área que ocupa una colonia de bacterias se duplica cada hora. A las 12:00 pm, el área es de \\(1 \\text{ mm}^2\\).",
+                text: "La expresión que modela el área \\(A(t)\\) en función del tiempo \\(t\\) (horas transcurridas) es:",
+                options: { A: "\\(A(t) = 1 + 2t\\)", B: "\\(A(t) = 2^t\\)", C: "\\(A(t) = t^2\\)", D: "\\(A(t) = 2t\\)" },
+                correct: "B"
+            },
+            { id: 22, text: "¿A qué hora la colonia ocupará \\(16 \\text{ mm}^2\\)?", options: { A: "2:00 pm", B: "3:00 pm", C: "4:00 pm", D: "8:00 pm" }, correct: "C" },
+            { id: 23, text: "Si el cultivo se limpia reduciendo el área a la mitad a las 3:00 pm, el área resultante será igual a la que tenía la colonia a las:", options: { A: "1:00 pm", B: "1:30 pm", C: "2:00 pm", D: "2:30 pm" }, correct: "C" },
+            {
+                id: 24,
+                context: "RESPONDA LAS PREGUNTAS 24 A 27 CON LA SIGUIENTE GRÁFICA\n\nPosición de dos corredores (A y B) vs Tiempo.",
+                figure: `Posición (m)
+   |        / (B)
+   |       /
+400|      /    ___ (A)
+   |     /    /
+300|    X    /
+   |   / \\  /
+200|  /   \\/
+   | /
+100|/
+   |_________________
+     0  10 20 30 40   Tiempo (s)`,
+                text: "¿Qué corredor mantuvo una velocidad constante durante todo el recorrido?",
+                options: { A: "El corredor A.", B: "El corredor B.", C: "Ambos.", D: "Ninguno." },
+                correct: "B"
+            },
+            { id: 25, text: "En el instante \\(t = 20 \\text{ s}\\) (punto de cruce X), ¿cuál afirmación es cierta?", options: { A: "Ambos tienen la misma velocidad.", B: "Ambos han recorrido la misma distancia total.", C: "El corredor A va más rápido que el B.", D: "Se chocaron." }, correct: "B" },
+            { id: 26, text: "La velocidad del corredor B es aproximadamente:", options: { A: "20 m/s", B: "15 m/s", C: "10 m/s", D: "5 m/s" }, correct: "B" },
+            { id: 27, text: "El comportamiento del corredor A entre \\(t=20\\) y \\(t=30\\) indica que:", options: { A: "Se detuvo.", B: "Se devolvió (retrocedió).", C: "Aceleró.", D: "Corrió en círculos." }, correct: "B" },
+            {
+                id: 28,
+                context: "RESPONDA LAS PREGUNTAS 28 A 30 CON LA SIGUIENTE INFORMACIÓN\n\nSe tiene una hoja circular de radio \\(R\\). Se recorta un sector circular de \\(90^\\circ\\) y con el resto se forma un cono.",
+                text: "El perímetro del círculo base del cono formado será igual a:",
+                options: { A: "\\(2\\pi R\\)", B: "\\(\\frac{3}{4}(2\\pi R)\\)", C: "\\(\\frac{1}{4}(2\\pi R)\\)", D: "\\(\\pi R\\)" },
+                correct: "B"
+            },
+            { id: 29, text: "El radio de la base del cono (\\(r\\)) en relación con el radio original (\\(R\\)) es:", options: { A: "\\(r = R\\)", B: "\\(r = \\frac{3}{4}R\\)", C: "\\(r = \\frac{1}{4}R\\)", D: "\\(r = \\frac{1}{2}R\\)" }, correct: "B" },
+            { id: 30, text: "La altura lateral (generatriz) del cono formado es igual a:", options: { A: "\\(R\\)", B: "\\(r\\)", C: "\\(3R\\)", D: "La altura del cono." }, correct: "A" },
+            {
+                id: 31,
+                context: "RESPONDA LAS PREGUNTAS 31 A 33\n\nDesde un punto en el suelo se observa la cima de un edificio con un ángulo de elevación de \\(45^\\circ\\). Al alejarse 20 metros, el ángulo es de \\(30^\\circ\\).",
+                text: "Sea \\(h\\) la altura del edificio y \\(x\\) la distancia inicial. Como el primer ángulo es \\(45^\\circ\\), se cumple que:",
+                options: { A: "\\(h = x\\)", B: "\\(h = 2x\\)", C: "\\(h = x \\cdot \\tan(30^\\circ)\\)", D: "\\(h = x / 2\\)" },
+                correct: "A"
+            },
+            { id: 32, text: "Sabiendo que \\(\\tan(30^\\circ) \\approx 0.58\\), la altura es aproximadamente:", options: { A: "15.6 m", B: "27.6 m", C: "45.2 m", D: "10.0 m" }, correct: "B" },
+            { id: 33, text: "Si el observador tuviera una estatura de 1.70 m, ¿cómo cambia el cálculo de la altura total del edificio (\\(H\\))?", options: { A: "\\(H = h - 1.70\\)", B: "\\(H = h + 1.70\\)", C: "\\(H = h\\)", D: "\\(H = h \\cdot 1.70\\)" }, correct: "B" },
+            { id: 34, text: "Una tienda sube los precios un 20%. Al mes siguiente, baja los precios nuevos un 20%. Respecto al precio original, el precio final es:", options: { A: "Igual.", B: "Un 4% más bajo.", C: "Un 4% más alto.", D: "Un 10% más bajo." }, correct: "B" },
+            { id: 35, text: "¿Cuál de los siguientes números es irracional?", options: { A: "\\(\\sqrt{4}\\)", B: "3.141592", C: "\\(\\sqrt{5}\\)", D: "\\(1/3\\)" }, correct: "C" },
+            { id: 36, text: "En la ecuación \\(3^{x+1} = 81\\), el valor de \\(x\\) es:", options: { A: "2", B: "3", C: "4", D: "5" }, correct: "B" },
+            { id: 37, text: "Se lanzan dos dados. ¿Cuál es la probabilidad de que la suma sea 12?", options: { A: "\\(1/6\\)", B: "\\(1/12\\)", C: "\\(1/36\\)", D: "\\(1/18\\)" }, correct: "C" },
+            { id: 38, text: "Un tanque tiene dos grifos. El grifo A lo llena en 4 horas. El grifo B lo llena en 6 horas. Si se abren ambos, el tiempo (\\(t\\)) se calcula con:", options: { A: "\\(t = 4 + 6\\)", B: "\\(\\frac{1}{t} = \\frac{1}{4} + \\frac{1}{6}\\)", C: "\\(t = \\frac{4+6}{2}\\)", D: "\\(t = 4 \\times 6\\)" }, correct: "B" },
+            { id: 39, text: "La negación lógica de la afirmación 'Todos los estudiantes aprobaron' es:", options: { A: "Ningún estudiante aprobó.", B: "Todos los estudiantes reprobaron.", C: "Al menos un estudiante no aprobó.", D: "Algunos estudiantes aprobaron." }, correct: "C" },
+            { id: 40, text: "¿Cuántos números de 3 dígitos se pueden formar usando solo los dígitos 1, 2 y 3, si se permite repetir dígitos?", options: { A: "6", B: "9", C: "27", D: "30" }, correct: "C" },
+            {
+                id: 41,
+                context: "RESPONDA LAS PREGUNTAS 41 A 45\n\nEmprendimiento de camisetas:\n• Costo Fijo Mensual: $1.000.000\n• Costo Variable por camiseta: $15.000\n• Precio de Venta: $35.000",
+                text: "La función de Utilidad \\(U(x)\\) mensual es:",
+                options: { A: "\\(U(x) = 35.000x - 15.000x + 1.000.000\\)", B: "\\(U(x) = 20.000x - 1.000.000\\)", C: "\\(U(x) = 35.000x - 1.000.000\\)", D: "\\(U(x) = 50.000x - 1.000.000\\)" },
+                correct: "B"
+            },
+            { id: 42, text: "El punto de equilibrio (donde no se gana ni se pierde) se alcanza al vender:", options: { A: "20 camisetas.", B: "40 camisetas.", C: "50 camisetas.", D: "100 camisetas." }, correct: "C" },
+            { id: 43, text: "Si este mes se vendieron 100 camisetas, la ganancia fue:", options: { A: "$1.000.000", B: "$2.000.000", C: "$3.500.000", D: "$1.500.000" }, correct: "A" },
+            { id: 44, text: "Se quiere una utilidad de al menos $3.000.000. ¿Cuántas camisetas mínimo se deben vender?", options: { A: "150", B: "200", C: "250", D: "300" }, correct: "B" },
+            { id: 45, text: "Si el costo variable pasa a $20.000, el nuevo punto de equilibrio:", options: { A: "Aumenta.", B: "Disminuye.", C: "Se mantiene igual.", D: "Se vuelve negativo." }, correct: "A" },
+            {
+                id: 46,
+                context: "RESPONDA LAS PREGUNTAS 46 A 50\n\nSe coloca un poste de 3m que proyecta sombra de 4m. Un árbol cercano proyecta sombra de 12m.",
+                text: "La altura del árbol es:",
+                options: { A: "6 m", B: "8 m", C: "9 m", D: "16 m" },
+                correct: "C"
+            },
+            { id: 47, text: "La distancia desde la punta superior del poste hasta el final de su sombra (hipotenusa) es:", options: { A: "5 m", B: "6 m", C: "7 m", D: "\\(\\sqrt{7}\\) m" }, correct: "A" },
+            { id: 48, text: "Si el sol baja (se acerca al atardecer), la longitud de la sombra:", options: { A: "Disminuye.", B: "Aumenta.", C: "Permanece igual.", D: "Se vuelve cero." }, correct: "B" },
+            { id: 49, text: "El ángulo \\(\\theta\\) que forman los rayos del sol con el suelo cumple que:", options: { A: "\\(\\tan(\\theta) = 3/4\\)", B: "\\(\\sin(\\theta) = 3/4\\)", C: "\\(\\cos(\\theta) = 3/4\\)", D: "\\(\\tan(\\theta) = 4/3\\)" }, correct: "A" },
+            { id: 50, text: "Se decide poner un cable desde la punta del árbol hasta el final de su sombra. La longitud de este cable es:", options: { A: "13 m", B: "15 m", C: "20 m", D: "25 m" }, correct: "B" }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        questionsData.forEach((q) => {
+            if (q.context) {
+                const contextDiv = document.createElement('div');
+                contextDiv.className = "bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 text-sm text-gray-700 whitespace-pre-wrap";
+                contextDiv.innerText = q.context;
+                container.appendChild(contextDiv);
+            }
+
+            const card = document.createElement('div');
+            card.className = "bg-white p-6 rounded-lg shadow-sm border border-gray-200";
+            card.id = `q-${q.id}`;
+
+            let figureHTML = '';
+            if (q.figure) {
+                figureHTML = `<div class="ascii-art text-gray-700">${q.figure}</div>`;
+            }
+
+            let optionsHTML = '';
+            for (const [key, value] of Object.entries(q.options)) {
+                optionsHTML += `
+                    <label class="flex items-start space-x-3 option-label group">
+                        <input type="radio" name="q${q.id}" value="${key}" class="mt-1 hidden option-radio">
+                        <div class="w-6 h-6 flex-shrink-0 border-2 border-gray-300 rounded-full flex items-center justify-center group-hover:border-blue-400">
+                            <span class="text-xs font-bold text-gray-600 group-hover:text-blue-500">${key}</span>
+                        </div>
+                        <div class="flex-1 p-2 rounded -mt-2 border border-transparent">
+                            <span class="text-sm text-gray-800">${value}</span>
+                        </div>
+                    </label>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="flex items-start space-x-2 mb-4">
+                    <span class="bg-gray-800 text-white text-xs font-bold px-2 py-1 rounded flex-shrink-0">
+                        ${q.id}
+                    </span>
+                    <div class="text-base text-gray-900 font-medium w-full">
+                        ${q.text}
+                    </div>
+                </div>
+                ${figureHTML}
+                <div class="space-y-2 mt-2 pl-8" id="options-${q.id}">
+                    ${optionsHTML}
+                </div>
+                <div class="hidden mt-4 p-3 rounded text-sm font-semibold feedback" id="feedback-${q.id}"></div>
+            `;
+            container.appendChild(card);
+        });
+
+        let time = 2 * 3600 + 30 * 60;
+        const timerEl = document.getElementById('timer');
+        setInterval(() => {
+            if (time <= 0) return;
+            time--;
+            const h = Math.floor(time / 3600).toString().padStart(2, '0');
+            const m = Math.floor((time % 3600) / 60).toString().padStart(2, '0');
+            const s = (time % 60).toString().padStart(2, '0');
+            timerEl.innerText = `${h}:${m}:${s}`;
+        }, 1000);
+
+        function gradeExam() {
+            let score = 0;
+            let answered = 0;
+
+            questionsData.forEach(q => {
+                const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                const optionsContainer = document.getElementById(`options-${q.id}`);
+                const labels = optionsContainer.querySelectorAll('label');
+
+                feedbackEl.className = "hidden mt-4 p-3 rounded text-sm font-semibold feedback";
+                labels.forEach(l => {
+                    l.querySelector('div:last-child').classList.remove('correct-answer', 'incorrect-answer');
+                });
+
+                if (selected) {
+                    answered++;
+                    const val = selected.value;
+                    const answerDiv = selected.parentElement.querySelector('div:last-child');
+
+                    if (val === q.correct) {
+                        score++;
+                        answerDiv.classList.add('correct-answer');
+                        feedbackEl.innerText = "¡Correcto!";
+                        feedbackEl.classList.add('text-green-700', 'bg-green-100', 'block');
+                        feedbackEl.classList.remove('hidden');
+                    } else {
+                        answerDiv.classList.add('incorrect-answer');
+                        feedbackEl.innerText = `Incorrecto. La respuesta correcta es ${q.correct}.`;
+                        feedbackEl.classList.add('text-red-700', 'bg-red-100', 'block');
+                        feedbackEl.classList.remove('hidden');
+                        const correctInput = optionsContainer.querySelector(`input[value="${q.correct}"]`);
+                        if (correctInput) {
+                            correctInput.parentElement.querySelector('div:last-child').classList.add('correct-answer');
+                        }
+                    }
+                } else {
+                    feedbackEl.innerText = `Sin responder. La correcta es ${q.correct}.`;
+                    feedbackEl.classList.add('text-gray-700', 'bg-gray-200', 'block');
+                    feedbackEl.classList.remove('hidden');
+                }
+            });
+
+            const percentage = Math.round((score / questionsData.length) * 100);
+            document.getElementById('scoreDisplay').innerText = `${score}/${questionsData.length}`;
+            document.getElementById('percentageDisplay').innerText = `${percentage}% de efectividad`;
+            document.getElementById('resultsModal').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeModal() {
+            document.getElementById('resultsModal').classList.add('hidden');
+        }
+
+        window.addEventListener('load', () => {
+             MathJax.typesetPromise();
+        });
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@ export const icfesData = {
         {
             id: "interpretacion",
             name: "Interpretación y Representación",
-            percentage: "~34",
+            percentage: 34,
             color: "#8b5cf6",
             description: "Capacidad de comprender y transformar información cuantitativa y esquemática.",
             evidences: [
@@ -21,7 +21,7 @@ export const icfesData = {
         {
             id: "formulacion",
             name: "Formulación y Ejecución",
-            percentage: "~43",
+            percentage: 43,
             color: "#10b981",
             description: "Habilidad para plantear y resolver problemas matemáticos.",
             evidences: [
@@ -34,7 +34,7 @@ export const icfesData = {
         {
             id: "argumentacion",
             name: "Argumentación",
-            percentage: "~23",
+            percentage: 23,
             color: "#f59e0b",
             description: "Capacidad de justificar propiedades y validar afirmaciones.",
             evidences: [
