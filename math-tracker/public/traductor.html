@@ -211,244 +211,355 @@
                 summary: "Desarrollo de competencias para interpretar magnitudes, manejar sistemas de unidades y calcular variaciones proporcionales bajo lógica formal.",
                 chapters: [
                     {
-                        title: "1. Fundamentos Operativos y Análisis Dimensional",
+                        title: "1. Operaciones Básicas: El Lenguaje del Cambio",
                         content: `
-                            <div class="space-y-6 text-slate-700">
-                                <div class="bg-blue-50 p-4 border-l-4 border-blue-600 rounded">
-                                    <h4 class="font-bold text-blue-900 mb-2">1.1 Operaciones Básicas y Análisis Dimensional</h4>
-                                    <p class="text-sm">El principal error en este tema no es el cálculo aritmético, sino la <strong>inconsistencia dimensional</strong>. No se pueden operar cantidades que no pertenezcan a la misma categoría.</p>
-                                </div>
-
-                                <div>
-                                    <h5 class="font-bold text-slate-800">Verificación de Unidades</h5>
-                                    <p class="mb-2">Antes de plantear una ecuación, se debe asegurar la cancelación correcta de unidades.</p>
-                                    <ul class="list-disc pl-5 text-sm space-y-1">
-                                        <li><strong class="text-red-600">Forma Incorrecta:</strong> Sumar Dinero + Personas.</li>
-                                        <li><strong class="text-green-600">Forma Correcta:</strong> Operar tasas para obtener unidades coherentes.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="bg-white border p-4 rounded shadow-sm">
-                                    <h5 class="font-bold text-slate-800 mb-2">Caso: Optimización con Restricciones</h5>
-                                    <p class="text-sm mb-2"><strong>Planteamiento Lógico:</strong></p>
-                                    <ol class="list-decimal pl-5 text-sm space-y-1">
-                                        <li><strong>Variable a minimizar:</strong> Costo Total ($C$).</li>
-                                        <li><strong>Restricción:</strong> La suma de estudiantes ($n$) debe ser 140.</li>
-                                    </ol>
-                                    <p class="text-sm mt-3 bg-slate-100 p-2 italic">
-                                        "Matemáticamente, para minimizar el costo, se deben llenar primero los cupos con menor valor unitario hasta completar la demanda."
+                            <div class="space-y-8 text-slate-700 leading-relaxed">
+                                
+                                <!-- INTRODUCCIÓN CONCEPTUAL -->
+                                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border-l-4 border-indigo-500">
+                                    <h4 class="font-bold text-indigo-900 text-lg mb-2">1.1 Tu Caja de Herramientas: ¿Qué significan los números?</h4>
+                                    <p class="mb-4">
+                                        En el colegio, a menudo operamos números "a ciegas". En el ICFES, y en la vida real, cada operación cuenta una historia física.
+                                        Antes de calcular, debes preguntar: <strong>¿Qué estoy modelando?</strong>
                                     </p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                        <div class="bg-white p-4 rounded shadow-sm">
+                                            <strong class="text-slate-900 block mb-1">Enteros ($Z$) = CONTAR</strong>
+                                            <p class="text-sm text-slate-600">
+                                                Herramienta para objetos discretos. No existen "medios" elementos.
+                                                <br><span class="text-xs font-mono bg-slate-100 p-1 mt-1 inline-block">Personas, Goles, Sillas.</span>
+                                            </p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded shadow-sm">
+                                            <strong class="text-blue-900 block mb-1">Reales ($R$) = MEDIR</strong>
+                                            <p class="text-sm text-slate-600">
+                                                Herramienta para magnitudes continuas. La precisión decimal es clave.
+                                                <br><span class="text-xs font-mono bg-blue-50 p-1 mt-1 inline-block">Dinero, Distancia, Tiempo ($1.5s$).</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <hr class="border-slate-200 my-4">
+                                <hr class="border-slate-200">
 
+                                <!-- SUMA Y RESTA -->
                                 <div>
-                                    <h4 class="font-bold text-slate-800 mb-3">1.2 Fracciones y Porcentajes (Factores Decimales)</h4>
-                                    <p class="mb-2">El porcentaje debe tratarse como un <strong>factor multiplicativo decimal</strong> ($1 \\pm p$), no como una suma.</p>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">1.2 La Lógica de la Adición: Naturaleza Idéntica</h3>
+                                    <p class="mb-4">
+                                        La suma ($+$) y resta ($-$) son operaciones de <strong>Acumulación</strong>. 
+                                        La regla dorada, que el ICFES castiga si ignoras, es la <strong>Consistencia Dimensional</strong>.
+                                    </p>
                                     
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
-                                        <div class="bg-emerald-50 p-3 rounded">
-                                            <strong>Aumento ($1+p$):</strong><br>
-                                            Aumento del 20% $\\to \\times 1.20$
-                                        </div>
-                                        <div class="bg-red-50 p-3 rounded">
-                                            <strong>Descuento ($1-p$):</strong><br>
-                                            Descuento del 20% $\\to \\times 0.80$
-                                        </div>
-                                    </div>
-
-                                    <h5 class="font-bold text-sm text-slate-800 mt-3">Variaciones Sucesivas (No aditivas)</h5>
-                                    <p class="text-sm">Si una cantidad aumenta 50% y luego disminuye 50%:</p>
-                                    <div class="bg-slate-800 text-white p-3 rounded overflow-x-auto font-mono text-sm my-2">
-                                        $$ X_{final} = X \\cdot (1.50) \\cdot (0.50) = X \\cdot (0.75) $$
-                                    </div>
-                                    <p class="text-xs text-slate-500">Conclusión: Hubo una pérdida neta del 25% ($1 - 0.75$).</p>
-                                </div>
-
-                                <hr class="border-slate-200 my-4">
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.3 Razones y Proporciones</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                        <div class="border p-3 rounded">
-                                            <strong class="text-blue-700">Directa ($y = kx$)</strong>
-                                            <p>El cociente es constante $\\frac{y}{x} = k$.<br>Ej: Cantidad vs Precio.</p>
-                                        </div>
-                                        <div class="border p-3 rounded">
-                                            <strong class="text-purple-700">Inversa ($y = k/x$)</strong>
-                                            <p>El producto es constante $x \\cdot y = k$.<br>Ej: Trabajadores vs Tiempo.</p>
-                                        </div>
+                                    <div class="bg-red-50 p-5 rounded-lg border border-red-100 mb-6">
+                                        <strong class="text-red-900 flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                            La Trampa de los No-Iguales
+                                        </strong>
+                                        <p class="text-sm text-red-800 mt-2">
+                                            "Un auto viaja a 50 km/h y recorre 100 km. ¿Cuánto suma?"
+                                            <br>
+                                            <span class="font-mono bg-white/50 px-2 rounded ml-1">50 + 100 = 150</span> 
+                                            <span class="font-bold ml-2">¡ERROR FATAL!</span>
+                                        </p>
+                                        <p class="text-sm mt-2 text-red-700 italic">
+                                            Jamás puedes sumar una Tasa (Velocidad) con una Magnitud (Distancia). Es como sumar "Peras + Miedo".
+                                        </p>
                                     </div>
                                 </div>
 
+                                <!-- MULTIPLICACION -->
                                 <div>
-                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.4 Notación Científica</h4>
-                                    <p class="text-sm">Formato $a \\times 10^n$, donde $1 \\le |a| < 10$.</p>
-                                    <div class="bg-slate-100 p-2 rounded text-sm font-mono mt-2">
-                                        $$ 0.006 = 6 \\times 10^{-3} $$
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">1.3 Multiplicación: El Arte de Escalar</h3>
+                                    <p class="mb-4">
+                                        Multiplicar no es "sumar rápido". Es <strong>Cambiar de Dimensión</strong> o <strong>Escalar</strong>.
+                                        Cuando multiplicas $A \\times B$, creas una nueva entidad $C$ que hereda propiedades de ambos.
+                                    </p>
+
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-sm text-left border rounded-lg overflow-hidden">
+                                            <thead class="bg-slate-100 text-slate-900 font-bold">
+                                                <tr>
+                                                    <th class="p-3">Operación</th>
+                                                    <th class="p-3">Interpretación Física</th>
+                                                    <th class="p-3">Ejemplo ICFES</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-200">
+                                                <tr>
+                                                    <td class="p-3 font-mono">$$ \\text{Valor} \\times \\text{Cantidad} $$</td>
+                                                    <td class="p-3">Totalización (Costo Total)</td>
+                                                    <td class="p-3">$2.500 \\frac{\\text{pesos}}{\\text{manzana}} \\times 5 \\text{ manzanas} = 12.500 \\text{ pesos}$</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-3 font-mono">$$ \\text{Largo} \\times \\text{Ancho} $$</td>
+                                                    <td class="p-3">Creación de Superficie (Área)</td>
+                                                    <td class="p-3">$3 \\text{ m} \\times 4 \\text{ m} = 12 \\mathbf{m^2}$ (Nueva dimensión)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-3 font-mono">$$ \\text{Tasa} \\times \\text{Tiempo} $$</td>
+                                                    <td class="p-3">Transformación</td>
+                                                    <td class="p-3">$80 \\frac{\\text{km}}{\\text{h}} \\times 2 \\text{ h} = 160 \\text{ km}$ (Cancela horas)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         `
                     },
                     {
-                        title: "2. Teoría de Números y Patrones",
+                        title: "2. Mentalidad Fraccionaria: Porcentajes Modernos",
                         content: `
-                            <div class="space-y-6 text-slate-700">
-                                <div class="bg-indigo-50 p-4 border-l-4 border-indigo-600 rounded">
-                                    <p class="text-sm text-indigo-900">
-                                        El ICFES evalúa la capacidad de predecir eventos futuros (periodicidad) o distribuir recursos de manera exacta (partición).
-                                    </p>
-                                </div>
-
+                            <div class="space-y-8 text-slate-700 leading-relaxed">
+                                
+                                <!-- CONCEPTO DE FACTOR -->
                                 <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.5 MCM y MCD</h4>
-                                    
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-3">
+                                    <div class="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r mb-6">
+                                        <strong class="text-emerald-900 text-lg block mb-2">El Secreto del "Factor Decimal"</strong>
+                                        <p class="text-emerald-800">
+                                            Olvídate de la "Regla de Tres" básica para porcentajes. Los profesionales usan <strong>Multiplicadores</strong>.
+                                            Un porcentaje es simplemente una fracción de 1.
+                                        </p>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                                         <div>
-                                            <strong class="text-blue-700 block mb-1">A. MCM (Punto de Encuentro)</strong>
-                                            <p class="text-sm mb-2">Para problemas de <strong>Periodicidad</strong>. "¿Cuándo vuelven a coincidir?".</p>
-                                            <div class="bg-blue-50 p-2 rounded text-xs">
-                                                Ej: Bus A (4 min), Bus B (6 min).<br>
-                                                MCM(4,6) = 12 min.<br>
-                                                Coinciden a las 8:12 AM.
+                                            <h4 class="font-bold text-slate-800 mb-2">Definición Formal</h4>
+                                            <p class="text-sm mb-4">
+                                                El símbolo $\%$ es literalmente un operador que significa "dividir por 100".
+                                            </p>
+                                            <div class="bg-slate-800 text-white p-4 rounded text-center font-mono text-xl mb-4">
+                                                $$ x\\% = \\frac{x}{100} = 0.0x $$
+                                            </div>
+                                            <p class="text-xs text-slate-500">Ejemplo: $19\\% = 0.19$</p>
+                                        </div>
+                                        
+                                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                                            <h4 class="font-bold text-slate-800 mb-3 border-b pb-2">Caja de Herramientas de Descuentos</h4>
+                                            
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <strong class="text-green-700 text-sm">AUMENTAR (IVA, Intereses)</strong>
+                                                    <p class="text-xs text-slate-600 mb-1">Multiplica por $(1 + \\text{tasa})$</p>
+                                                    <div class="font-mono text-sm bg-green-50 p-2 rounded">
+                                                        $$ \\text{Valor} \\times 1.19 $$
+                                                        <span class="text-gray-400 block text-xs mt-1">// Aumenta 19% de un golpe</span>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <strong class="text-red-700 text-sm">DISMINUIR (Descuentos, Pérdidas)</strong>
+                                                    <p class="text-xs text-slate-600 mb-1">Multiplica por $(1 - \\text{tasa})$</p>
+                                                    <div class="font-mono text-sm bg-red-50 p-2 rounded">
+                                                        $$ \\text{Valor} \\times 0.70 $$
+                                                        <span class="text-gray-400 block text-xs mt-1">// Te queda el 70% (Descontaste 30%)</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <strong class="text-green-700 block mb-1">B. MCD (Corte Perfecto)</strong>
-                                            <p class="text-sm mb-2">Para problemas de <strong>Partición</strong>. "¿Mayor tamaño posible sin sobrar?".</p>
-                                            <div class="bg-green-50 p-2 rounded text-xs">
-                                                Ej: Cuerdas de 12m y 18m.<br>
-                                                MCD(12,18) = 6m.<br>
-                                                Pedazos de 6 metros.
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200">
+
+                                <!-- INVARIANZA -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">2.2 El Principio de Invarianza (Pregunta Arquetipo 14)</h3>
+                                    <p class="mb-4 text-sm">
+                                        Una trampa clásica del ICFES es confundirte cambiando las unidades (Dólares a Pesos, Metros a Centímetros).
+                                        <br><strong>TEOREMA:</strong> El porcentaje es una relación adimensional. <em>No tiene unidades.</em>
+                                    </p>
+
+                                    <div class="bg-amber-50 p-5 rounded-lg border border-amber-200">
+                                        <strong class="text-amber-900 block mb-2">Ejemplo Resuelto: "El Viajero Confundido"</strong>
+                                        <p class="text-sm text-amber-800 mb-3 leading-relaxed">
+                                            <em>Situación:</em> Compras una camisa en EE.UU. por $100 USD y la vendes por $120 USD. Ganaste el 20%.
+                                            <br>Si el dólar está a $4.000 COP... ¿Tu porcentaje de ganancia en pesos es mayor, menor o igual?
+                                        </p>
+                                        
+                                        <div class="bg-white p-3 rounded border border-amber-100 mb-3">
+                                            <p class="text-xs font-mono text-slate-500 mb-1">Cálculo en Pesos:</p>
+                                            <ul class="text-sm space-y-1 ml-4 list-disc text-slate-700">
+                                                <li>Costo: $100 \\times 4000 = 400.000$ COP</li>
+                                                <li>Venta: $120 \\times 4000 = 480.000$ COP</li>
+                                                <li>Ganancia: $80.000$ COP</li>
+                                                <li>Relación: $\\frac{80.000}{400.000} = 0.20 = \\mathbf{20\\%}$</li>
+                                            </ul>
+                                        </div>
+
+                                        <p class="text-sm font-bold text-amber-900">
+                                            Conclusión: El "zoom" de la moneda (x4000) afecta a ambos lados de la fracción y se cancela. El % es Invariante.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "3. Razones y Proporciones: Física de la Comparación",
+                        content: `
+                            <div class="space-y-8 text-slate-700 leading-relaxed">
+                                
+                                <!-- COSTO BENEFICIO -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">3.1 Análisis Costo-Beneficio (La Fórmula Maestra)</h3>
+                                    <p class="mb-4">
+                                        En la vida y en el examen, a menudo debes elegir "la mejor opción". No siempre lo más barato es lo mejor.
+                                        Necesitamos normalizar para comparar.
+                                    </p>
+
+                                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-600 mb-6">
+                                        <div class="text-center">
+                                            <strong class="text-indigo-900 text-lg">La Tasa de Eficiencia ($\eta$)</strong>
+                                            <div class="my-4 text-2xl font-mono text-slate-800">
+                                                $$ \eta = \frac{\text{Beneficio}}{\text{Costo}} $$
+                                            </div>
+                                            <p class="text-sm text-slate-500 italic">
+                                                "Cuántas unidades de bondad recibo por cada peso que pago"
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <strong class="block text-slate-800">Ejemplo Práctico (Pregunta Tipo 9):</strong>
+                                        <div class="grid grid-cols-2 gap-4 text-sm">
+                                            <div class="p-3 bg-red-50 rounded border border-red-100">
+                                                <strong class="text-red-900 block">Opción A (Paquete Chico)</strong>
+                                                <ul class="mt-2 space-y-1">
+                                                    <li>200 gramos</li>
+                                                    <li>$5.000 pesos</li>
+                                                    <li class="font-mono text-red-700 mt-2">$\frac{200}{5000} = 0.04 \text{ g/\$}$</li>
+                                                </ul>
+                                            </div>
+                                            <div class="p-3 bg-green-50 rounded border border-green-100">
+                                                <strong class="text-green-900 block">Opción B (Paquete Grande)</strong>
+                                                <ul class="mt-2 space-y-1">
+                                                    <li>500 gramos</li>
+                                                    <li>$10.000 pesos</li>
+                                                    <li class="font-mono text-green-700 mt-2">$\frac{500}{10000} = 0.05 \text{ g/\$}$</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm">
+                                            <strong>Análisis:</strong> Aunque pagas más en B, recibes más gramos por cada peso ($0.05 > 0.04$). B es más eficiente.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200">
+
+                                <!-- REGLA DE TRES -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">3.2 Regla de Tres: El Check de Lógica</h3>
+                                    <p class="mb-4">
+                                        Multitudes de estudiantes fallan por aplicar "multiplicar en cruz" a todo.
+                                        Antes de operar, debes diagnosticar el tipo de relación.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-400 shadow-sm">
+                                            <strong class="text-blue-900 block mb-2">Relación DIRECTA ($\div$)</strong>
+                                            <p class="text-xs text-slate-600 mb-2">Si uno sube, el otro sube.</p>
+                                            <ul class="text-sm list-disc pl-4 space-y-1 mb-3">
+                                                <li>Comprar Pan (Más pan $\to$ Más costo)</li>
+                                                <li>Distancia (Más tiempo $\to$ Más lejos)</li>
+                                            </ul>
+                                            <div class="bg-blue-50 p-2 rounded text-center text-xs font-mono font-bold text-blue-800">
+                                                $$ \frac{A}{B} = \text{Constante} $$
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded border-l-4 border-orange-400 shadow-sm">
+                                            <strong class="text-orange-900 block mb-2">Relación INVERSA ($\times$)</strong>
+                                            <p class="text-xs text-slate-600 mb-2">Si uno sube, el otro baja.</p>
+                                            <ul class="text-sm list-disc pl-4 space-y-1 mb-3">
+                                                <li>Obreros (Más gente $\to$ Menos tiempo)</li>
+                                                <li>Velocidad (Más rápido $\to$ Menos tiempo)</li>
+                                            </ul>
+                                            <div class="bg-orange-50 p-2 rounded text-center text-xs font-mono font-bold text-orange-800">
+                                                $$ A \times B = \text{Constante} $$
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "4. Notación Científica: La Escala del Universo",
+                        content: `
+                            <div class="space-y-8 text-slate-700 leading-relaxed">
+                                
+                                <!-- EL ZOOM -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.1 El "Zoom" Matemático</h3>
+                                    <p class="mb-4">
+                                        La notación científica no es solo "mover comas". Es una forma de expresar órdenes de magnitud.
+                                        Imagina una cámara:
+                                    </p>
+
+                                    <div class="bg-slate-900 text-white p-6 rounded-xl mb-6 relative overflow-hidden">
+                                        <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl font-bold">10ⁿ</div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                                            <div>
+                                                <strong class="text-blue-400 block text-lg mb-2">Zoom OUT ($n > 0$)</strong>
+                                                <p class="text-sm text-slate-300 mb-2">
+                                                    Cuando nos alejamos para ver galaxias. Números gigantes.
+                                                </p>
+                                                <div class="font-mono text-xl text-white">
+                                                    $$ 3 \times 10^8 $$
+                                                    <span class="text-xs text-blue-400 block mt-1">(Velocidad Luz: 300,000,000 m/s)</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <strong class="text-green-400 block text-lg mb-2">Zoom IN ($n < 0$)</strong>
+                                                <p class="text-sm text-slate-300 mb-2">
+                                                    Cuando nos acercamos para ver átomos. Números diminutos.
+                                                </p>
+                                                <div class="font-mono text-xl text-white">
+                                                    $$ 1.6 \times 10^{-19} $$
+                                                    <span class="text-xs text-green-400 block mt-1">(Carga Electrón: 0.00...16 C)</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <hr class="border-slate-200 my-4">
-
+                                <!-- OPERACIONES -->
                                 <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.6 Sucesiones Aritméticas ($a_n$)</h4>
-                                    <p class="text-sm mb-2">Formalización matemática para evitar el conteo manual.</p>
-                                    <div class="bg-slate-800 text-white p-3 rounded text-center my-2 font-mono text-lg">
-                                        $$ a_n = a_1 + (n-1)d $$
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.2 Operar en el Espacio</h3>
+                                    <p class="mb-4">
+                                        Para operar, debes respetar la jerarquía.
+                                    </p>
+
+                                    <div class="space-y-4">
+                                        <div class="bg-indigo-50 p-4 rounded border-l-4 border-indigo-400">
+                                            <strong class="text-indigo-900 text-sm block mb-1">MULTIPLICACIÓN (Fácil)</strong>
+                                            <p class="text-xs text-slate-600 mb-2">
+                                                Multiplica los coeficientes y <strong>SUMA</strong> los niveles de zoom.
+                                            </p>
+                                            <div class="font-mono bg-white px-2 py-1 rounded inline-block text-sm">
+                                                $(2 \times 10^3) \cdot (3 \times 10^5) = 6 \times 10^8$
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-red-50 p-4 rounded border-l-4 border-red-400">
+                                            <strong class="text-red-900 text-sm block mb-1">SUMA (Cuidado - Pregunta 41)</strong>
+                                            <p class="text-xs text-slate-600 mb-2">
+                                                Solo puedes sumar si tienes el <strong>mismo nivel de zoom</strong>.
+                                                No puedes sumar manzanas ($10^3$) con galaxias ($10^6$).
+                                            </p>
+                                            <div class="font-mono bg-white px-2 py-1 rounded block text-sm mb-1">
+                                                ¿ $3 \times 10^4 + 2 \times 10^3$ ?
+                                            </div>
+                                            <p class="text-xs text-red-800 mt-1">
+                                                Paso 1: Convertir al mismo exponente.<br>
+                                                $30 \times 10^3 + 2 \times 10^3 = \mathbf{32 \times 10^3} = 3.2 \times 10^4$
+                                            </p>
+                                        </div>
                                     </div>
-                                    <ul class="text-sm list-disc pl-5 text-slate-600">
-                                        <li>$a_n$: Valor en la posición $n$.</li>
-                                        <li>$a_1$: Valor inicial.</li>
-                                        <li>$d$: Diferencia constante.</li>
-                                        <li>$(n-1)$: Cantidad de intervalos (el principio estructural).</li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.7 Operaciones con Racionales</h4>
-                                    <p class="text-sm">Para dividir fracciones $\\frac{a}{b} \\div \\frac{c}{d}$ (Extremos y Medios):</p>
-                                    <div class="bg-slate-100 p-2 rounded text-center text-sm font-mono mt-1">
-                                        $$ \\frac{\\frac{a}{b}}{\\frac{c}{d}} = \\frac{a \\cdot d}{b \\cdot c} $$
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "3. Mezclas, Desigualdades y Estimación",
-                        content: `
-                            <div class="space-y-6 text-slate-700">
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-3">1.9 Desigualdades e Intervalos</h4>
-                                    <p class="text-sm mb-3">Traducción de lenguaje natural a simbología de límites.</p>
-                                    
-                                    <table class="w-full text-sm text-left border rounded">
-                                        <thead class="bg-slate-100 font-bold text-slate-700">
-                                            <tr><th class="p-2">Frase</th><th class="p-2">Símbolo</th></tr>
-                                        </thead>
-                                        <tbody class="divide-y text-slate-600">
-                                            <tr><td class="p-2">"Como mínimo", "Al menos"</td><td class="p-2 font-mono">$\\ge$</td></tr>
-                                            <tr><td class="p-2">"Como máximo", "A lo sumo"</td><td class="p-2 font-mono">$\\le$</td></tr>
-                                            <tr><td class="p-2">"Superior a"</td><td class="p-2 font-mono">$>$</td></tr>
-                                        </tbody>
-                                    </table>
-
-                                    <div class="bg-red-50 p-3 mt-3 rounded text-sm border-l-4 border-red-500 text-red-900">
-                                        <strong>Propiedad Crítica:</strong> Al multiplicar o dividir por un número negativo, el sentido de la desigualdad se invierte.<br>
-                                        ($-2x > 10 \\implies x < -5$).
-                                    </div>
-                                </div>
-
-                                <hr class="border-slate-200 my-4">
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-3">1.10 Promedios Ponderados y Mezclas</h4>
-                                    <p class="text-sm mb-2">El promedio simple asume igualdad de pesos. En mezclas, usamos el <strong>Peso ($w_i$)</strong>.</p>
-                                    <div class="bg-slate-800 text-white p-3 rounded text-center mb-3 text-sm font-mono">
-                                        $$ \\bar{x}_w = \\frac{\\sum (x_i \\cdot w_i)}{\\sum w_i} $$
-                                    </div>
-                                    <div class="bg-white border p-3 rounded text-sm">
-                                        <strong>Ejemplo Práctico:</strong> 20kg a $5k + 30kg a $8k.
-                                        <br>Precio $\\neq \\frac{5+8}{2}$.
-                                        <br>Precio $= \\frac{(20 \\cdot 5000) + (30 \\cdot 8000)}{50} = \\mathbf{6.800}$
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.11 Números Irracionales</h4>
-                                    <p class="text-sm">Diferenciar valor exacto de aproximación.</p>
-                                    <ul class="list-disc pl-5 text-sm space-y-1 font-mono text-slate-600">
-                                        <li>$\\pi \\approx 3.1416$ (Circunferencia)</li>
-                                        <li>$\\sqrt{2} \\approx 1.41$ (Diagonal cuadrado)</li>
-                                        <li>$\\sqrt{3} \\approx 1.73$ (Altura triángulo equilátero)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "4. Operaciones Avanzadas y Simplificación",
-                        content: `
-                            <div class="space-y-6 text-slate-700">
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.13 Valor Absoluto (Distancia)</h4>
-                                    <p class="text-sm mb-2">Geométricamente, es la distancia al cero. $|x| \\ge 0$.</p>
-                                    <div class="bg-slate-100 p-2 rounded text-sm italic border-l-2 border-slate-400">
-                                        Interpretación: $|x - 5| = 3$ significa "Números cuya distancia al 5 es 3".<br>
-                                        Soluciones: 2 y 8.
-                                    </div>
-                                </div>
-
-                                <hr class="border-slate-200 my-4">
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.14 Racionalización</h4>
-                                    <p class="text-sm mb-2">Estándar matemático: No dejar raíces en el denominador.</p>
-                                    <ul class="list-disc pl-5 text-sm space-y-2">
-                                        <li><strong>Monomio:</strong> $\\frac{1}{\\sqrt{a}} \\cdot \\frac{\\sqrt{a}}{\\sqrt{a}} = \\frac{\\sqrt{a}}{a}$.</li>
-                                        <li><strong>Binomio:</strong> Usar el <strong>Conjugado</strong>. Multiplicar por $(\\sqrt{a} - \\sqrt{b})$ para generar diferencia de cuadrados.</li>
-                                    </ul>
-                                </div>
-
-                                <hr class="border-slate-200 my-4">
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-2">1.15 Logaritmos (Buscadores de Exponentes)</h4>
-                                    <p class="text-sm mb-2">Definición: $\\log_b(x) = y \\iff b^y = x$.</p>
-                                    <div class="bg-amber-50 p-3 rounded border border-amber-200">
-                                        <strong class="text-amber-900 text-sm block mb-1">Propiedades Fundamentales:</strong>
-                                        <ul class="font-mono text-xs text-amber-800 space-y-1">
-                                            <li>Prod: $\\log(A \\cdot B) = \\log A + \\log B$</li>
-                                            <li>Cociente: $\\log(A / B) = \\log A - \\log B$</li>
-                                            <li>Potencia: $\\log(A^n) = n \\cdot \\log A$</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.16 Exponentes Fraccionarios</h4>
-                                    <div class="text-center bg-slate-100 p-2 font-mono text-lg rounded">
-                                        $$ x^{m/n} = \\sqrt[n]{x^m} $$
-                                    </div>
-                                    <p class="text-xs text-center mt-1 text-slate-500">El denominador es la raíz, el numerador es la potencia.</p>
                                 </div>
                             </div>
                         `
@@ -567,113 +678,137 @@
 
         // --- GENERADOR DE PREGUNTAS (SIMULADOR INFINITO) ---
 
-        const generateQuestion = (type) => {
+        const generateQuestion = (moduleId = 'aritmetica') => {
             const r = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+            const rf = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
 
-            const templates = {
-                // SESIÓN 1: TRANSPORTE (Intervalos vs Puntos)
-                transport_intervals: () => {
-                    const stops = r(6, 12);
-                    const timePerSegment = r(3, 6); // minutes
-                    const timePerStop = 30; // seconds
+            // Plantillas Específicas para el Módulo 1: Aritmética Rigurosa
+            const aritmeticaTemplates = {
 
-                    const segments = stops - 1;
-                    const totalMinutesCalculation = segments * timePerSegment;
-                    const totalSecondsCalculation = timePerStop;
+                // ARCHETYPE 1: ENTEROS VS REALES (Herramienta Correcta)
+                integer_context: () => {
+                    const items = ["Estudiantes", "Buses", "Goles", "Sillas"];
+                    const continuous = ["Metros", "Litros", "Horas", "Kilos"];
+
+                    const isDiscrete = Math.random() > 0.5;
+                    const item = isDiscrete ? items[r(0, items.length - 1)] : continuous[r(0, continuous.length - 1)];
+                    const val = r(10, 20);
+                    const decimal = r(1, 9);
+                    const result = `${val}.${decimal}`;
 
                     return {
                         id: Math.random(),
-                        category: "Análisis de Algoritmos",
-                        text: `Un bus recorre una ruta con ${stops} estaciones consecutivas ($E_1$ a $E_{${stops}}$). Tarda ${timePerSegment} min entre estaciones y para ${timePerStop} seg en cada estación intermedia. Un usuario estima: "Hay ${stops} estaciones, así que multiplico ${stops} $\\times$ ${timePerSegment} min". ¿Qué error comete?`,
+                        category: "Naturaleza de los Números",
+                        text: `Un modelo matemático calcula la cantidad de <strong>${item}</strong> necesarios para un proyecto y arroja como resultado <strong>${result}</strong>. ¿Es este resultado válido en el contexto del ICFES?`,
                         options: [
-                            { id: "A", text: `Error de Intervalo: Hay ${stops} estaciones pero solo ${segments} tramos de viaje.`, correct: true },
-                            { id: "B", text: `Error de Unidad: No sumó los tiempos de parada en segundos.` },
-                            { id: "C", text: `Error de Operación: Debió dividir en lugar de multiplicar.` },
-                            { id: "D", text: `No hay error, el cálculo es aproximado pero válido.` }
+                            { id: "A", text: `Sí, es un resultado matemático preciso.` },
+                            { id: "B", text: isDiscrete ? `No, porque ${item} pertenece al conjunto Entero ($Z$), no admite decimales.` : `No, porque ${item} requiere mayor precisión.`, correct: isDiscrete },
+                            { id: "C", text: isDiscrete ? `Sí, simplemente se aproxima al entero más cercano.` : `Sí, porque ${item} es una variable continua ($R$).`, correct: !isDiscrete },
+                            { id: "D", text: `Depende de la calculadora usada.` }
                         ],
-                        explanation: `<strong>Principio de Postes e Intervalos:</strong> Si tienes $n$ puntos en línea, tienes $n-1$ espacios entre ellos. De $E_1$ a $E_{${stops}}$ hay solo ${segments} tramos. Multiplicar por ${stops} añade un tramo inexistente.`
+                        explanation: isDiscrete
+                            ? `<strong>Conjunto Incorrecto:</strong> Los ${item} son unidades discretas (se cuentan, no se miden). Deben pertenecer a $\\mathbb{Z}$. Un resultado como ${result} indica un error de modelado.`
+                            : `<strong>Conjunto Correcto:</strong> Los ${item} son magnitudes continuas (se miden). El conjunto $\\mathbb{R}$ admite decimales perfectamente.`
                     };
                 },
 
-                // SESIÓN 2: MONEDA (Invarianza)
-                currency_invariance: () => {
-                    const rate = r(2000, 4000);
-                    const gainPercent = r(2, 10);
+                // ARCHETYPE 2: ANÁLISIS DIMENSIONAL (Trampa de Suma)
+                dimensional_trap: () => {
+                    const v = r(40, 80); // km/h
+                    const t = r(2, 5); // h
+                    const dist = v * t;
+                    const fakeSum = v + t;
 
                     return {
                         id: Math.random(),
-                        category: "Porcentajes Relativos",
-                        text: `Ana invierte en Euros. La tasa es 1 EUR = ${rate} COP (constante). Su inversión en Euros crece un ${gainPercent}%. Su hermano dice: "En pesos ganaste más del ${gainPercent}%, porque el Euro vale ${rate} veces más".`,
+                        category: "Análisis Dimensional",
+                        text: `Un auto viaja a velocidad $v = ${v} \\text{ km/h}$ durante un tiempo $t = ${t} \\text{ h}$. Un estudiante distraído calcula el "impacto total" sumando $${v} + ${t} = ${fakeSum}$. ¿Por qué es esto inválido?`,
                         options: [
-                            { id: "A", text: `Verdadero: La ganancia en pesos se multiplica por ${rate}.` },
-                            { id: "B", text: `Falso: El porcentaje es el mismo (${gainPercent}%) sin importar la moneda.`, correct: true },
-                            { id: "C", text: `Falso: En pesos gana menos porque la moneda es más débil.` },
-                            { id: "D", text: `Depende del monto inicial de la inversión.` }
+                            { id: "A", text: `No es inválido, ${fakeSum} es un indicador de rendimiento.` },
+                            { id: "B", text: `Inválido porque viola la Consistencia Dimensional: estás sumando Velocidad + Tiempo.`, correct: true },
+                            { id: "C", text: `El resultado debería ser $${v * t}$ porque la fórmula es $d = v \\cdot t$.` },
+                            { id: "D", text: `Es válido si convertimos las horas a minutos primero.` }
                         ],
-                        explanation: `<strong>Invarianza:</strong> $$P_{final} = k \\cdot D_{final} = k \\cdot (1.${gainPercent} \\cdot D_{inicial})$$. La tasa $k$ multiplica tanto al inicio como al final, por lo que se cancela al calcular la proporción de ganancia.`
+                        explanation: `<strong>Peras con Manzanas:</strong> La suma solo existe para elementos de la <strong>misma naturaleza</strong>. $[L/T] + [T]$ es imposible físicamente. La única operación válida aquí es multiplicar para cancelar el tiempo: $${v} \\frac{\\text{km}}{\\cancel{\\text{h}}} \\cdot ${t} \\cancel{\\text{h}} = ${dist} \\text{ km}$.`
                     };
                 },
 
-                // SESIÓN 3: ESCALAS (Cuadrática)
-                geometry_scaling: () => {
-                    const k = r(2, 4);
-                    const shape = Math.random() > 0.5 ? "cuadrado" : "círculo";
-                    const dimName = shape === "cuadrado" ? "lado" : "radio";
+                // ARCHETYPE 3: INVARIANZA DE PORCENTAJES
+                percentage_invariance: () => {
+                    const gain = r(10, 50);
+                    const usdRate = 4000;
 
                     return {
                         id: Math.random(),
-                        category: "Geometría Escalar",
-                        text: `Se tiene un ${shape}. Si su ${dimName} aumenta ${k} veces (se multiplica por ${k}), ¿qué sucede con su área?`,
+                        category: "Invarianza Porcentual",
+                        text: `Compras un activo en $100 USD$ y lo vendes en $${100 + gain} USD$ (Ganancia del $${gain}\\%$). Si calculas esta misma operación en Pesos Colombianos (Tasa $1:${usdRate}$), ¿cuál será tu porcentaje de ganancia?`,
                         options: [
-                            { id: "A", text: `El área aumenta ${k} veces.`, correct: false },
-                            { id: "B", text: `El área aumenta ${k * 2} veces.` },
-                            { id: "C", text: `El área aumenta ${k * k} veces.`, correct: true },
-                            { id: "D", text: `El área se mantiene igual.` }
+                            { id: "A", text: `Mayor al ${gain}%, porque el peso es una moneda más "grande" numérica.` },
+                            { id: "B", text: `Exactamente ${gain}%.`, correct: true },
+                            { id: "C", text: `Menor al ${gain}%, por la devaluación.` },
+                            { id: "D", text: `${gain * usdRate}%, se multiplica por la tasa de cambio.` }
                         ],
-                        explanation: `<strong>Ley Cuadrático-Cúbica:</strong> La relación de áreas es el cuadrado de la relación lineal. Si $L_2 = ${k} L_1$, entonces $A_2 = (${k})^2 A_1 = ${k * k} A_1$.`
+                        explanation: `<strong>El Porcentaje es Adimensional:</strong> $$ \\% = \\frac{\\text{Beneficio} \\cdot \\text{Tasa}}{\\text{Costo} \\cdot \\text{Tasa}} $$. La tasa de cambio aparece arriba y abajo en la fracción, por lo tanto <strong>se cancela</strong>. La rentabilidad es intrínseca al negocio, no a la moneda.`
                     };
                 },
 
-                // SESIÓN 4: MODELADO (Lineal Negativo)
-                function_modeling: () => {
-                    const startVal = r(80, 100);
-                    const slope = r(2, 5);
-                    const variable = "tiempo";
+                // ARCHETYPE 4: EFICIENCIA (COSTO/BENEFICIO)
+                cost_benefit: () => {
+                    // Option A: Base
+                    const gA = r(2, 4) * 100; // grams
+                    const pA = r(2, 5) * 1000; // price
+                    const effA = gA / pA;
+
+                    // Option B: Better
+                    const gB = r(5, 8) * 100;
+                    const pB = r(6, 9) * 1000;
+                    const effB = gB / pB;
+
+                    const best = effA > effB ? "A" : "B";
+                    const bestEff = Math.max(effA, effB).toFixed(4);
+                    const worstEff = Math.min(effA, effB).toFixed(4);
 
                     return {
                         id: Math.random(),
-                        category: "Modelado de Funciones",
-                        text: `Un tanque tiene ${startVal} litros. Se abre un desagüe y pierde ${slope} litros por minuto. ¿Cuál ecuación describe el volumen $V$ en función del tiempo $t$?`,
+                        category: "Costo/Beneficio",
+                        text: `Debes elegir el proveedor más eficiente. <br>• <strong>Opción A:</strong> ${gA}g por $${pA}. <br>• <strong>Opción B:</strong> ${gB}g por $${pB}.`,
                         options: [
-                            { id: "A", text: `$V = ${startVal} - ${slope}t$`, correct: true },
-                            { id: "B", text: `$V = ${slope}t - ${startVal}$` },
-                            { id: "C", text: `$V = ${startVal} + ${slope}t$` },
-                            { id: "D", text: `$V = (${startVal}/${slope})t$` }
+                            { id: "A", text: `La Opción A es mejor.`, correct: best === "A" },
+                            { id: "B", text: `La Opción B es mejor.`, correct: best === "B" },
+                            { id: "C", text: `Son equivalentes.` },
+                            { id: "D", text: `No se puede saber sin conocer la calidad.` }
                         ],
-                        explanation: `<strong>Ecuación Afín:</strong> Valor Inicial $b = ${startVal}$. Tasa de cambio (pendiente) $m = -${slope}$ (porque pierde). La forma es $y = b + mx \\to V = ${startVal} - ${slope}t$.`
+                        explanation: `<strong>Tasa de Eficiencia:</strong> Calculamos gramos por peso ($\\frac{g}{\\$}$). <br>A: $${(effA).toFixed(5)}$. B: $${(effB).toFixed(5)}$. <br>La opción <strong>${best}</strong> te da más producto por tu dinero.`
                     };
                 },
 
-                // MEZCLA ALEATORIA DE LAS ANTERIORES PARA VARIEDAD
-                algebra_classic: () => {
+                // ARCHETYPE 5: NOTACIÓN CIENTÍFICA (SUMA)
+                sci_not_sum: () => {
+                    const base = r(2, 8);
+                    const exp = r(3, 6);
+                    const diff = r(1, 2);
+                    // Problem: A * 10^exp + B * 10^(exp-diff)
+
                     return {
                         id: Math.random(),
-                        category: "Lógica Algebraica",
-                        text: `Si Juan tiene el triple de edad que Pedro ($J$ y $P$), ¿cómo se escribe?`,
+                        category: "Notación Científica",
+                        text: `Al sumar $3 \\times 10^{${exp}} + 2 \\times 10^{${exp - diff}}$, ¿cuál es el procedimiento correcto?`,
                         options: [
-                            { id: "A", text: `$J = 3P$`, correct: true },
-                            { id: "B", text: `$P = 3J$` },
-                            { id: "C", text: `$J = P + 3$` },
-                            { id: "D", text: `$3J = P$` }
+                            { id: "A", text: `Sumar bases ($3+2=5$) y mantener exponente mayor ($10^{${exp}}$).` },
+                            { id: "B", text: `Igualar exponentes primero: Convertir $3 \\times 10^{${exp}}$ a $30... \\times 10^{${exp - diff}}$ o viceversa.`, correct: true },
+                            { id: "C", text: `Multiplicar las bases y sumar los exponentes.` },
+                            { id: "D", text: `Solo se pueden sumar si los exponentes son negativos.` }
                         ],
-                        explanation: "Si Juan es mayor (tiene más edad), para igualar la balanza debes multiplicar la edad del menor (Pedro) por 3."
-                    }
+                        explanation: `<strong>Zoom Match:</strong> No puedes sumar cantidades con "zoom" diferente. Debes expresar todo en la misma potencia de 10 para operar los coeficientes (factor común).`
+                    };
                 }
             };
 
-            const keys = Object.keys(templates);
+            // Seleccionar plantilla basada en el módulo (prioridad) o aleatoria
+            // Por ahora, forzamos Aritmética si no se especifica, ya que es el foco del Módulo 1.
+            const keys = Object.keys(aritmeticaTemplates);
             const randomType = keys[Math.floor(Math.random() * keys.length)];
-            return templates[randomType]();
+            return aritmeticaTemplates[randomType]();
         };
 
         // --- COMPONENTES UI (Iguales al original, estructura mantenida) ---
