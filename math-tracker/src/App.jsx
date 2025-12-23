@@ -503,7 +503,7 @@ const Modules = () => {
         </p>
 
         <a
-          href="/traductor.html"
+          href="./traductor.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-8 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-semibold transition-all hover:scale-105 shadow-lg shadow-violet-900/20"
@@ -533,7 +533,7 @@ const Quiz = ({
 }) => {
   // Mostrar solo enlace externo para Simulacro 1 y 2
   if (quizMeta.id === 'sim1' || quizMeta.id === 'sim2') {
-    const link = quizMeta.id === 'sim1' ? '/simulacro1.html' : '/simulacro2.html';
+    const link = quizMeta.id === 'sim1' ? './simulacro1.html' : './simulacro2.html';
     const label = quizMeta.id === 'sim1' ? 'Simulacro 1' : 'Simulacro 2';
     return (
       <div className="p-8 space-y-6 animate-in fade-in duration-500">
