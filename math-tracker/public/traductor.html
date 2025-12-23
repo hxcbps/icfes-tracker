@@ -18,6 +18,10 @@
 
     <!-- MathJax Configuration (CONFIGURACIÓN ROBUSTA) -->
     <script>
+        window.__mathJaxReady = new Promise((resolve) => {
+            window.__mathJaxReadyResolve = resolve;
+        });
+
         window.MathJax = {
             loader: { load: ['[tex]/ams'] },
             tex: {
@@ -36,7 +40,13 @@
                 processHtmlClass: 'tex2jax_process'
             },
             startup: {
-                typeset: false
+                typeset: false,
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                    if (window.__mathJaxReadyResolve) {
+                        window.__mathJaxReadyResolve();
+                    }
+                }
             }
         };
     </script>
@@ -190,11 +200,29 @@
             const containerRef = useRef(null);
 
             useEffect(() => {
-                if (window.MathJax && window.MathJax.typesetPromise && containerRef.current) {
-                    containerRef.current.innerHTML = content;
+                const container = containerRef.current;
+                if (!container) return;
+
+                let cancelled = false;
+                container.innerHTML = content;
+
+                const runTypeset = () => {
+                    if (cancelled || !containerRef.current || !window.MathJax || !window.MathJax.typesetPromise) {
+                        return;
+                    }
                     window.MathJax.typesetPromise([containerRef.current])
                         .catch((err) => console.log('MathJax Error:', err));
+                };
+
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    runTypeset();
+                } else if (window.__mathJaxReady && typeof window.__mathJaxReady.then === "function") {
+                    window.__mathJaxReady.then(runTypeset);
                 }
+
+                return () => {
+                    cancelled = true;
+                };
             }, [content]);
 
             return <div ref={containerRef} className={className} />;
