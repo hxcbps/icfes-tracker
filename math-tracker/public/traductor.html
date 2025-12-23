@@ -208,179 +208,142 @@
                 icon: "Calc",
                 color: "bg-blue-700",
                 concept: "Del Lenguaje Natural al Formalismo Matemático",
-                summary: "Este módulo es la piedra angular de tu preparación. Analizaremos cómo el ICFES codifica lógica compleja en oraciones simples y cómo 'traducir' eso a ecuaciones, desigualdades y conjuntos sin caer en trampas semánticas.",
+                summary: "Bienvenido a tu tutoría personalizada. Aquí no memorizamos fórmulas; analizamos la lógica 'oculta' del ICFES. Usaremos preguntas reales (Transporte, Divisas, Geometría) para deconstruir cómo los diseñadores del examen intentan engañarte con trampas semánticas.",
                 chapters: [
                     {
-                        title: "Capítulo I: La Paradoja de la Cantidad (El Error Inverso)",
+                        title: "Sesión 1: El Algoritmo de la Rutina (Análisis de Procesos)",
                         content: `
-                            <p>El error más común en el examen Saber 11 (presente en la <strong>Pregunta 21</strong> del simulacro) es la traducción literal de multiplicadores de cantidad.</p>
-                            <h4>1. El Principio de la Balanza</h4>
-                            <p>El signo igual ($=$) no significa "resultado". Significa "equilibrio". Si tienes dos grupos desiguales, para equilibrarlos algebraicamente, debes aplicar la operación inversa al grupo que el lenguaje sugiere.</p>
-                            <p><strong>Analicemos la estructura:</strong> "Hay el doble de A que de B".</p>
-                            <ul>
-                                <li><strong>Intuición (Incorrecta):</strong> El cerebro oye "doble de A" y escribe $2A = B$.</li>
-                                <li><strong>Lógica Rigurosa:</strong> Si hay más A, el grupo A es "pesado". El grupo B es "liviano". Para que la balanza se equilibre, debes duplicar el peso en el lado liviano (B).</li>
-                            </ul>
-                            <h4>2. La Prueba de la Sustitución (Verificación)</h4>
-                            <p>Nunca confíes solo en tu instinto. Usa números reales para probar tu ecuación. Supón que hay 100 Esferos. Como dice "el doble de esferos que cuadernos", entonces debe haber 50 Cuadernos.</p>
-                            <ul>
-                                <li>Opción incorrecta ($C=2E$): $50 = 2(100) \\to 50 = 200$. <strong>FALSO.</strong></li>
-                                <li>Opción correcta ($E=2C$): $100 = 2(50) \\to 100 = 100$. <strong>VERDADERO.</strong></li>
-                            </ul>
-                        `
-                    },
-                    {
-                        title: "Capítulo II: Tasas de Cambio Relativas",
-                        content: `
-                            <p>En la <strong>Pregunta 19</strong>, el examen evalúa tu capacidad para traducir relaciones de cambio dinámico.</p>
-                            <h4>1. La Estructura "Por Cada X, Y"</h4>
-                            <p>Cuando el texto dice: "Por cada 3 puntos que anota P, Q anota 5 puntos", nos está dando una <strong>Razón de Cambio</strong> ($m$).</p>
-                            <p>Matemáticamente, esto se define como la pendiente:</p>
-                            <p class="text-center text-lg my-4">$$m = \\frac{\\text{Cambio en Salida (Q)}}{\\text{Cambio en Entrada (P)}} = \\frac{5}{3}$$</p>
-                            <p>Esto implica que la ganancia de Q es $\\frac{5}{3}$ veces la ganancia de P.</p>
-                            <h4>2. Modelado de la Ecuación Completa</h4>
-                            <p>Una ecuación lineal rigurosa siempre tiene dos componentes:</p>
-                            <ol>
-                                <li><strong>Estado Inicial ($b$):</strong> Lo que ya tenías (P tenía 8, Q tenía 2).</li>
-                                <li><strong>Dinámica de Cambio ($mx$):</strong> Lo que ganas en el proceso.</li>
-                            </ol>
-                            <p class="text-center">$$Q(x) = 2 + \\frac{5}{3}x$$</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo III: Abstracción Dimensional",
-                        content: `
-                            <p>La <strong>Pregunta 17</strong> ($R=XZ, S=XW...$) evalúa el Análisis Dimensional.</p>
-                            <h4>1. Análisis Dimensional</h4>
-                            <p>Si te pierdes despejando, usa las dimensiones. Si $X, Z, W$ son Longitudes ($L$), entonces $R=XZ$ es un Área ($L^2$).</p>
-                            <p>El problema pide hallar $X$ (Longitud). Probemos la opción D: $$\\sqrt{RS/T} \\to \\sqrt{(L^2 \\cdot L^2)/L^2} = \\sqrt{L^2} = L$$</p>
-                            <h4>2. Técnica de Aislamiento de Variables</h4>
-                            <p>Multiplica las ecuaciones que contienen la variable deseada y divide por la que tiene las variables "basura".</p>
-                            <p class="text-center text-lg my-4">$$\\frac{R \\cdot S}{T} = \\frac{(XZ) \\cdot (XW)}{ZW} = X^2$$</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo IV: Simplificación Funcional",
-                        content: `
-                            <p>La <strong>Pregunta 43</strong> muestra una función compuesta: $A(x) = x \\cdot f(x)$ donde $f(x) = 8/x$.</p>
-                            <h4>El Principio de Sustitución Inmediata</h4>
-                            <p>El rigor matemático exige <strong>sustituir antes de analizar</strong>.</p>
-                            <p class="text-center text-lg my-4">$$A(x) = x \\cdot \\left(\\frac{8}{x}\\right) = 8$$</p>
-                            <p>Bajo la condición rigurosa $x \\neq 0$, la variable se anula. El resultado es una constante.</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo V: La Invarianza del Porcentaje",
-                        content: `
-                            <p>Basado en <strong>Preguntas 2 y 14</strong>. El porcentaje es una medida relativa.</p>
-                            <p>Si una inversión aumenta un 4% en dólares, aumenta un 4% en pesos (si la tasa es constante). El factor de conversión ($k$) multiplica tanto al valor inicial como al final, cancelándose al calcular la proporción.</p>
-                            <p class="text-center">$$\\frac{k \\cdot V_{final}}{k \\cdot V_{inicial}} = \\frac{V_{final}}{V_{inicial}}$$</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo VI: Grados de Libertad",
-                        content: `
-                            <p><strong>Pregunta 15</strong>. Una parábola ($y=ax^2+bx+c$) tiene 3 incógnitas. Necesitas 3 datos (puntos) para definirla. Con solo 2 puntos, tienes infinitas soluciones posibles.</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo VII: Decodificación Tabular",
-                        content: `
-                            <p><strong>Pregunta 20</strong>. Para hallar una ecuación desde una tabla:</p>
-                            <ol>
-                                <li>Calcula los cambios ($\Delta$).</li>
-                                <li>Calcula la pendiente $m = \Delta y / \Delta x$.</li>
-                                <li>Verifica sustituyendo un punto.</li>
-                            </ol>
-                        `
-                    },
-                    // --- NUEVOS CAPÍTULOS AÑADIDOS ---
-                    {
-                        title: "Capítulo VIII: La Lógica de la Exclusión (Conjuntos)",
-                        content: `
-                            <p>La <strong>Pregunta 38</strong> (la cafetería) es un clásico problema de Teoría de Conjuntos que evalúa tu comprensión de los conectores lógicos "Y", "O" y "SOLO".</p>
-                            <h4>1. La Falacia de la Suma Simple</h4>
-                            <p>Nos dicen: 70 piden Pizza ($P$), 50 piden Bebida Fría ($F$). Si sumas $70+50=120$, parecería que todos están cubiertos. ¡Error! Hay 30 personas que piden ambas cosas ($P \\cap F$). Al sumar simple, estás contando a estas 30 personas dos veces.</p>
-                            <h4>2. El Principio de Inclusión-Exclusión</h4>
-                            <p>Para hallar el total de la unión ($P \\cup F$, o "los que comieron algo"), la fórmula rigurosa es:</p>
-                            <p class="text-center text-lg my-4">$$N(P \\cup F) = N(P) + N(F) - N(P \\cap F)$$</p>
-                            <p class="text-center">$$120_{total} \\neq 70 + 50 - 30 = 90$$</p>
-                            <p>Esto nos dice que 90 personas pidieron Pizza o Bebida Fría. Como hay 120 clientes en total, $120 - 90 = 30$ clientes no pidieron ninguna de las dos (posiblemente solo bebida caliente).</p>
-                            <h4>3. La Operación "SOLO" (Diferencia de Conjuntos)</h4>
-                            <p>Si te preguntan "¿Cuántos pidieron SOLO pizza?", la traducción algebraica es la resta de conjuntos:</p>
-                            <p class="text-center font-bold text-blue-800">$$N(P - F) = N(P) - N(P \\cap F) = 70 - 30 = 40$$</p>
-                            <p><strong>Lección:</strong> Nunca operes con los totales brutos si existe una intersección ("ambos"). Desglosa siempre en regiones disyuntas.</p>
-                        `
-                    },
-                    {
-                        title: "Capítulo IX: Arquitectura Combinatoria (El Dilema del Orden)",
-                        content: `
-                            <p>Las <strong>Preguntas 25, 39 y 45</strong> te obligan a decidir entre dos universos matemáticos: Permutación vs. Combinación. Confundirlos es fatal.</p>
-                            <h4>1. El Algoritmo de Decisión</h4>
-                            <p>Ante cualquier problema de conteo, hazte una sola pregunta: <strong>¿Cambia el resultado si invierto el orden?</strong></p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-                                <div class="bg-red-50 p-4 rounded border border-red-200">
-                                    <h5 class="font-bold text-red-900">SÍ importa el orden (Permutación)</h5>
-                                    <p class="text-sm">Códigos, números, podios, jerarquías (presidente/vicepresidente).</p>
-                                    <p class="text-xs mt-2">Ej: Clave 1-2-3 $\\neq$ Clave 3-2-1.</p>
-                                    <p class="font-mono mt-2 text-center text-red-800">$$nPr = \\frac{n!}{(n-r)!}$$</p>
-                                </div>
-                                <div class="bg-green-50 p-4 rounded border border-green-200">
-                                    <h5 class="font-bold text-green-900">NO importa el orden (Combinación)</h5>
-                                    <p class="text-sm">Comités, grupos de trabajo, ensaladas de frutas, cartas en mano.</p>
-                                    <p class="text-xs mt-2">Ej: Comité {Ana, Juan} $=$ Comité {Juan, Ana}.</p>
-                                    <p class="font-mono mt-2 text-center text-green-800">$$nCr = \\frac{n!}{r!(n-r)!}$$</p>
-                                </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600 mb-6">
+                                <h4 class="text-blue-900 m-0 font-bold">Caso de Estudio: El Sistema de Transporte (Pregunta 1)</h4>
+                                <p class="text-sm text-blue-800 mt-2">Un usuario cuenta 10 tramos y 10 paradas. Calcula: $10 \\times 4\\text{min} + 30\\text{seg}$. ¿Por qué falla?</p>
                             </div>
-                            <h4>2. Aplicación a la Pregunta 45 (Comités)</h4>
-                            <p>Se eligen 2 de grado 10 y 3 de grado 11. ¿Importa quién es elegido primero? No. Es un grupo. Usamos Combinación ($C$).</p>
-                            <p>Como los eventos son independientes (elegir de 10 no afecta elegir de 11), usamos el <strong>Principio Multiplicativo</strong>:</p>
-                            <p class="text-center">$$Total = (C_{6,2}) \\times (C_{5,3})$$</p>
+                            
+                            <p>El error del paso II es sutil pero fatal: es un <strong>Error de Intervalo vs. Punto</strong>.</p>
+                            
+                            <h4>1. La Geometría del Conteo</h4>
+                            <p>Imagina tus dedos. Tienes 5 dedos, pero solo 4 espacios entre ellos. En el problema, las estaciones son "puntos" ($P$) y los tramos de viaje son "intervalos" ($I$).</p>
+                            <p class="text-center text-lg my-4 font-bold">$$N_{intervalos} = N_{puntos} - 1$$</p>
+                            <p>Si vas de $E_1$ a $E_{10}$, hay 10 estaciones, pero solo <strong>9 tramos</strong> de viaje. El usuario contó 10 tramos, añadiendo 4 minutos fantasma a su cuenta.</p>
+
+                            <h4>2. La Trampa de la Parada Final</h4>
+                            <p>Otro error clásico: ¿Cuentas la parada en el destino? El problema dice "sumó 30 segundos por la parada en $E_{10}$".</p>
+                            <p><strong>Lógica ICFES:</strong> El tiempo de viaje termina cuando el bus se detiene y abre las puertas. No esperas 30 segundos *después* de llegar para decir "llegué". Esa última parada NO suma tiempo al trayecto, es parte de la llegada.</p>
+
+                            <div class="mt-6 p-4 bg-yellow-50 rounded border border-yellow-200">
+                                <h5 class="font-bold text-yellow-800">💡 Lección de Tutoría</h5>
+                                <p class="text-sm text-yellow-900">Cuando enfrentes problemas de secuencias (postes, paradas, cortes), dibuja una versión pequeña. ¿3 paradas tienen 3 tramos? No, tienen 2. Extrapola esa regla.</p>
+                            </div>
                         `
                     },
                     {
-                        title: "Capítulo X: Probabilidad Compuesta (Independencia Estocástica)",
+                        title: "Sesión 2: La Ilusión de la Moneda (Invarianza Porcentual)",
                         content: `
-                            <p>La <strong>Pregunta 46</strong> plantea un escenario donde un jugador debe ganar el partido 1 <strong>Y</strong> el partido 2. Este conector "Y" es la clave de la traducción algebraica.</p>
-                            <h4>1. Eventos Independientes</h4>
-                            <p>El problema dice explícitamente "Se asume independencia". Esto significa que el resultado del primer partido no afecta la probabilidad del segundo. En el lenguaje de la probabilidad:</p>
-                            <p class="text-center font-bold text-xl my-4">$$P(A \\cap B) = P(A) \\cdot P(B)$$</p>
-                            <p>La intersección (que ocurran ambos) se traduce en <strong>MULTIPLICACIÓN</strong>.</p>
-                            <h4>2. El Error de la Suma</h4>
-                            <p>Sumar probabilidades ($1/3 + 1/5$) se usa para la unión de eventos mutuamente excluyentes ("Ganar el primero O ganar el segundo"). Si sumaras aquí, podrías obtener probabilidades mayores a 1, lo cual es absurdo.</p>
-                            <p><strong>Regla de Oro:</strong></p>
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-600 mb-6">
+                                <h4 class="text-green-900 m-0 font-bold">Caso de Estudio: Inversión Dólares vs Pesos (Pregunta 2)</h4>
+                                <p class="text-sm text-green-800 mt-2">Si ganas 3% en dólares, ¿ganas más, menos o igual en pesos (tasa constante)?</p>
+                            </div>
+
+                            <p>Tu intuición te grita: "¡El dólar vale 2.000 veces más! ¡La ganancia debe ser mayor!". Tu intuición se equivoca. Veamos la demostración matemática.</p>
+
+                            <h4>1. El Factor de Conversión ($k$)</h4>
+                            <p>Definamos la tasa de cambio como $k = 2000$ COP/USD.</p>
                             <ul>
-                                <li>Conector "Y" (secuencial/simultáneo) $\\to$ Multiplicación.</li>
-                                <li>Conector "O" (alternativas) $\\to$ Suma (restando intersección si la hay).</li>
+                                <li>Inversión inicial en dólares: $D_i$</li>
+                                <li>Inversión inicial en pesos: $P_i = k \\cdot D_i$</li>
                             </ul>
+
+                            <h4>2. El Crecimiento</h4>
+                            <p>Si ganas un 3%, multiplicas por $1.03$.</p>
+                            <ul>
+                                <li>Final dólares: $D_f = 1.03 \\cdot D_i$</li>
+                                <li>Final pesos (al convertir de vuelta): $P_f = k \\cdot D_f = k \\cdot (1.03 \\cdot D_i)$</li>
+                            </ul>
+
+                            <h4>3. Cálculo del Porcentaje en Pesos</h4>
+                            <p>El porcentaje de ganancia es la razón de cambio:</p>
+                            <p class="text-center font-bold text-xl my-4">$$\\text{Ganancia} = \\frac{P_f}{P_i} = \\frac{k \\cdot 1.03 \\cdot D_i}{k \\cdot D_i}$$</p>
+                            <p>Observa la magia: ¡La $k$ (el 2000) está arriba y abajo! <strong>Se cancela</strong>.</p>
+                            <p class="text-center">$$Resultado = 1.03 \\to 3\\%$$</p>
+
+                            <p><strong>Conclusión:</strong> El porcentaje es una medida <em>relativa</em>. Las unidades (escalas) no lo afectan. Es un principio de invarianza.</p>
                         `
                     },
                     {
-                        title: "Capítulo XI: Traducción Trigonométrica (Sintaxis Geométrica)",
+                        title: "Sesión 3: La Trampa Dimensional (Escalas Cuadradas)",
                         content: `
-                            <p>En la <strong>Pregunta 18</strong>, te piden la distancia AC de un triángulo no rectángulo. Aquí no sirve Pitágoras. Debes elegir entre la Ley de Senos y la Ley de Cosenos basándote en la "sintaxis" de los datos.</p>
-                            <h4>1. ¿Cuándo usar Ley de Senos?</h4>
-                            <p>Úsala cuando tienes una <strong>"Pareja Completa"</strong> (un lado y su ángulo opuesto conocidos) y un dato extra.</p>
-                            <p class="text-center">$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$$</p>
-                            <p>En la Pregunta 18: Conocemos lado $c=AB=4$. Necesitamos el ángulo opuesto $C=75^\\circ$. ¡Pareja completa! ($4$ y $75^\\circ$). Queremos hallar $b=AC$, y conocemos su ángulo opuesto $B=65^\\circ$.</p>
-                            <p>Traducción directa:</p>
-                            <p class="text-center">$$\\frac{AC}{\\sin(65^\\circ)} = \\frac{4}{\\sin(75^\\circ)} \\implies AC = \\frac{4 \\sin(65^\\circ)}{\\sin(75^\\circ)}$$</p>
-                            <h4>2. ¿Cuándo usar Ley de Cosenos?</h4>
-                            <p>Úsala cuando NO tienes parejas completas. Típicamente:</p>
+                            <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-600 mb-6">
+                                <h4 class="text-orange-900 m-0 font-bold">Caso de Estudio: El Portalápices (Pregunta 7)</h4>
+                                <p class="text-sm text-orange-800 mt-2">El perímetro aumenta de 18 a 24 (razón 4/3). ¿El área también aumenta en razón 4/3?</p>
+                            </div>
+
+                            <p>Este es el error más común en geometría básica. Confundir medidas lineales ($L$) con medidas de superficie ($L^2$).</p>
+
+                            <h4>1. La Regla de Potencias</h4>
+                            <p>Si la razón de semejanza lineal es $k = \\frac{24}{18} = \\frac{4}{3}$, entonces:</p>
                             <ul>
-                                <li><strong>LAL:</strong> Lado-Ángulo-Lado (el ángulo está atrapado entre los lados conocidos).</li>
-                                <li><strong>LLL:</strong> Conoces los tres lados.</li>
+                                <li>Razón de Longitudes (Perímetro, Lado, Altura) = $k$</li>
+                                <li>Razón de Áreas (Base, Cara, Superficie) = $k^2$</li>
+                                <li>Razón de Volúmenes (Capacidad) = $k^3$</li>
                             </ul>
+
+                            <h4>2. Demostración Rápida</h4>
+                            <p>Imagina un cuadrado de lado 1. Área = 1. Duplica el lado a 2 ($k=2$). Nueva Área = $2 \\times 2 = 4$.</p>
+                            <p>El lado se multiplicó por 2, pero el área por 4 ($2^2$).</p>
+                            <p>En el problema del portalápices, la razón de las áreas NO es $4/3$, sino $(4/3)^2 = 16/9$. La afirmación de Eliécer es falsa.</p>
+                        `
+                    },
+                    {
+                        title: "Sesión 4: Modelado Lineal (Pendiente Negativa)",
+                        content: `
+                            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-600 mb-6">
+                                <h4 class="text-indigo-900 m-0 font-bold">Caso de Estudio: Temperatura vs Altitud (Pregunta 8)</h4>
+                                <p class="text-sm text-indigo-800 mt-2">A 1000m hay 15°C. Por cada 100m subidos, baja 6°C. Hallar T a 4000m.</p>
+                            </div>
+
+                            <p>Aquí traduciremos texto a una función afín $y = mx + b$.</p>
+
+                            <h4>1. Identificar la Variable Independiente</h4>
+                            <p>Lo que cambia libremente es la altura extra escalada. El problema pide la temperatura a 4000m, partiendo de 1000m.</p>
+                            <p>El cambio de altura es $\\Delta h = 4000 - 1000$.</p>
+
+                            <h4>2. Identificar la Tasa de Cambio (Pendiente $m$)</h4>
+                            <p>Dice: "disminuye 6°C por cada 100m".</p>
+                            <p class="text-center">$$m = \\frac{-6^\\circ C}{100m}$$</p>
+
+                            <h4>3. Construcción de la Ecuación</h4>
+                            <p>$$T_{final} = T_{inicial} + (\\text{tasa}) \\cdot (\\text{cambio altura})$$</p>
+                            <p>$$T = 15 + \\left(\\frac{-6}{100}\\right)(4000 - 1000)$$</p>
+                            
+                            <p>Esta estructura $(y - y_0) = m(x - x_0)$ es la forma Punto-Pendiente. Es la herramienta más poderosa para problemas de variación lineal.</p>
+                        `
+                    },
+                    {
+                        title: "Sesión 5: Grados de Libertad (Sistemas Indeterminados)",
+                        content: `
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600 mb-6">
+                                <h4 class="text-purple-900 m-0 font-bold">Caso de Estudio: La Trayectoria Parabólica (Pregunta 15)</h4>
+                                <p class="text-sm text-purple-800 mt-2">Tenemos la ecuación $y = ax^2 + bx + c$ y dos puntos. ¿Se puede hallar la función?</p>
+                            </div>
+
+                            <p>Este es un problema de álgebra pura disfrazado de astronomía.</p>
+
+                            <h4>1. Contando Incógnitas</h4>
+                            <p>La ecuación $y = ax^2 + bx + c$ tiene TRES coeficientes desconocidos: $a$ (apertura), $b$ (posición), $c$ (intercepto).</p>
+
+                            <h4>2. Contando Ecuaciones (Datos)</h4>
+                            <p>Cada punto $(x, y)$ que te dan es una ecuación. Si te dan 2 puntos (M y N), tienes 2 ecuaciones.</p>
+                            <p class="text-center font-bold text-red-600">3 Incógnitas > 2 Ecuaciones $\\to$ Sistema Indeterminado</p>
+
+                            <p>Necesitas obligatoriamente un tercer dato (otro punto, el vértice, o el valor de $a$) para "bloquear" la parábola en una única posición. Con solo 2 puntos, infinitas parábolas pueden pasar por ahí.</p>
                         `
                     }
                 ],
                 tips: [
-                    "Si dice 'Doble de A que de B', escribe $A = 2B$ (nunca al revés).",
-                    "Si dice 'Ni A ni B', busca fuera de la unión $(A \\cup B)^c$.",
-                    "Si el orden importa (Claves), usa Permutación. Si no (Grupos), Combinación.",
-                    "Eventos independientes con 'Y' se multiplican ($P(A) \\cdot P(B)$).",
-                    "Usa Ley de Senos si tienes una pareja lado-ángulo opuesto completa.",
-                    "El porcentaje de aumento no cambia si cambias la moneda."
+                    "N. intervalos = N. puntos - 1 (para líneas abiertas).",
+                    "El porcentaje es adimensional: no le importa la moneda.",
+                    "Razón de Áreas = (Razón de Lados)².",
+                    "Tasa de cambio = $\\Delta y / \\Delta x$. Busca siempre el 'por cada'.",
+                    "Para hallar $n$ incógnitas, necesitas $n$ ecuaciones independientes."
                 ]
             },
             {
@@ -451,93 +414,103 @@
             const r = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
             const templates = {
-                algebra_translation: () => {
-                    const ratio = r(2, 5);
-                    const ratioText = ["doble", "triple", "cuádruple", "quíntuple"][ratio - 2];
-                    const isAcademic = Math.random() > 0.5;
-                    const contextBig = isAcademic ? "Estudiantes (E)" : "Manzanas (M)";
-                    const contextSmall = isAcademic ? "Profesores (P)" : "Peras (P)";
-                    const varBig = isAcademic ? "E" : "M";
-                    const varSmall = "P";
+                // SESIÓN 1: TRANSPORTE (Intervalos vs Puntos)
+                transport_intervals: () => {
+                    const stops = r(6, 12);
+                    const timePerSegment = r(3, 6); // minutes
+                    const timePerStop = 30; // seconds
+
+                    const segments = stops - 1;
+                    const totalMinutesCalculation = segments * timePerSegment;
+                    const totalSecondsCalculation = timePerStop;
 
                     return {
                         id: Math.random(),
-                        category: "Álgebra | Traducción",
-                        text: `En un colegio hay el ${ratioText} de ${contextBig} que de ${contextSmall}. El rector necesita expresar esto en una ecuación. Un alumno sugiere: $${varSmall} = ${ratio}${varBig}$.`,
+                        category: "Análisis de Algoritmos",
+                        text: `Un bus recorre una ruta con ${stops} estaciones consecutivas ($E_1$ a $E_{${stops}}$). Tarda ${timePerSegment} min entre estaciones y para ${timePerStop} seg en cada estación intermedia. Un usuario estima: "Hay ${stops} estaciones, así que multiplico ${stops} $\\times$ ${timePerSegment} min". ¿Qué error comete?`,
                         options: [
-                            { id: "A", text: `La ecuación es correcta, pues refleja la proporción dicha.` },
-                            { id: "B", text: `La ecuación es incorrecta. La correcta es $${varBig} = ${ratio}${varSmall}$.`, correct: true },
-                            { id: "C", text: `La ecuación es incorrecta. Debería ser $${varBig} = ${varSmall}/${ratio}$.` },
-                            { id: "D", text: `La ecuación es correcta solo si ${varSmall} > ${varBig}.` }
+                            { id: "A", text: `Error de Intervalo: Hay ${stops} estaciones pero solo ${segments} tramos de viaje.`, correct: true },
+                            { id: "B", text: `Error de Unidad: No sumó los tiempos de parada en segundos.` },
+                            { id: "C", text: `Error de Operación: Debió dividir en lugar de multiplicar.` },
+                            { id: "D", text: `No hay error, el cálculo es aproximado pero válido.` }
                         ],
-                        explanation: `Principios de la Balanza: El grupo grande es ${varBig}. El pequeño es ${varSmall}. Para igualarlos, debes multiplicar al pequeño. $${varBig} = ${ratio} \\times ${varSmall}$.`
+                        explanation: `<strong>Principio de Postes e Intervalos:</strong> Si tienes $n$ puntos en línea, tienes $n-1$ espacios entre ellos. De $E_1$ a $E_{${stops}}$ hay solo ${segments} tramos. Multiplicar por ${stops} añade un tramo inexistente.`
                     };
                 },
-                algebra_rates: () => {
-                    const gainA = r(2, 4);
-                    const gainB = r(5, 7);
-                    const initA = r(10, 20);
-                    const initB = r(1, 5);
-                    return {
-                        id: Math.random(),
-                        category: "Álgebra | Tasas",
-                        text: `Al inicio, el Tanque A tiene ${initA} litros y el Tanque B tiene ${initB} litros. Se abre una llave: por cada ${gainA} litros que entran a A, entran ${gainB} litros a B. Si $x$ es la cantidad que entra a A, ¿cuál es la ecuación para el total de B?`,
-                        options: [
-                            { id: "A", text: `Total B = ${initB} + (${gainB}/${gainA})x`, correct: true },
-                            { id: "B", text: `Total B = ${initB} + (${gainA}/${gainB})x` },
-                            { id: "C", text: `Total B = ${initA} + ${gainB}x` },
-                            { id: "D", text: `Total B = ${initB} + ${gainB}x` }
-                        ],
-                        explanation: `La tasa de cambio es relativa. Pendiente $\\Delta B / \\Delta A = ${gainB}/${gainA}$. Multiplicas esa pendiente por lo que entra en A ($x$) y sumas el inicio.`
-                    };
-                },
-                algebra_sets: () => {
-                    const total = r(80, 150);
-                    const setA = r(50, 60);
-                    const setB = r(40, 50);
-                    const intersection = r(10, 30);
-                    const union = setA + setB - intersection;
+
+                // SESIÓN 2: MONEDA (Invarianza)
+                currency_invariance: () => {
+                    const rate = r(2000, 4000);
+                    const gainPercent = r(2, 10);
 
                     return {
                         id: Math.random(),
-                        category: "Conjuntos | Lógica",
-                        text: `En un grupo de ${total} personas, ${setA} estudian Inglés, ${setB} estudian Francés y ${intersection} estudian ambos idiomas. ¿Cuántas personas estudian SOLO Inglés?`,
+                        category: "Porcentajes Relativos",
+                        text: `Ana invierte en Euros. La tasa es 1 EUR = ${rate} COP (constante). Su inversión en Euros crece un ${gainPercent}%. Su hermano dice: "En pesos ganaste más del ${gainPercent}%, porque el Euro vale ${rate} veces más".`,
                         options: [
-                            { id: "A", text: `${setA - intersection}`, correct: true },
-                            { id: "B", text: `${setA + setB - intersection}` },
-                            { id: "C", text: `${total - intersection}` },
-                            { id: "D", text: `${setA}` }
+                            { id: "A", text: `Verdadero: La ganancia en pesos se multiplica por ${rate}.` },
+                            { id: "B", text: `Falso: El porcentaje es el mismo (${gainPercent}%) sin importar la moneda.`, correct: true },
+                            { id: "C", text: `Falso: En pesos gana menos porque la moneda es más débil.` },
+                            { id: "D", text: `Depende del monto inicial de la inversión.` }
                         ],
-                        explanation: `Para hallar "Solo A", debes tomar el total de A y RESTAR la intersección (los que también hacen B). $N(A - B) = ${setA} - ${intersection} = ${setA - intersection}$.`
+                        explanation: `<strong>Invarianza:</strong> $$P_{final} = k \\cdot D_{final} = k \\cdot (1.${gainPercent} \\cdot D_{inicial})$$. La tasa $k$ multiplica tanto al inicio como al final, por lo que se cancela al calcular la proporción de ganancia.`
                     };
                 },
-                algebra_abstract: () => {
+
+                // SESIÓN 3: ESCALAS (Cuadrática)
+                geometry_scaling: () => {
+                    const k = r(2, 4);
+                    const shape = Math.random() > 0.5 ? "cuadrado" : "círculo";
+                    const dimName = shape === "cuadrado" ? "lado" : "radio";
+
                     return {
                         id: Math.random(),
-                        category: "Álgebra | Abstracta",
-                        text: `Se definen tres variables: $M = ab$, $N = bc$, $P = ac$. ¿Cómo puedes hallar $b$ en términos de M, N y P?`,
+                        category: "Geometría Escalar",
+                        text: `Se tiene un ${shape}. Si su ${dimName} aumenta ${k} veces (se multiplica por ${k}), ¿qué sucede con su área?`,
                         options: [
-                            { id: "A", text: `$b = \\sqrt{(M \\cdot N) / P}$`, correct: true },
-                            { id: "B", text: `$b = (M + N) / P$` },
-                            { id: "C", text: `$b = \\sqrt{MNP}$` },
-                            { id: "D", text: `$b = (M \\cdot P) / N$` }
+                            { id: "A", text: `El área aumenta ${k} veces.`, correct: false },
+                            { id: "B", text: `El área aumenta ${k * 2} veces.` },
+                            { id: "C", text: `El área aumenta ${k * k} veces.`, correct: true },
+                            { id: "D", text: `El área se mantiene igual.` }
                         ],
-                        explanation: `Multiplica las ecuaciones que tienen $b$ ($M$ y $N$): $M \\cdot N = a \\cdot b^2 \\cdot c$. Divide por la sobra ($P = ac$): $b^2$.`
+                        explanation: `<strong>Ley Cuadrático-Cúbica:</strong> La relación de áreas es el cuadrado de la relación lineal. Si $L_2 = ${k} L_1$, entonces $A_2 = (${k})^2 A_1 = ${k * k} A_1$.`
+                    };
+                },
+
+                // SESIÓN 4: MODELADO (Lineal Negativo)
+                function_modeling: () => {
+                    const startVal = r(80, 100);
+                    const slope = r(2, 5);
+                    const variable = "tiempo";
+
+                    return {
+                        id: Math.random(),
+                        category: "Modelado de Funciones",
+                        text: `Un tanque tiene ${startVal} litros. Se abre un desagüe y pierde ${slope} litros por minuto. ¿Cuál ecuación describe el volumen $V$ en función del tiempo $t$?`,
+                        options: [
+                            { id: "A", text: `$V = ${startVal} - ${slope}t$`, correct: true },
+                            { id: "B", text: `$V = ${slope}t - ${startVal}$` },
+                            { id: "C", text: `$V = ${startVal} + ${slope}t$` },
+                            { id: "D", text: `$V = (${startVal}/${slope})t$` }
+                        ],
+                        explanation: `<strong>Ecuación Afín:</strong> Valor Inicial $b = ${startVal}$. Tasa de cambio (pendiente) $m = -${slope}$ (porque pierde). La forma es $y = b + mx \\to V = ${startVal} - ${slope}t$.`
+                    };
+                },
+
+                // MEZCLA ALEATORIA DE LAS ANTERIORES PARA VARIEDAD
+                algebra_classic: () => {
+                    return {
+                        id: Math.random(),
+                        category: "Lógica Algebraica",
+                        text: `Si Juan tiene el triple de edad que Pedro ($J$ y $P$), ¿cómo se escribe?`,
+                        options: [
+                            { id: "A", text: `$J = 3P$`, correct: true },
+                            { id: "B", text: `$P = 3J$` },
+                            { id: "C", text: `$J = P + 3$` },
+                            { id: "D", text: `$3J = P$` }
+                        ],
+                        explanation: "Si Juan es mayor (tiene más edad), para igualar la balanza debes multiplicar la edad del menor (Pedro) por 3."
                     }
-                },
-                combinatorics_logic: () => {
-                    return {
-                        id: Math.random(),
-                        category: "Probabilidad | Conteo",
-                        text: "Un profesor va a seleccionar 3 estudiantes de un grupo de 10. Para un caso (Caso 1), los estudiantes formarán la directiva (Presidente, Tesorero, Secretario). Para otro caso (Caso 2), formarán un comité de limpieza. ¿Qué método de conteo se usa?",
-                        options: [
-                            { id: "A", text: "Caso 1: Combinación, Caso 2: Permutación" },
-                            { id: "B", text: "Caso 1: Permutación, Caso 2: Combinación", correct: true },
-                            { id: "C", text: "Ambos son Permutaciones" },
-                            { id: "D", text: "Ambos son Combinaciones" }
-                        ],
-                        explanation: "En la directiva, el orden/jerarquía importa (ser Presidente es distinto a ser Tesorero) -> Permutación. En el comité de limpieza, el orden no importa (todos limpian igual) -> Combinación."
-                    };
                 }
             };
 
