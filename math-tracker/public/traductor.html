@@ -213,185 +213,162 @@
                     {
                         title: "1. Operaciones Básicas: El Lenguaje del Cambio",
                         content: `
-<!-- SECCIÓN 1.1: TU CAJA DE HERRAMIENTAS (VERSIÓN TUTORÍA PROFUNDA) -->
-                                <div class="space-y-12">
+<!-- SECCIÓN 1.1: TU CAJA DE HERRAMIENTAS (ESTILO ACADÉMICO FORMAL) -->
+                                <div class="space-y-10">
                                     
-                                    <!-- INTRODUCCIÓN: LA TEORÍA DEL PÍXEL -->
-                                    <div class="bg-gray-900 text-white p-8 rounded-2xl shadow-2xl border border-gray-700">
-                                        <div class="flex items-center gap-4 mb-6 border-b border-gray-700 pb-4">
-                                            <div class="p-3 bg-blue-600 rounded-lg shadow-lg shadow-blue-900/50">
-                                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-                                            </div>
-                                            <div>
-                                                <h4 class="font-black text-3xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">1.1 La Filosofía de los Números</h4>
-                                                <p class="text-gray-400 text-sm font-medium">No calcules todavía. Primero, APRENDE A VER.</p>
-                                            </div>
-                                        </div>
-
-                                        <p class="text-lg text-gray-300 leading-relaxed mb-8">
-                                            Imagina que tienes dos tipos de gafas para ver el universo. El ICFES te va a preguntar constantemente: <span class="text-white font-bold italic">"¿Qué gafas llevas puestas?"</span>.
-                                            Si usas las incorrectas, la calculadora te dirá una mentira.
+                                    <!-- INTRODUCCIÓN: FILOSOFÍA DE LOS NÚMEROS -->
+                                    <div>
+                                        <h3 class="text-xl font-bold text-slate-800 mb-4">1.1 La Filosofía de los Números: Discreto vs Continuo</h3>
+                                        <p class="text-slate-700 leading-relaxed mb-6">
+                                            Antes de operar, debemos entender la naturaleza del objeto matemático. El ICFES evalúa rigurosamente si el estudiante puede distinguir entre cantidades que se <em>cuentan</em> (Discretas) y cantidades que se <em>miden</em> (Continuas).
                                         </p>
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <!-- DEFINICIÓN COMPARATIVA -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <!-- MUNDO PIXEL (Z) -->
-                                            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-emerald-500 hover:bg-gray-750 transition-colors">
-                                                <strong class="text-emerald-400 text-xl block mb-2 font-mono">A. El Mundo Pixelado ($\\mathbb{Z}$)</strong>
-                                                <p class="text-sm text-gray-400 mb-4 h-16">
-                                                    Como un videojuego antiguo. Solo puedes moverte por casillas completas. No existe el "medio personaje". 
+                                            <div class="bg-white p-5 rounded-lg border-t-4 border-emerald-500 shadow-sm border-x border-b border-slate-100">
+                                                <div class="flex items-center gap-3 mb-3">
+                                                    <div class="p-2 bg-emerald-100 rounded-md text-emerald-700">
+                                                        <Icon path={Icons.Calc} size={20} />
+                                                    </div>
+                                                    <strong class="text-slate-800 text-lg">Dominio Discreto ($\mathbb{Z}$)</strong>
+                                                </div>
+                                                <p class="text-sm text-slate-600 mb-4 border-b border-slate-100 pb-3">
+                                                    Representa elementos indivisibles ("El Mundo Pixelado"). La unidad mínima es el <strong>1</strong> (o una unidad definida).
                                                 </p>
-                                                <ul class="space-y-2 text-sm text-gray-300">
-                                                    <li class="flex items-center gap-2">🕹️ <span class="font-bold text-white">Esencia:</span> Contar (Discreto).</li>
-                                                    <li class="flex items-center gap-2">🚫 <span class="font-bold text-white">Prohibido:</span> Decimales individuales.</li>
-                                                    <li class="flex items-center gap-2">📦 <span class="font-bold text-white">Ejemplos:</span> <span class="bg-gray-900 px-2 py-1 rounded">Personas</span> <span class="bg-gray-900 px-2 py-1 rounded">Goles</span> <span class="bg-gray-900 px-2 py-1 rounded">Átomos</span></li>
+                                                <ul class="space-y-2 text-sm text-slate-700">
+                                                    <li class="flex items-start gap-2">
+                                                        <span class="text-emerald-500 font-bold">✓</span>
+                                                        <span><strong>Operación:</strong> Conteo.</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <span class="text-red-500 font-bold">✕</span>
+                                                        <span><strong>Prohibido:</strong> Decimales sin interpretación.</span>
+                                                    </li>
                                                 </ul>
                                             </div>
 
                                             <!-- MUNDO FLUIDO (R) -->
-                                            <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-blue-500 hover:bg-gray-750 transition-colors">
-                                                <strong class="text-blue-400 text-xl block mb-2 font-mono">B. El Mundo Fluido ($\\mathbb{R}$)</strong>
-                                                <p class="text-sm text-gray-400 mb-4 h-16">
-                                                    Como el agua. Puedes servir un vaso, medio vaso, o $0.137$ vasos. Siempre hay espacio en medio.
+                                            <div class="bg-white p-5 rounded-lg border-t-4 border-blue-500 shadow-sm border-x border-b border-slate-100">
+                                                <div class="flex items-center gap-3 mb-3">
+                                                    <div class="p-2 bg-blue-100 rounded-md text-blue-700">
+                                                        <Icon path={Icons.Trend} size={20} />
+                                                    </div>
+                                                    <strong class="text-slate-800 text-lg">Dominio Continuo ($\mathbb{R}$)</strong>
+                                                </div>
+                                                <p class="text-sm text-slate-600 mb-4 border-b border-slate-100 pb-3">
+                                                    Representa magnitudes medibles ("El Mundo Fluido"). Admite infinita precisión decimal.
                                                 </p>
-                                                <ul class="space-y-2 text-sm text-gray-300">
-                                                    <li class="flex items-center gap-2">💧 <span class="font-bold text-white">Esencia:</span> Medir (Continuo).</li>
-                                                    <li class="flex items-center gap-2">✅ <span class="font-bold text-white">Permitido:</span> Infinita precisión.</li>
-                                                    <li class="flex items-center gap-2">📏 <span class="font-bold text-white">Ejemplos:</span> <span class="bg-gray-900 px-2 py-1 rounded">Tiempo</span> <span class="bg-gray-900 px-2 py-1 rounded">Dinero*</span> <span class="bg-gray-900 px-2 py-1 rounded">Voltaje</span></li>
+                                                <ul class="space-y-2 text-sm text-slate-700">
+                                                    <li class="flex items-start gap-2">
+                                                        <span class="text-blue-500 font-bold">✓</span>
+                                                        <span><strong>Operación:</strong> Medición.</span>
+                                                    </li>
+                                                    <li class="flex items-start gap-2">
+                                                        <span class="text-emerald-500 font-bold">✓</span>
+                                                        <span><strong>Permitido:</strong> Fracciones y Decimales.</span>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- CASO DE ESTUDIO: EL DILEMA LOGÍSTICO -->
-                                    <div class="relative pl-8 md:pl-12 border-l-2 border-indigo-200 py-4">
-                                        <span class="absolute -left-4 top-0 bg-indigo-600 text-white rounded-full p-2 shadow-lg">
-                                            <Icon path={Icons.Brain} size={20} />
-                                        </span>
+                                    <!-- CASO DE ESTUDIO -->
+                                    <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-6 relative overflow-hidden">
+                                        <div class="absolute top-0 right-0 p-4 opacity-5">
+                                            <Icon path={Icons.Brain} size={100} />
+                                        </div>
                                         
-                                        <h4 class="font-bold text-indigo-900 text-2xl mb-4">Caso de Estudio: El Dilema Logístico</h4>
-                                        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-6">
-                                            <div class="flex flex-col md:flex-row gap-6 items-start">
-                                                <div class="flex-1">
-                                                    <p class="text-slate-700 italic text-lg mb-4">
-                                                        "Necesitas transportar a <strong>48 estudiantes</strong> a una excursión. Cada bus escolar tiene capacidad máxima para <strong>10 pasajeros</strong>. ¿Cuántos buses contratas?"
-                                                    </p>
-                                                    
-                                                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 mb-4">
-                                                        <strong class="text-red-900 block mb-1">El Error del Novato (Calculadora Ciega)</strong>
-                                                        <p class="font-mono text-red-700 text-lg">$$ N = \\frac{48}{10} = 4.8 \\text{ buses} $$</p>
-                                                        <p class="text-sm text-red-800 mt-2">
-                                                            El estudiante responde: <span class="font-bold">"4.8 buses"</span>. <br>
-                                                            O peor, redondea matemáticamente: <span class="font-bold">"5 buses"</span> (pero sin saber por qué).
-                                                            O aún peor, redondea hacia abajo: <span class="font-bold">"4 buses"</span>.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="flex-1 bg-slate-50 p-5 rounded-xl border border-slate-200">
-                                                    <strong class="text-indigo-900 block mb-3 text-lg">La Intervención del Tutor</strong>
-                                                    <div class="space-y-3 text-sm text-slate-700">
-                                                        <p>— <strong>Tutor:</strong> Detente. Dibuja mentalmente 0.8 buses. ¿Qué es? ¿Un bus sin techo? ¿Solo las llantas?</p>
-                                                        <p>— <strong>Estudiante:</strong> No existe. Tienen que ser enteros.</p>
-                                                        <p>— <strong>Tutor:</strong> Exacto. Estamos en el <span class="font-bold text-emerald-600">Mundo Pixelado ($\\mathbb{Z}$)</span>. Ahora, decide el redondeo:</p>
-                                                        <ul class="list-disc pl-5 space-y-2 mt-2">
-                                                            <li><span class="font-bold text-red-600">Opción A (4 buses):</span> Llevas 40 estudiantes. Dejas a 8 tirados en la calle llorando. 😭</li>
-                                                            <li><span class="font-bold text-green-600">Opción B (5 buses):</span> Llevas 50 cupos. Sobran 2 sillas vacías. Todos viajan. 😎</li>
-                                                        </ul>
-                                                    </div>
+                                        <h4 class="font-bold text-indigo-900 border-b border-indigo-200 pb-2 mb-4">Caso de Estudio: El Dilema Logístico</h4>
+                                        
+                                        <div class="flex flex-col md:flex-row gap-8">
+                                            <div class="flex-1">
+                                                <p class="text-slate-700 mb-4 italic">
+                                                    "Se deben transportar <strong>48 estudiantes</strong>. Capacidad del bus: <strong>10 pasajeros</strong>. ¿Número de buses?"
+                                                </p>
+                                                <div class="bg-white p-3 rounded border border-indigo-100">
+                                                    <p class="text-xs text-slate-500 font-bold uppercase mb-1">Cálculo Matemático Puro</p>
+                                                    <p class="font-mono text-slate-800 text-lg">$$ n = \frac{48}{10} = 4.8 $$</p>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="mt-4 p-4 bg-indigo-100 rounded text-indigo-900 text-sm font-medium text-center">
-                                                <span class="block text-xl mb-1">💡 COMENTARIO ICFES</span>
-                                                En problemas de CAPACIDAD, el decimal siempre obliga a un nuevo entero completo. Esto se llama <strong class="underline decoration-wavy decoration-indigo-400">Función Techo (Ceiling)</strong>.
+
+                                            <div class="flex-1 space-y-3">
+                                                <strong class="text-indigo-800 text-sm">Análisis del Tutor:</strong>
+                                                <p class="text-sm text-slate-700">
+                                                    Un bus es un objeto del conjunto $\mathbb{Z}$. Matemáticamente $4.8$ es correcto, pero <em>físicamente</em> $0.8$ buses no existen.
+                                                </p>
+                                                <div class="p-3 bg-white border-l-4 border-indigo-500 text-sm text-slate-700 shadow-sm">
+                                                    <strong>Función Techo (Ceiling):</strong> En problemas de capacidad, cualquier decimal obliga a tomar el siguiente entero completo.
+                                                    <br>
+                                                    <span class="font-mono text-indigo-600 font-bold">Respuesta: 5 Buses.</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- LA PARADOJA DEL ESTADÍSTICO -->
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        <div class="col-span-1 md:col-span-1 bg-amber-50 p-6 rounded-xl border border-amber-100 flex flex-col justify-center text-center">
-                                            <div class="text-4xl mb-2">👶❓</div>
-                                            <h5 class="font-bold text-amber-900 text-lg leading-tight">La Paradoja de los<br>2.5 Hijos</h5>
-                                        </div>
-                                        <div class="col-span-1 md:col-span-2">
-                                            <h5 class="font-bold text-slate-800 text-lg mb-2">Si los hijos son Enteros ($\\mathbb{Z}$), ¿por qué las estadísticas dan decimales?</h5>
-                                            <p class="text-slate-600 mb-4 leading-relaxed">
-                                                Ahí está la trampa. Un hijo individual es un Píxel (Entero). Pero el <strong>Promedio de una Población</strong> se convierte en un Fluido (Real).
+                                    <!-- PARADOJA ESTADÍSTICA -->
+                                    <div class="flex items-start gap-4 p-4 bg-amber-50 rounded-lg border border-amber-100">
+                                        <div class="text-2xl pt-1">⚠️</div>
+                                        <div>
+                                            <h5 class="font-bold text-amber-900 text-sm mb-1">Advertencia: La Paradoja de los Promedios</h5>
+                                            <p class="text-sm text-amber-800 leading-relaxed">
+                                                Cuidado: El promedio de un conjunto de enteros ($\mathbb{Z}$) puede ser un número real ($\mathbb{R}$). 
+                                                <span class="italic">"2.5 hijos por familia"</span> es una estadística válida, aunque ninguna familia tenga medio hijo.
                                             </p>
-                                            <div class="bg-white p-4 border-l-4 border-amber-400 shadow-sm">
-                                                <p class="text-sm font-mono text-slate-600">
-                                                    Familia A: 2 hijos<br>
-                                                    Familia B: 3 hijos<br>
-                                                    Promedio = $\\frac{2+3}{2} = 2.5$
-                                                </p>
-                                                <p class="text-xs text-slate-500 mt-2 italic">
-                                                    El "2.5" es una propiedad matemática del grupo, no una realidad biológica de una familia. El ICFES te pondrá trampas preguntando sobre individuos basándose en el promedio.
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- EL GUANTELETE DEL TUTOR (DRILLS) -->
-                                    <div class="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200">
-                                        <h4 class="font-bold text-slate-900 text-center text-2xl mb-6">🥊 El Guantelete del Tutor</h4>
-                                        <p class="text-center text-slate-500 mb-8 max-w-lg mx-auto">
-                                            Entrena tu ojo clínico. Antes de calcular, clasifica.
-                                            <br>¿Píxel (Z) o Fluido (R)?
-                                        </p>
-
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                            <!-- ITEM 1 -->
-                                            <div class="bg-white p-4 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform border border-slate-100 flex flex-col items-center">
-                                                <span class="block text-xs text-slate-400 font-bold uppercase mb-2">Ítem 1</span>
-                                                <strong class="block text-slate-800 text-lg mb-2">Pasos al Caminar</strong>
-                                                <div class="opacity-40 group-hover:opacity-100 transition-opacity">
-                                                    <span class="inline-block px-3 py-1 rounded-full text-white font-bold text-xs bg-emerald-500">Z</span>
-                                                    <p class="text-xs text-slate-500 mt-1">Discreto</p>
-                                                </div>
-                                            </div>
-
-                                            <!-- ITEM 2 -->
-                                            <div class="bg-white p-4 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform border border-slate-100 flex flex-col items-center">
-                                                <span class="block text-xs text-slate-400 font-bold uppercase mb-2">Ítem 2</span>
-                                                <strong class="block text-slate-800 text-lg mb-2">Distancia Recorrida</strong>
-                                                <div class="opacity-40 group-hover:opacity-100 transition-opacity">
-                                                    <span class="inline-block px-3 py-1 rounded-full text-white font-bold text-xs bg-blue-500">R</span>
-                                                    <p class="text-xs text-slate-500 mt-1">Continuo</p>
-                                                </div>
-                                            </div>
-
-                                            <!-- ITEM 3 -->
-                                            <div class="bg-white p-4 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform border border-slate-100 flex flex-col items-center">
-                                                <span class="block text-xs text-slate-400 font-bold uppercase mb-2">Ítem 3</span>
-                                                <strong class="block text-slate-800 text-lg mb-2">Dinero en Efectivo</strong>
-                                                <div class="opacity-40 group-hover:opacity-100 transition-opacity">
-                                                    <span class="inline-block px-3 py-1 rounded-full text-white font-bold text-xs bg-emerald-500">Z*</span>
-                                                    <p class="text-xs text-slate-500 mt-1">Mínima moneda</p>
-                                                </div>
-                                            </div>
-
-                                            <!-- ITEM 4 -->
-                                            <div class="bg-white p-4 rounded-xl shadow-sm text-center group hover:-translate-y-1 transition-transform border border-slate-100 flex flex-col items-center">
-                                                <span class="block text-xs text-slate-400 font-bold uppercase mb-2">Ítem 4</span>
-                                                <strong class="block text-slate-800 text-lg mb-2">Dinero Digital</strong>
-                                                <div class="opacity-40 group-hover:opacity-100 transition-opacity">
-                                                    <span class="inline-block px-3 py-1 rounded-full text-white font-bold text-xs bg-blue-500">R</span>
-                                                    <p class="text-xs text-slate-500 mt-1">Centavos/Fracciones</p>
-                                                </div>
-                                            </div>
+                                    <!-- EJERCICIO DE CLASIFICACIÓN (MIGRADOS DEL 'GUANTELETE') -->
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                            <span class="bg-slate-800 text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">?</span>
+                                            Ejercicio de Clasificación
+                                        </h4>
+                                        <div class="overflow-hidden rounded-lg border border-slate-200">
+                                            <table class="w-full text-sm text-left">
+                                                <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                                                    <tr>
+                                                        <th class="p-3">Variable</th>
+                                                        <th class="p-3">Conjunto</th>
+                                                        <th class="p-3">Justificación</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-slate-100 text-slate-700 bg-white">
+                                                    <tr>
+                                                        <td class="p-3 font-medium">Pasos al Caminar</td>
+                                                        <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs font-bold border border-emerald-200">Discreto ($\mathbb{Z}$)</span></td>
+                                                        <td class="p-3 text-slate-500">Eventos unitarios.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-3 font-medium">Distancia Recorrida</td>
+                                                        <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-bold border border-blue-200">Continuo ($\mathbb{R}$)</span></td>
+                                                        <td class="p-3 text-slate-500">Magnitud física medible.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-3 font-medium">Dinero (Efectivo)</td>
+                                                        <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs font-bold border border-emerald-200">Discreto*</span></td>
+                                                        <td class="p-3 text-slate-500">Limitado por la moneda más pequeña.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-3 font-medium">Dinero (Digital)</td>
+                                                        <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-bold border border-blue-200">Continuo</span></td>
+                                                        <td class="p-3 text-slate-500">Admite fracciones de centavo.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
+                                    </div>
+
                                     </div>
 
                                     <!-- PAUSA METACOGNITIVA -->
-                                    <div className="w-full bg-slate-200 h-px my-4"></div>
-                                    <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-6 rounded-xl flex items-center gap-6 shadow-xl">
-                                        <div className="text-5xl animate-pulse">🧠</div>
+                                    <div class="bg-gradient-to-r from-indigo-50 to-slate-50 p-6 rounded-xl flex items-start gap-4 border border-indigo-100 shadow-sm mt-8">
+                                        <div class="text-3xl select-none">🧠</div>
                                         <div>
-                                            <strong className="block text-xl text-indigo-300 font-bold mb-1">Pausa Metacognitiva</strong>
-                                            <p className="text-indigo-100/80 text-sm italic">
-                                                Cierra los ojos un segundo. Imagina el problema físico antes de buscar la fórmula. <br>
-                                                "Si la respuesta me da 3.8 perros... ¿qué hago?"
+                                            <strong class="block text-indigo-900 font-bold text-sm uppercase tracking-wide mb-1">Pausa Metacognitiva</strong>
+                                            <p class="text-slate-700 italic text-sm">
+                                                Cierra los ojos un segundo. Antes de buscar fórmulas, visualiza el problema: <br>
+                                                "Si la respuesta me da 3.8 buses... ¿cómo dibujo 0.8 buses?"
                                             </p>
                                         </div>
                                     </div>
