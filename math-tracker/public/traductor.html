@@ -203,147 +203,304 @@
         // --- CONTENIDO EDUCATIVO AMPLIADO ---
         const educationalModules = [
             {
-                id: "algebra",
-                title: "Tratado de Traducción Algebraica",
+                id: "aritmetica",
+                title: "Módulo 1: Aritmética y Números Reales",
                 icon: "Calc",
                 color: "bg-blue-700",
-                concept: "Del Lenguaje Natural al Formalismo Matemático",
-                summary: "Bienvenido a tu tutoría personalizada. Aquí no memorizamos fórmulas; analizamos la lógica 'oculta' del ICFES. Usaremos preguntas reales (Transporte, Divisas, Geometría) para deconstruir cómo los diseñadores del examen intentan engañarte con trampas semánticas.",
+                concept: "Fundamentación Matemática Rigurosa",
+                summary: "Desarrollo de competencias para interpretar magnitudes, manejar sistemas de unidades y calcular variaciones proporcionales bajo lógica formal.",
                 chapters: [
                     {
-                        title: "Sesión 1: El Algoritmo de la Rutina (Análisis de Procesos)",
+                        title: "1. Fundamentos Operativos y Análisis Dimensional",
                         content: `
-                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600 mb-6">
-                                <h4 class="text-blue-900 m-0 font-bold">Caso de Estudio: El Sistema de Transporte (Pregunta 1)</h4>
-                                <p class="text-sm text-blue-800 mt-2">Un usuario cuenta 10 tramos y 10 paradas. Calcula: $10 \\times 4\\text{min} + 30\\text{seg}$. ¿Por qué falla?</p>
-                            </div>
-                            
-                            <p>El error del paso II es sutil pero fatal: es un <strong>Error de Intervalo vs. Punto</strong>.</p>
-                            
-                            <h4>1. La Geometría del Conteo</h4>
-                            <p>Imagina tus dedos. Tienes 5 dedos, pero solo 4 espacios entre ellos. En el problema, las estaciones son "puntos" ($P$) y los tramos de viaje son "intervalos" ($I$).</p>
-                            <p class="text-center text-lg my-4 font-bold">$$N_{intervalos} = N_{puntos} - 1$$</p>
-                            <p>Si vas de $E_1$ a $E_{10}$, hay 10 estaciones, pero solo <strong>9 tramos</strong> de viaje. El usuario contó 10 tramos, añadiendo 4 minutos fantasma a su cuenta.</p>
+                            <div class="space-y-6 text-slate-700">
+                                <div class="bg-blue-50 p-4 border-l-4 border-blue-600 rounded">
+                                    <h4 class="font-bold text-blue-900 mb-2">1.1 Operaciones Básicas y Análisis Dimensional</h4>
+                                    <p class="text-sm">El principal error en este tema no es el cálculo aritmético, sino la <strong>inconsistencia dimensional</strong>. No se pueden operar cantidades que no pertenezcan a la misma categoría.</p>
+                                </div>
 
-                            <h4>2. La Trampa de la Parada Final</h4>
-                            <p>Otro error clásico: ¿Cuentas la parada en el destino? El problema dice "sumó 30 segundos por la parada en $E_{10}$".</p>
-                            <p><strong>Lógica ICFES:</strong> El tiempo de viaje termina cuando el bus se detiene y abre las puertas. No esperas 30 segundos *después* de llegar para decir "llegué". Esa última parada NO suma tiempo al trayecto, es parte de la llegada.</p>
+                                <div>
+                                    <h5 class="font-bold text-slate-800">Verificación de Unidades</h5>
+                                    <p class="mb-2">Antes de plantear una ecuación, se debe asegurar la cancelación correcta de unidades.</p>
+                                    <ul class="list-disc pl-5 text-sm space-y-1">
+                                        <li><strong class="text-red-600">Forma Incorrecta:</strong> Sumar Dinero + Personas.</li>
+                                        <li><strong class="text-green-600">Forma Correcta:</strong> Operar tasas para obtener unidades coherentes.</li>
+                                    </ul>
+                                </div>
 
-                            <div class="mt-6 p-4 bg-yellow-50 rounded border border-yellow-200">
-                                <h5 class="font-bold text-yellow-800">💡 Lección de Tutoría</h5>
-                                <p class="text-sm text-yellow-900">Cuando enfrentes problemas de secuencias (postes, paradas, cortes), dibuja una versión pequeña. ¿3 paradas tienen 3 tramos? No, tienen 2. Extrapola esa regla.</p>
+                                <div class="bg-white border p-4 rounded shadow-sm">
+                                    <h5 class="font-bold text-slate-800 mb-2">Caso: Optimización con Restricciones</h5>
+                                    <p class="text-sm mb-2"><strong>Planteamiento Lógico:</strong></p>
+                                    <ol class="list-decimal pl-5 text-sm space-y-1">
+                                        <li><strong>Variable a minimizar:</strong> Costo Total ($C$).</li>
+                                        <li><strong>Restricción:</strong> La suma de estudiantes ($n$) debe ser 140.</li>
+                                    </ol>
+                                    <p class="text-sm mt-3 bg-slate-100 p-2 italic">
+                                        "Matemáticamente, para minimizar el costo, se deben llenar primero los cupos con menor valor unitario hasta completar la demanda."
+                                    </p>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-3">1.2 Fracciones y Porcentajes (Factores Decimales)</h4>
+                                    <p class="mb-2">El porcentaje debe tratarse como un <strong>factor multiplicativo decimal</strong> ($1 \\pm p$), no como una suma.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                        <div class="bg-emerald-50 p-3 rounded">
+                                            <strong>Aumento ($1+p$):</strong><br>
+                                            Aumento del 20% $\\to \\times 1.20$
+                                        </div>
+                                        <div class="bg-red-50 p-3 rounded">
+                                            <strong>Descuento ($1-p$):</strong><br>
+                                            Descuento del 20% $\\to \\times 0.80$
+                                        </div>
+                                    </div>
+
+                                    <h5 class="font-bold text-sm text-slate-800 mt-3">Variaciones Sucesivas (No aditivas)</h5>
+                                    <p class="text-sm">Si una cantidad aumenta 50% y luego disminuye 50%:</p>
+                                    <div class="bg-slate-800 text-white p-3 rounded overflow-x-auto font-mono text-sm my-2">
+                                        $$ X_{final} = X \\cdot (1.50) \\cdot (0.50) = X \\cdot (0.75) $$
+                                    </div>
+                                    <p class="text-xs text-slate-500">Conclusión: Hubo una pérdida neta del 25% ($1 - 0.75$).</p>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.3 Razones y Proporciones</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="border p-3 rounded">
+                                            <strong class="text-blue-700">Directa ($y = kx$)</strong>
+                                            <p>El cociente es constante $\\frac{y}{x} = k$.<br>Ej: Cantidad vs Precio.</p>
+                                        </div>
+                                        <div class="border p-3 rounded">
+                                            <strong class="text-purple-700">Inversa ($y = k/x$)</strong>
+                                            <p>El producto es constante $x \\cdot y = k$.<br>Ej: Trabajadores vs Tiempo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.4 Notación Científica</h4>
+                                    <p class="text-sm">Formato $a \\times 10^n$, donde $1 \\le |a| < 10$.</p>
+                                    <div class="bg-slate-100 p-2 rounded text-sm font-mono mt-2">
+                                        $$ 0.006 = 6 \\times 10^{-3} $$
+                                    </div>
+                                </div>
                             </div>
                         `
                     },
                     {
-                        title: "Sesión 2: La Ilusión de la Moneda (Invarianza Porcentual)",
+                        title: "2. Teoría de Números y Patrones",
                         content: `
-                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-600 mb-6">
-                                <h4 class="text-green-900 m-0 font-bold">Caso de Estudio: Inversión Dólares vs Pesos (Pregunta 2)</h4>
-                                <p class="text-sm text-green-800 mt-2">Si ganas 3% en dólares, ¿ganas más, menos o igual en pesos (tasa constante)?</p>
+                            <div class="space-y-6 text-slate-700">
+                                <div class="bg-indigo-50 p-4 border-l-4 border-indigo-600 rounded">
+                                    <p class="text-sm text-indigo-900">
+                                        El ICFES evalúa la capacidad de predecir eventos futuros (periodicidad) o distribuir recursos de manera exacta (partición).
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.5 MCM y MCD</h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-3">
+                                        <div>
+                                            <strong class="text-blue-700 block mb-1">A. MCM (Punto de Encuentro)</strong>
+                                            <p class="text-sm mb-2">Para problemas de <strong>Periodicidad</strong>. "¿Cuándo vuelven a coincidir?".</p>
+                                            <div class="bg-blue-50 p-2 rounded text-xs">
+                                                Ej: Bus A (4 min), Bus B (6 min).<br>
+                                                MCM(4,6) = 12 min.<br>
+                                                Coinciden a las 8:12 AM.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <strong class="text-green-700 block mb-1">B. MCD (Corte Perfecto)</strong>
+                                            <p class="text-sm mb-2">Para problemas de <strong>Partición</strong>. "¿Mayor tamaño posible sin sobrar?".</p>
+                                            <div class="bg-green-50 p-2 rounded text-xs">
+                                                Ej: Cuerdas de 12m y 18m.<br>
+                                                MCD(12,18) = 6m.<br>
+                                                Pedazos de 6 metros.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.6 Sucesiones Aritméticas ($a_n$)</h4>
+                                    <p class="text-sm mb-2">Formalización matemática para evitar el conteo manual.</p>
+                                    <div class="bg-slate-800 text-white p-3 rounded text-center my-2 font-mono text-lg">
+                                        $$ a_n = a_1 + (n-1)d $$
+                                    </div>
+                                    <ul class="text-sm list-disc pl-5 text-slate-600">
+                                        <li>$a_n$: Valor en la posición $n$.</li>
+                                        <li>$a_1$: Valor inicial.</li>
+                                        <li>$d$: Diferencia constante.</li>
+                                        <li>$(n-1)$: Cantidad de intervalos (el principio estructural).</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.7 Operaciones con Racionales</h4>
+                                    <p class="text-sm">Para dividir fracciones $\\frac{a}{b} \\div \\frac{c}{d}$ (Extremos y Medios):</p>
+                                    <div class="bg-slate-100 p-2 rounded text-center text-sm font-mono mt-1">
+                                        $$ \\frac{\\frac{a}{b}}{\\frac{c}{d}} = \\frac{a \\cdot d}{b \\cdot c} $$
+                                    </div>
+                                </div>
                             </div>
-
-                            <p>Tu intuición te grita: "¡El dólar vale 2.000 veces más! ¡La ganancia debe ser mayor!". Tu intuición se equivoca. Veamos la demostración matemática.</p>
-
-                            <h4>1. El Factor de Conversión ($k$)</h4>
-                            <p>Definamos la tasa de cambio como $k = 2000$ COP/USD.</p>
-                            <ul>
-                                <li>Inversión inicial en dólares: $D_i$</li>
-                                <li>Inversión inicial en pesos: $P_i = k \\cdot D_i$</li>
-                            </ul>
-
-                            <h4>2. El Crecimiento</h4>
-                            <p>Si ganas un 3%, multiplicas por $1.03$.</p>
-                            <ul>
-                                <li>Final dólares: $D_f = 1.03 \\cdot D_i$</li>
-                                <li>Final pesos (al convertir de vuelta): $P_f = k \\cdot D_f = k \\cdot (1.03 \\cdot D_i)$</li>
-                            </ul>
-
-                            <h4>3. Cálculo del Porcentaje en Pesos</h4>
-                            <p>El porcentaje de ganancia es la razón de cambio:</p>
-                            <p class="text-center font-bold text-xl my-4">$$\\text{Ganancia} = \\frac{P_f}{P_i} = \\frac{k \\cdot 1.03 \\cdot D_i}{k \\cdot D_i}$$</p>
-                            <p>Observa la magia: ¡La $k$ (el 2000) está arriba y abajo! <strong>Se cancela</strong>.</p>
-                            <p class="text-center">$$Resultado = 1.03 \\to 3\\%$$</p>
-
-                            <p><strong>Conclusión:</strong> El porcentaje es una medida <em>relativa</em>. Las unidades (escalas) no lo afectan. Es un principio de invarianza.</p>
                         `
                     },
                     {
-                        title: "Sesión 3: La Trampa Dimensional (Escalas Cuadradas)",
+                        title: "3. Mezclas, Desigualdades y Estimación",
                         content: `
-                            <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-600 mb-6">
-                                <h4 class="text-orange-900 m-0 font-bold">Caso de Estudio: El Portalápices (Pregunta 7)</h4>
-                                <p class="text-sm text-orange-800 mt-2">El perímetro aumenta de 18 a 24 (razón 4/3). ¿El área también aumenta en razón 4/3?</p>
+                            <div class="space-y-6 text-slate-700">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-3">1.9 Desigualdades e Intervalos</h4>
+                                    <p class="text-sm mb-3">Traducción de lenguaje natural a simbología de límites.</p>
+                                    
+                                    <table class="w-full text-sm text-left border rounded">
+                                        <thead class="bg-slate-100 font-bold text-slate-700">
+                                            <tr><th class="p-2">Frase</th><th class="p-2">Símbolo</th></tr>
+                                        </thead>
+                                        <tbody class="divide-y text-slate-600">
+                                            <tr><td class="p-2">"Como mínimo", "Al menos"</td><td class="p-2 font-mono">$\\ge$</td></tr>
+                                            <tr><td class="p-2">"Como máximo", "A lo sumo"</td><td class="p-2 font-mono">$\\le$</td></tr>
+                                            <tr><td class="p-2">"Superior a"</td><td class="p-2 font-mono">$>$</td></tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="bg-red-50 p-3 mt-3 rounded text-sm border-l-4 border-red-500 text-red-900">
+                                        <strong>Propiedad Crítica:</strong> Al multiplicar o dividir por un número negativo, el sentido de la desigualdad se invierte.<br>
+                                        ($-2x > 10 \\implies x < -5$).
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-3">1.10 Promedios Ponderados y Mezclas</h4>
+                                    <p class="text-sm mb-2">El promedio simple asume igualdad de pesos. En mezclas, usamos el <strong>Peso ($w_i$)</strong>.</p>
+                                    <div class="bg-slate-800 text-white p-3 rounded text-center mb-3 text-sm font-mono">
+                                        $$ \\bar{x}_w = \\frac{\\sum (x_i \\cdot w_i)}{\\sum w_i} $$
+                                    </div>
+                                    <div class="bg-white border p-3 rounded text-sm">
+                                        <strong>Ejemplo Práctico:</strong> 20kg a $5k + 30kg a $8k.
+                                        <br>Precio $\\neq \\frac{5+8}{2}$.
+                                        <br>Precio $= \\frac{(20 \\cdot 5000) + (30 \\cdot 8000)}{50} = \\mathbf{6.800}$
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.11 Números Irracionales</h4>
+                                    <p class="text-sm">Diferenciar valor exacto de aproximación.</p>
+                                    <ul class="list-disc pl-5 text-sm space-y-1 font-mono text-slate-600">
+                                        <li>$\\pi \\approx 3.1416$ (Circunferencia)</li>
+                                        <li>$\\sqrt{2} \\approx 1.41$ (Diagonal cuadrado)</li>
+                                        <li>$\\sqrt{3} \\approx 1.73$ (Altura triángulo equilátero)</li>
+                                    </ul>
+                                </div>
                             </div>
-
-                            <p>Este es el error más común en geometría básica. Confundir medidas lineales ($L$) con medidas de superficie ($L^2$).</p>
-
-                            <h4>1. La Regla de Potencias</h4>
-                            <p>Si la razón de semejanza lineal es $k = \\frac{24}{18} = \\frac{4}{3}$, entonces:</p>
-                            <ul>
-                                <li>Razón de Longitudes (Perímetro, Lado, Altura) = $k$</li>
-                                <li>Razón de Áreas (Base, Cara, Superficie) = $k^2$</li>
-                                <li>Razón de Volúmenes (Capacidad) = $k^3$</li>
-                            </ul>
-
-                            <h4>2. Demostración Rápida</h4>
-                            <p>Imagina un cuadrado de lado 1. Área = 1. Duplica el lado a 2 ($k=2$). Nueva Área = $2 \\times 2 = 4$.</p>
-                            <p>El lado se multiplicó por 2, pero el área por 4 ($2^2$).</p>
-                            <p>En el problema del portalápices, la razón de las áreas NO es $4/3$, sino $(4/3)^2 = 16/9$. La afirmación de Eliécer es falsa.</p>
                         `
                     },
                     {
-                        title: "Sesión 4: Modelado Lineal (Pendiente Negativa)",
+                        title: "4. Operaciones Avanzadas y Simplificación",
                         content: `
-                            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-600 mb-6">
-                                <h4 class="text-indigo-900 m-0 font-bold">Caso de Estudio: Temperatura vs Altitud (Pregunta 8)</h4>
-                                <p class="text-sm text-indigo-800 mt-2">A 1000m hay 15°C. Por cada 100m subidos, baja 6°C. Hallar T a 4000m.</p>
+                            <div class="space-y-6 text-slate-700">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.13 Valor Absoluto (Distancia)</h4>
+                                    <p class="text-sm mb-2">Geométricamente, es la distancia al cero. $|x| \\ge 0$.</p>
+                                    <div class="bg-slate-100 p-2 rounded text-sm italic border-l-2 border-slate-400">
+                                        Interpretación: $|x - 5| = 3$ significa "Números cuya distancia al 5 es 3".<br>
+                                        Soluciones: 2 y 8.
+                                    </div>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.14 Racionalización</h4>
+                                    <p class="text-sm mb-2">Estándar matemático: No dejar raíces en el denominador.</p>
+                                    <ul class="list-disc pl-5 text-sm space-y-2">
+                                        <li><strong>Monomio:</strong> $\\frac{1}{\\sqrt{a}} \\cdot \\frac{\\sqrt{a}}{\\sqrt{a}} = \\frac{\\sqrt{a}}{a}$.</li>
+                                        <li><strong>Binomio:</strong> Usar el <strong>Conjugado</strong>. Multiplicar por $(\\sqrt{a} - \\sqrt{b})$ para generar diferencia de cuadrados.</li>
+                                    </ul>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.15 Logaritmos (Buscadores de Exponentes)</h4>
+                                    <p class="text-sm mb-2">Definición: $\\log_b(x) = y \\iff b^y = x$.</p>
+                                    <div class="bg-amber-50 p-3 rounded border border-amber-200">
+                                        <strong class="text-amber-900 text-sm block mb-1">Propiedades Fundamentales:</strong>
+                                        <ul class="font-mono text-xs text-amber-800 space-y-1">
+                                            <li>Prod: $\\log(A \\cdot B) = \\log A + \\log B$</li>
+                                            <li>Cociente: $\\log(A / B) = \\log A - \\log B$</li>
+                                            <li>Potencia: $\\log(A^n) = n \\cdot \\log A$</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.16 Exponentes Fraccionarios</h4>
+                                    <div class="text-center bg-slate-100 p-2 font-mono text-lg rounded">
+                                        $$ x^{m/n} = \\sqrt[n]{x^m} $$
+                                    </div>
+                                    <p class="text-xs text-center mt-1 text-slate-500">El denominador es la raíz, el numerador es la potencia.</p>
+                                </div>
                             </div>
-
-                            <p>Aquí traduciremos texto a una función afín $y = mx + b$.</p>
-
-                            <h4>1. Identificar la Variable Independiente</h4>
-                            <p>Lo que cambia libremente es la altura extra escalada. El problema pide la temperatura a 4000m, partiendo de 1000m.</p>
-                            <p>El cambio de altura es $\\Delta h = 4000 - 1000$.</p>
-
-                            <h4>2. Identificar la Tasa de Cambio (Pendiente $m$)</h4>
-                            <p>Dice: "disminuye 6°C por cada 100m".</p>
-                            <p class="text-center">$$m = \\frac{-6^\\circ C}{100m}$$</p>
-
-                            <h4>3. Construcción de la Ecuación</h4>
-                            <p>$$T_{final} = T_{inicial} + (\\text{tasa}) \\cdot (\\text{cambio altura})$$</p>
-                            <p>$$T = 15 + \\left(\\frac{-6}{100}\\right)(4000 - 1000)$$</p>
-                            
-                            <p>Esta estructura $(y - y_0) = m(x - x_0)$ es la forma Punto-Pendiente. Es la herramienta más poderosa para problemas de variación lineal.</p>
                         `
                     },
                     {
-                        title: "Sesión 5: Grados de Libertad (Sistemas Indeterminados)",
+                        title: "5. Aplicaciones: Finanzas y Conjuntos",
                         content: `
-                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600 mb-6">
-                                <h4 class="text-purple-900 m-0 font-bold">Caso de Estudio: La Trayectoria Parabólica (Pregunta 15)</h4>
-                                <p class="text-sm text-purple-800 mt-2">Tenemos la ecuación $y = ax^2 + bx + c$ y dos puntos. ¿Se puede hallar la función?</p>
+                            <div class="space-y-6 text-slate-700">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-3">1.17 Matemática Financiera</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="border p-3 rounded hover:bg-slate-50 transition">
+                                            <strong class="text-blue-700 block mb-1">Interés Simple (Lineal)</strong>
+                                            <p class="mb-2 text-xs">Solo gana sobre capital inicial.</p>
+                                            <div class="font-mono text-center bg-white p-1 border">$$ I = C \\cdot i \\cdot t $$</div>
+                                        </div>
+                                        <div class="border p-3 rounded hover:bg-slate-50 transition">
+                                            <strong class="text-purple-700 block mb-1">Interés Compuesto (Exp)</strong>
+                                            <p class="mb-2 text-xs">Interés genera interés (Capitalización).</p>
+                                            <div class="font-mono text-center bg-white p-1 border">$$ V_f = C(1+i)^t $$</div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-2 italic">Nota: El tiempo en compuesto es un exponente, no un multiplicador.</p>
+                                </div>
+
+                                <hr class="border-slate-200 my-4">
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-2">1.18 Teoría de Conjuntos</h4>
+                                    <p class="text-sm mb-2">Principio de Inclusión-Exclusión para evitar el conteo doble.</p>
+                                    <div class="bg-slate-800 text-white p-3 rounded text-center text-sm font-mono mb-2">
+                                        $$ n(A \\cup B) = n(A) + n(B) - n(A \\cap B) $$
+                                    </div>
+                                    <p class="text-sm">Al sumar los conjuntos individuales, se suma la intersección dos veces. Se debe restar esa duplicidad.</p>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mt-4 mb-2">1.19 Conversión en Cadena</h4>
+                                    <p class="text-sm">Multiplicar por fracciones unitarias para cancelar unidades.</p>
+                                    <div class="font-mono text-xs bg-slate-100 p-2 rounded">
+                                        $$ 90 \\frac{km}{h} \\times \\frac{1000m}{1km} \\times \\frac{1h}{3600s} = 25 m/s $$
+                                    </div>
+                                </div>
                             </div>
-
-                            <p>Este es un problema de álgebra pura disfrazado de astronomía.</p>
-
-                            <h4>1. Contando Incógnitas</h4>
-                            <p>La ecuación $y = ax^2 + bx + c$ tiene TRES coeficientes desconocidos: $a$ (apertura), $b$ (posición), $c$ (intercepto).</p>
-
-                            <h4>2. Contando Ecuaciones (Datos)</h4>
-                            <p>Cada punto $(x, y)$ que te dan es una ecuación. Si te dan 2 puntos (M y N), tienes 2 ecuaciones.</p>
-                            <p class="text-center font-bold text-red-600">3 Incógnitas > 2 Ecuaciones $\\to$ Sistema Indeterminado</p>
-
-                            <p>Necesitas obligatoriamente un tercer dato (otro punto, el vértice, o el valor de $a$) para "bloquear" la parábola en una única posición. Con solo 2 puntos, infinitas parábolas pueden pasar por ahí.</p>
                         `
                     }
                 ],
                 tips: [
-                    "N. intervalos = N. puntos - 1 (para líneas abiertas).",
-                    "El porcentaje es adimensional: no le importa la moneda.",
-                    "Razón de Áreas = (Razón de Lados)².",
-                    "Tasa de cambio = $\\Delta y / \\Delta x$. Busca siempre el 'por cada'.",
-                    "Para hallar $n$ incógnitas, necesitas $n$ ecuaciones independientes."
+                    "Verifica siempre la consistencia dimensional ($km + km$, no $km + horas$).",
+                    "En inecuaciones, voltea el signo si multiplicas por negativos.",
+                    "El interés compuesto es exponencial; el simple es lineal.",
+                    "log(A*B) es la suma de logaritmos, no el logaritmo de la suma."
                 ]
             },
             {
@@ -748,7 +905,7 @@
         const App = () => {
             const [sidebarOpen, setSidebarOpen] = useState(false);
             const [mode, setMode] = useState('learn'); // 'learn' or 'quiz'
-            const [moduleId, setModuleId] = useState('algebra');
+            const [moduleId, setModuleId] = useState('aritmetica');
 
             const activeView = { mode, id: moduleId };
             const currentModule = educationalModules.find(m => m.id === moduleId);
