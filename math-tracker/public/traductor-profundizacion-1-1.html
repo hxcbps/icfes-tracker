@@ -393,6 +393,86 @@
             <p class="text-xs text-slate-500 mt-3">Sugerencia: escribe la unidad al lado de cada numero antes de decidir.</p>
         </section>
 
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Banco de situaciones (clasifica rapido)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Discreto o continuo?</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Numero de vacunas aplicadas</li>
+                        <li>Litros de gasolina cargados</li>
+                        <li>Minutos de una llamada</li>
+                        <li>Personas en una fila</li>
+                        <li>Temperatura de un horno</li>
+                    </ul>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Discreto o continuo?</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Numero de paginas leidas</li>
+                        <li>Altura de una pared</li>
+                        <li>Goles en un partido</li>
+                        <li>Tiempo de reaccion (s)</li>
+                        <li>Promedio de calificaciones</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">Clave: lo que se mide suele ser continuo, lo que se cuenta suele ser discreto.</p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Unidades como guia (metodo del rotulo)</h2>
+            <p class="text-sm text-slate-700">
+                Escribe la unidad como un rotulo al lado del numero. Si el rotulo permite fracciones, es continuo.
+                Si no, es discreto.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-3 text-center font-mono">
+                    4.5 kg -> continuo
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-3 text-center font-mono">
+                    4.5 buses -> discreto
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-3 text-center font-mono">
+                    4.5 horas -> continuo
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Relaciones entre conjuntos</h2>
+            <p class="text-sm text-slate-700">
+                Recuerda: los enteros estan dentro de los reales. Es decir, $\\mathbb{Z} \\subset \\mathbb{R}$.
+                Por eso un promedio de enteros puede ser real sin problema.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-3">
+                <p class="font-bold">Ejemplo</p>
+                <p class="mt-1">$\\frac{3 + 4 + 5}{3} = 4$ (entero)</p>
+                <p>$\\frac{3 + 4 + 6}{3} = 4.33$ (real)</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Trampas tipicas en Saber 11</h2>
+            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
+                <li>Te dan decimales y te obligan a pensar si son validos en el contexto.</li>
+                <li>El resultado matematico es correcto, pero el contexto exige ajuste (techo o piso).</li>
+                <li>Confunden promedio con total: el promedio puede ser real aunque los datos sean enteros.</li>
+                <li>La palabra "minimo" siempre cambia la decision.</li>
+            </ul>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Autoevaluacion rapida</h2>
+            <p class="text-sm text-slate-700 mb-3">Responde SI/NO antes de resolver:</p>
+            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                <li>La variable se cuenta? -> discreto.</li>
+                <li>La variable se mide? -> continuo.</li>
+                <li>Hay palabra clave (minimo/maximo)? -> define techo o piso.</li>
+                <li>El resultado debe ser entero para tener sentido fisico?</li>
+            </ul>
+        </section>
+
         <section class="bg-white border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
             <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
