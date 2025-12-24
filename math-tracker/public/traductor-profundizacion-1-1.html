@@ -148,6 +148,146 @@
             </div>
         </section>
 
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Lenguaje del enunciado (palabras clave)</h2>
+            <p class="text-sm text-slate-700">
+                En Saber 11, las palabras guian la decision. Subraya estas expresiones y aplica la regla correcta.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Techo ($\lceil x \rceil$)</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>"como minimo"</li>
+                        <li>"al menos"</li>
+                        <li>"no pueden faltar"</li>
+                        <li>"cupos completos"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Piso ($\lfloor x \rfloor$)</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>"como maximo"</li>
+                        <li>"a lo sumo"</li>
+                        <li>"no exceder"</li>
+                        <li>"limite permitido"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Redondeo</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>"aprox."</li>
+                        <li>"estimado"</li>
+                        <li>"redondea a"</li>
+                        <li>"cerca de"</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Decimales permitidos</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>tiempo, distancia, peso</li>
+                        <li>temperatura, volumen</li>
+                        <li>velocidad, densidad</li>
+                        <li>promedios y tasas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Tabla rapida de clasificacion</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border rounded-lg overflow-hidden bg-white">
+                    <thead class="bg-slate-100 text-slate-900 font-bold">
+                        <tr>
+                            <th class="p-3">Variable</th>
+                            <th class="p-3">Tipo</th>
+                            <th class="p-3">Razon</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr>
+                            <td class="p-3">Numero de estudiantes</td>
+                            <td class="p-3">Discreta</td>
+                            <td class="p-3">Se cuenta, no se parte.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Tiempo de viaje</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Se mide en minutos/segundos.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Temperatura</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Admite decimales.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Buses necesarios</td>
+                            <td class="p-3">Discreta</td>
+                            <td class="p-3">Objetos indivisibles.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Promedio de notas</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Promedio puede ser real.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Cantidad de agua (litros)</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Se mide con precision.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Caso guiado con criterio</h2>
+            <p class="text-sm text-slate-700">
+                "Se deben repartir 250 cuadernos entre 48 estudiantes. Cuantos cuadernos recibe cada uno?"
+            </p>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 mt-3 space-y-2">
+                <li>Se cuenta? Si, cuadernos son discretos.</li>
+                <li>Operacion: $250/48 = 5.208...$</li>
+                <li>Interpretacion: no puedes dar 0.208 cuaderno, debes decidir el criterio.</li>
+                <li>Si es reparto exacto, se entrega 5 y sobran 10 cuadernos.</li>
+            </ol>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Conclusion</p>
+                <p class="mt-1">El contexto define si usas piso, techo o mantienes sobrantes.</p>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Mini quiz tipo Saber 11</h2>
+            <div class="space-y-4 text-sm text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta A</p>
+                    <p>Un bus tiene capacidad de 25 personas. Hay 101 personas. Cuantos buses se requieren?</p>
+                    <p class="text-slate-500 mt-2">Respuesta: $\\lceil 101/25 \\rceil = 5$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta B</p>
+                    <p>Un atleta corre 2.75 km. Es valido reportar 2.75?</p>
+                    <p class="text-slate-500 mt-2">Si, distancia es continua.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta C</p>
+                    <p>El promedio de 3, 4 y 5 es 4.0. El promedio de 3, 4 y 6 es 4.33. Es valido?</p>
+                    <p class="text-slate-500 mt-2">Si, el promedio puede ser real.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Mapa mental rapido</h2>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Objeto -> Accion -> Tipo</p>
+                <p class="mt-2">Persona, bus, silla -> contar -> discreto ($\\mathbb{Z}$).</p>
+                <p>Tiempo, distancia, temperatura -> medir -> continuo ($\\mathbb{R}$).</p>
+                <p>Promedio -> resultado de division -> continuo.</p>
+            </div>
+        </section>
+
         <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Practica guiada</h2>
             <div class="space-y-3 text-sm text-slate-700">
