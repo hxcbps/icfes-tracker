@@ -316,7 +316,7 @@
                                                 </p>
                                                 <div class="bg-white p-3 rounded border border-indigo-100">
                                                     <p class="text-xs text-slate-500 font-bold uppercase mb-1">Cálculo Matemático Puro</p>
-                                                    <p class="font-mono text-slate-800 text-lg">$$ n = \\\\frac{48}{10} = 4.8 $$</p>
+                                                    <p class="font-mono text-slate-800 text-lg">$$ n = \\frac{48}{10} = 4.8 $$</p>
                                                 </div>
                                             </div>
 
@@ -467,6 +467,120 @@
                                         </table>
                                     </div>
                                 </div>
+
+                                <!-- DIVISION Y REPARTO -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">1.4 División: Repartir y Medir</h3>
+                                    <p class="mb-4">
+                                        La división responde dos preguntas distintas: <strong>repartir</strong> y <strong>medir tasa</strong>.
+                                        En problemas de dinero del ICFES, casi siempre significa "costo por estudiante".
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="bg-blue-50 border border-blue-100 p-4 rounded">
+                                            <p class="text-xs text-blue-900 font-bold uppercase mb-2">Reparto</p>
+                                            <p class="text-sm text-slate-700">
+                                                Si el total es $T$ y hay $n$ personas, cada una paga:
+                                            </p>
+                                            <div class="font-mono text-sm bg-white p-2 rounded mt-2 text-center">
+                                                $$ \\text{Cuota} = \\frac{T}{n} $$
+                                            </div>
+                                        </div>
+                                        <div class="bg-emerald-50 border border-emerald-100 p-4 rounded">
+                                            <p class="text-xs text-emerald-900 font-bold uppercase mb-2">Tasa</p>
+                                            <p class="text-sm text-slate-700">
+                                                Si el costo total depende de la cantidad, buscas el "por unidad":
+                                            </p>
+                                            <div class="font-mono text-sm bg-white p-2 rounded mt-2 text-center">
+                                                $$ \\text{Costo unitario} = \\frac{\\text{Costo total}}{\\text{Cantidad}} $$
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-sm text-slate-600 mt-4">
+                                        <strong>Chequeo rápido:</strong> el resultado debe tener sentido. Si el precio por estudiante te queda mayor que el precio más alto de la tabla, revisa la operación.
+                                    </p>
+                                </div>
+
+                                <!-- CASO ICFES: PREGUNTA 3 -->
+                                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+                                    <h3 class="text-xl font-bold text-slate-800 mb-4">1.5 Caso ICFES: Viaje al Museo (Pregunta 3)</h3>
+                                    <p class="text-sm text-slate-700 mb-4">
+                                        El objetivo no es solo "llenar cupos", sino <strong>minimizar el costo total</strong>.
+                                        Aquí usamos suma, multiplicación y división en el mismo ejercicio.
+                                    </p>
+
+                                    <div class="overflow-x-auto mb-4">
+                                        <table class="w-full text-sm text-left border rounded-lg overflow-hidden bg-white">
+                                            <thead class="bg-slate-100 text-slate-900 font-bold">
+                                                <tr>
+                                                    <th class="p-3">Franja</th>
+                                                    <th class="p-3">Cupo</th>
+                                                    <th class="p-3">Precio/Estudiante</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-200">
+                                                <tr>
+                                                    <td class="p-3 font-medium">1</td>
+                                                    <td class="p-3">50</td>
+                                                    <td class="p-3">\\$35.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-3 font-medium">3</td>
+                                                    <td class="p-3">30</td>
+                                                    <td class="p-3">\\$50.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-3 font-medium">4</td>
+                                                    <td class="p-3">60</td>
+                                                    <td class="p-3">\\$45.000</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-2">
+                                        <li>
+                                            <strong>Verifica cupos:</strong> $50 + 30 + 60 = 140$. Sirve para todos los estudiantes.
+                                        </li>
+                                        <li>
+                                            <strong>Calcula el costo total:</strong>
+                                            $$ C = 50(35000) + 30(50000) + 60(45000) = 5950000 $$
+                                        </li>
+                                        <li>
+                                            <strong>Precio promedio por estudiante:</strong>
+                                            $$ \\frac{5950000}{140} = 42500 $$
+                                        </li>
+                                    </ol>
+
+                                    <div class="mt-4 p-4 bg-amber-50 border border-amber-100 rounded">
+                                        <p class="text-sm text-amber-900 font-bold mb-2">Comparación clave (alternativa más barata)</p>
+                                        <p class="text-sm text-amber-800">
+                                            Cambia la franja 3 por la franja 2 (precio menor). Aunque haya cupos de sobra, puedes asignar solo 140 estudiantes:
+                                        </p>
+                                        <div class="font-mono text-sm bg-white p-2 rounded mt-2 text-center">
+                                            $$ C' = 50(35000) + 40(40000) + 50(45000) = 5600000 $$
+                                        </div>
+                                        <p class="text-sm text-amber-800 mt-2">
+                                            Como $C' < C$, <strong>no</strong> es el menor precio posible. Respuesta: <strong>B</strong>.
+                                        </p>
+                                    </div>
+
+                                    <p class="text-xs text-slate-500 mt-4">
+                                        Tutor: En problemas de tarifas, <strong>no basta con sumar cupos</strong>. Debes comparar costos con operaciones bien ordenadas.
+                                    </p>
+                                </div>
+
+                                <!-- CHECKLIST DEL TUTOR -->
+                                <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                    <h4 class="font-bold text-slate-800 mb-2">Checklist del Tutor (Operaciones Básicas)</h4>
+                                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                                        <li>Identifica la <strong>unidad</strong>: estudiantes, pesos, horas.</li>
+                                        <li>Usa suma para <strong>totalizar</strong>, multiplicación para <strong>escalar</strong>, división para <strong>repartir</strong>.</li>
+                                        <li>Comprueba el orden de operaciones antes de calcular.</li>
+                                        <li>Haz una estimación mental: el resultado debe ser razonable.</li>
+                                    </ul>
+                                </div>
                             </div>
                         `
                     },
@@ -489,7 +603,7 @@
                                         <div>
                                             <h4 class="font-bold text-slate-800 mb-2">Definición Formal</h4>
                                             <p class="text-sm mb-4">
-                                                El símbolo $\%$ es literalmente un operador que significa "dividir por 100".
+                                                El símbolo $\\%$ es literalmente un operador que significa "dividir por 100".
                                             </p>
                                             <div class="bg-slate-800 text-white p-4 rounded text-center font-mono text-xl mb-4">
                                                 $$ x\\% = \\frac{x}{100} = 0.0x $$
@@ -536,8 +650,8 @@
                                     <div class="bg-amber-50 p-5 rounded-lg border border-amber-200">
                                         <strong class="text-amber-900 block mb-2">Ejemplo Resuelto: "El Viajero Confundido"</strong>
                                         <p class="text-sm text-amber-800 mb-3 leading-relaxed">
-                                            <em>Situación:</em> Compras una camisa en EE.UU. por $100 USD y la vendes por $120 USD. Ganaste el 20%.
-                                            <br>Si el dólar está a $4.000 COP... ¿Tu porcentaje de ganancia en pesos es mayor, menor o igual?
+                                            <em>Situación:</em> Compras una camisa en EE.UU. por \\$100 USD y la vendes por \\$120 USD. Ganaste el 20%.
+                                            <br>Si el dólar está a \\$4.000 COP... ¿Tu porcentaje de ganancia en pesos es mayor, menor o igual?
                                         </p>
                                         
                                         <div class="bg-white p-3 rounded border border-amber-100 mb-3">
@@ -573,9 +687,9 @@
 
                                     <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-600 mb-6">
                                         <div class="text-center">
-                                            <strong class="text-indigo-900 text-lg">La Tasa de Eficiencia ($\eta$)</strong>
+                                            <strong class="text-indigo-900 text-lg">La Tasa de Eficiencia ($\\eta$)</strong>
                                             <div class="my-4 text-2xl font-mono text-slate-800">
-                                                $$ \eta = \frac{\text{Beneficio}}{\text{Costo}} $$
+                                                $$ \\eta = \\frac{\\text{Beneficio}}{\\text{Costo}} $$
                                             </div>
                                             <p class="text-sm text-slate-500 italic">
                                                 "Cuántas unidades de bondad recibo por cada peso que pago"
@@ -590,16 +704,16 @@
                                                 <strong class="text-red-900 block">Opción A (Paquete Chico)</strong>
                                                 <ul class="mt-2 space-y-1">
                                                     <li>200 gramos</li>
-                                                    <li>$5.000 pesos</li>
-                                                    <li class="font-mono text-red-700 mt-2">$\frac{200}{5000} = 0.04 \text{ g/\$}$</li>
+                                                    <li>\\$5.000 pesos</li>
+                                                    <li class="font-mono text-red-700 mt-2">$\\frac{200}{5000} = 0.04 \\text{ g/\\$}$</li>
                                                 </ul>
                                             </div>
                                             <div class="p-3 bg-green-50 rounded border border-green-100">
                                                 <strong class="text-green-900 block">Opción B (Paquete Grande)</strong>
                                                 <ul class="mt-2 space-y-1">
                                                     <li>500 gramos</li>
-                                                    <li>$10.000 pesos</li>
-                                                    <li class="font-mono text-green-700 mt-2">$\frac{500}{10000} = 0.05 \text{ g/\$}$</li>
+                                                    <li>\\$10.000 pesos</li>
+                                                    <li class="font-mono text-green-700 mt-2">$\\frac{500}{10000} = 0.05 \\text{ g/\\$}$</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -621,26 +735,26 @@
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div class="bg-white p-4 rounded border-l-4 border-blue-400 shadow-sm">
-                                            <strong class="text-blue-900 block mb-2">Relación DIRECTA ($\div$)</strong>
+                                            <strong class="text-blue-900 block mb-2">Relación DIRECTA ($\\div$)</strong>
                                             <p class="text-xs text-slate-600 mb-2">Si uno sube, el otro sube.</p>
                                             <ul class="text-sm list-disc pl-4 space-y-1 mb-3">
-                                                <li>Comprar Pan (Más pan $\to$ Más costo)</li>
-                                                <li>Distancia (Más tiempo $\to$ Más lejos)</li>
+                                                <li>Comprar Pan (Más pan $\\to$ Más costo)</li>
+                                                <li>Distancia (Más tiempo $\\to$ Más lejos)</li>
                                             </ul>
                                             <div class="bg-blue-50 p-2 rounded text-center text-xs font-mono font-bold text-blue-800">
-                                                $$ \frac{A}{B} = \text{Constante} $$
+                                                $$ \\frac{A}{B} = \\text{Constante} $$
                                             </div>
                                         </div>
 
                                         <div class="bg-white p-4 rounded border-l-4 border-orange-400 shadow-sm">
-                                            <strong class="text-orange-900 block mb-2">Relación INVERSA ($\times$)</strong>
+                                            <strong class="text-orange-900 block mb-2">Relación INVERSA ($\\times$)</strong>
                                             <p class="text-xs text-slate-600 mb-2">Si uno sube, el otro baja.</p>
                                             <ul class="text-sm list-disc pl-4 space-y-1 mb-3">
-                                                <li>Obreros (Más gente $\to$ Menos tiempo)</li>
-                                                <li>Velocidad (Más rápido $\to$ Menos tiempo)</li>
+                                                <li>Obreros (Más gente $\\to$ Menos tiempo)</li>
+                                                <li>Velocidad (Más rápido $\\to$ Menos tiempo)</li>
                                             </ul>
                                             <div class="bg-orange-50 p-2 rounded text-center text-xs font-mono font-bold text-orange-800">
-                                                $$ A \times B = \text{Constante} $$
+                                                $$ A \\times B = \\text{Constante} $$
                                             </div>
                                         </div>
                                     </div>
@@ -671,7 +785,7 @@
                                                     Cuando nos alejamos para ver galaxias. Números gigantes.
                                                 </p>
                                                 <div class="font-mono text-xl text-white">
-                                                    $$ 3 \times 10^8 $$
+                                                    $$ 3 \\times 10^8 $$
                                                     <span class="text-xs text-blue-400 block mt-1">(Velocidad Luz: 300,000,000 m/s)</span>
                                                 </div>
                                             </div>
@@ -682,7 +796,7 @@
                                                     Cuando nos acercamos para ver átomos. Números diminutos.
                                                 </p>
                                                 <div class="font-mono text-xl text-white">
-                                                    $$ 1.6 \times 10^{-19} $$
+                                                    $$ 1.6 \\times 10^{-19} $$
                                                     <span class="text-xs text-green-400 block mt-1">(Carga Electrón: 0.00...16 C)</span>
                                                 </div>
                                             </div>
@@ -704,7 +818,7 @@
                                                 Multiplica los coeficientes y <strong>SUMA</strong> los niveles de zoom.
                                             </p>
                                             <div class="font-mono bg-white px-2 py-1 rounded inline-block text-sm">
-                                                $(2 \times 10^3) \cdot (3 \times 10^5) = 6 \times 10^8$
+                                                $(2 \\times 10^3) \\cdot (3 \\times 10^5) = 6 \\times 10^8$
                                             </div>
                                         </div>
 
@@ -715,11 +829,11 @@
                                                 No puedes sumar manzanas ($10^3$) con galaxias ($10^6$).
                                             </p>
                                             <div class="font-mono bg-white px-2 py-1 rounded block text-sm mb-1">
-                                                ¿ $3 \times 10^4 + 2 \times 10^3$ ?
+                                                ¿ $3 \\times 10^4 + 2 \\times 10^3$ ?
                                             </div>
                                             <p class="text-xs text-red-800 mt-1">
                                                 Paso 1: Convertir al mismo exponente.<br>
-                                                $30 \times 10^3 + 2 \times 10^3 = \mathbf{32 \times 10^3} = 3.2 \times 10^4$
+                                                $30 \\times 10^3 + 2 \\times 10^3 = \\mathbf{32 \\times 10^3} = 3.2 \\times 10^4$
                                             </p>
                                         </div>
                                     </div>
@@ -787,7 +901,7 @@
                 chapters: [
                     {
                         title: "Capítulo I: La Huella Lineal",
-                        content: `<p>Si el problema dice 'aumenta 2 grados <strong>por cada</strong> metro' o 'cobra $500 <strong>por cada</strong> minuto', la relación es lineal ($y = mx + b$). La palabra clave es 'constante' o 'por cada'. En la Pregunta 8, la temperatura baja de forma constante.</p>`
+                        content: `<p>Si el problema dice 'aumenta 2 grados <strong>por cada</strong> metro' o 'cobra \\$500 <strong>por cada</strong> minuto', la relación es lineal ($y = mx + b$). La palabra clave es 'constante' o 'por cada'. En la Pregunta 8, la temperatura baja de forma constante.</p>`
                     },
                     {
                         title: "Capítulo II: La Huella Exponencial",
