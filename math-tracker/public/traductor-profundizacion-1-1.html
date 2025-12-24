@@ -875,6 +875,151 @@
         </section>
 
         <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Mismo numero, distinta unidad</h2>
+            <p class="text-sm text-slate-700">
+                El valor decimal no decide el tipo de variable. La unidad es la que manda.
+            </p>
+            <div class="overflow-x-auto mt-4">
+                <table class="w-full text-sm text-left border rounded-lg overflow-hidden bg-white">
+                    <thead class="bg-slate-100 text-slate-900 font-bold">
+                        <tr>
+                            <th class="p-3">Numero</th>
+                            <th class="p-3">Unidad</th>
+                            <th class="p-3">Tipo</th>
+                            <th class="p-3">Justificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr>
+                            <td class="p-3">3.5</td>
+                            <td class="p-3">horas</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Se mide y admite fracciones.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">3.5</td>
+                            <td class="p-3">buses</td>
+                            <td class="p-3">Discreta</td>
+                            <td class="p-3">No se puede partir un bus.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">3.5</td>
+                            <td class="p-3">kg</td>
+                            <td class="p-3">Continua</td>
+                            <td class="p-3">Peso se mide con precision.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">3.5</td>
+                            <td class="p-3">estudiantes</td>
+                            <td class="p-3">Discreta</td>
+                            <td class="p-3">Conteo indivisible.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Tiempo en decimales (conversion rapida)</h2>
+            <p class="text-sm text-slate-700">
+                Cuando aparece un decimal en horas, puedes pasarlo a minutos multiplicando por 60.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 1</p>
+                    <p class="mt-2">$2.5$ h $= 2$ h $30$ min.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 2</p>
+                    <p class="mt-2">$1.25$ h $= 1$ h $15$ min.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 3</p>
+                    <p class="mt-2">$0.6$ h $= 36$ min.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Esto no cambia el tipo de variable: sigue siendo continua.
+            </p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Comparativo techo vs piso (casos rapidos)</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border rounded-lg overflow-hidden bg-white">
+                    <thead class="bg-slate-100 text-slate-900 font-bold">
+                        <tr>
+                            <th class="p-3">Enunciado</th>
+                            <th class="p-3">Operacion</th>
+                            <th class="p-3">Decision</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr>
+                            <td class="p-3">"Se requieren buses para 89 personas. Cada bus lleva 20."</td>
+                            <td class="p-3">$89/20 = 4.45$</td>
+                            <td class="p-3">Techo: $\lceil 4.45 \rceil = 5$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">"Como maximo caben 70 personas en grupos de 8."</td>
+                            <td class="p-3">$70/8 = 8.75$</td>
+                            <td class="p-3">Piso: $\lfloor 8.75 \rfloor = 8$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">"Se necesitan paquetes completos de 12 para 95 items."</td>
+                            <td class="p-3">$95/12 = 7.91$</td>
+                            <td class="p-3">Techo: $\lceil 7.91 \rceil = 8$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">"Solo se pueden vender 40 combos maximo. Cada combo usa 6 unidades."</td>
+                            <td class="p-3">$40/6 = 6.66$</td>
+                            <td class="p-3">Piso: $\lfloor 6.66 \rfloor = 6$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Como elegir en opciones multiple (estrategia)</h2>
+            <p class="text-sm text-slate-700">
+                En Saber 11, casi siempre hay un distractor que deja el decimal. Si es un conteo, descartalo.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Ejemplo tipo examen</p>
+                <p class="mt-1">"Hay 102 estudiantes. Cada bus lleva 24."</p>
+                <p>Calculo: $102/24 = 4.25$.</p>
+                <p class="text-slate-600 mt-1">
+                    Opcion con 4.25 es distractor. La correcta es $\lceil 4.25 \rceil = 5$.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4 text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Descarta rapido</p>
+                    <p class="mt-1">Decimales en conteos, cuando se piden "completos".</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Confirma</p>
+                    <p class="mt-1">Verbo y unidad: si no se parte, usa entero.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Desafio sin respuestas (para practicar solo)</h2>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-2">
+                <li>Se necesitan 64 cuadernos y se venden en paquetes de 9. Cuantos paquetes compras?</li>
+                <li>Una maraton mide 42.195 km. Es discreta o continua?</li>
+                <li>Un salon tiene maximo 45 estudiantes y se forman grupos de 7. Cuantos grupos completos?</li>
+                <li>Una receta pide 0.75 L de agua. Es valido ese decimal?</li>
+                <li>Se quiere repartir 250 fichas en bolsas de 13. Cuantas bolsas completas?</li>
+            </ol>
+            <p class="text-xs text-slate-500 mt-3">
+                Tip: responde primero el tipo de variable, luego ajusta el numero.
+            </p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
             <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
                 <li>Subraya el objeto: se cuenta o se mide?</li>
