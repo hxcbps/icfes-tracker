@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profundizacion M1 | El Traductor Matematico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        window.MathJax = {
+            loader: { load: ['[tex]/ams'] },
+            tex: {
+                packages: { '[+]': ['ams'] },
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            chtml: {
+                scale: 1.05,
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        mjx-container {
+            outline: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <p class="text-xs uppercase tracking-widest text-slate-400">Modulo 1</p>
+            <h1 class="text-3xl md:text-4xl font-black">Profundizacion: Operaciones Basicas (1.1 - 1.15)</h1>
+            <p class="text-slate-300 mt-2">Material extendido para estudio Saber 11, con ejemplos, criterios y micro-practicas.</p>
+            <div class="mt-4">
+                <a href="traductor.html#m1-1-1" class="text-sm font-semibold text-blue-300 hover:underline">Volver al modulo principal</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+        <section class="bg-white border border-slate-200 rounded-xl p-5">
+            <h2 class="font-bold text-slate-800 mb-3">Indice rapido</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                <a href="#m1-1-1-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.1 Discreto vs Continuo</a>
+                <a href="#m1-1-2-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.2 Adicion y unidades</a>
+                <a href="#m1-1-3-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.3 Sustraccion con sentido</a>
+                <a href="#m1-1-4-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.4 Multiplicacion y escalas</a>
+                <a href="#m1-1-5-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.5 Division y tasas</a>
+                <a href="#m1-1-6-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.6 Orden de operaciones</a>
+                <a href="#m1-1-7-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.7 Tramos y paradas</a>
+                <a href="#m1-1-8-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.8 Conversion de unidades</a>
+                <a href="#m1-1-9-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.9 Estimacion inteligente</a>
+                <a href="#m1-1-10-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.10 Reparto equitativo</a>
+                <a href="#m1-1-11-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.11 Promedio ponderado</a>
+                <a href="#m1-1-12-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.12 Traduccion de enunciados</a>
+                <a href="#m1-1-13-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.13 Control de errores</a>
+                <a href="#m1-1-14-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.14 Caso ICFES guiado</a>
+                <a href="#m1-1-15-deep" class="bg-slate-50 border border-slate-200 rounded px-3 py-2 hover:bg-slate-100">1.15 Practica y rutina</a>
+            </div>
+        </section>
+
+        <section id="m1-1-1-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.1 Discreto vs Continuo (decision correcta)</h3>
+                <a href="traductor.html#m1-1-1" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.1</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                La primera decision en Saber 11 es si la variable permite decimales. Si el objeto se cuenta, suele ser discreto
+                ($\mathbb{Z}$). Si se mide, suele ser continuo ($\mathbb{R}$). Esta decision evita errores de redondeo.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-emerald-50 border border-emerald-100 rounded p-4">
+                    <p class="font-bold text-emerald-900">Discreto</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>Personas, buses, sillas, goles.</li>
+                        <li>No existen fracciones fisicas del objeto.</li>
+                        <li>Respuesta suele ser entera.</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 border border-blue-100 rounded p-4">
+                    <p class="font-bold text-blue-900">Continuo</p>
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 space-y-1">
+                        <li>Tiempo, distancia, peso, temperatura.</li>
+                        <li>Admite precision decimal.</li>
+                        <li>Se expresa con unidades de medida.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Regla rapida del tutor</p>
+                <p class="mt-1">Si la situacion exige entero, usa techo: $\lceil x \rceil$. Si es una medicion, conserva decimales.</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Caso frontera</p>
+                <p class="mt-1">Dinero en efectivo es discreto por la moneda minima, pero dinero digital es continuo por decimales.</p>
+            </div>
+            <div class="text-sm text-slate-700">
+                <p class="font-bold">Micro-practica</p>
+                <p>1) 4.8 buses -> discreto, respuesta $\lceil 4.8 \rceil = 5$.</p>
+                <p>2) 4.8 horas -> continuo, respuesta 4.8.</p>
+            </div>
+        </section>
+
+        <section id="m1-1-2-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.2 Adicion y unidades</h3>
+                <a href="traductor.html#m1-1-2" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.2</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Sumar es juntar cantidades de la misma naturaleza. Si las unidades no coinciden, la suma es invalida.
+                En problemas de dinero, solo sumas costos que ya estan en pesos.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo valido</p>
+                    <p class="mt-1">$35\,000$ pesos + $50\,000$ pesos = $85\,000$ pesos.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo invalido</p>
+                    <p class="mt-1">$35\,000$ pesos + 2 horas = ?</p>
+                </div>
+            </div>
+            <div class="bg-slate-100 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Tip ICFES</p>
+                <p class="mt-1">Cuando hay varios grupos, primero calcula cada subtotal y luego sumas los subtotales.</p>
+            </div>
+            <div class="text-sm text-slate-700">
+                <p class="font-bold">Micro-practica</p>
+                <p>Si 2 franjas cuestan 35.000 y 45.000 por estudiante, no sumes 35.000 + 45.000. Primero multiplica por el numero de estudiantes.</p>
+            </div>
+        </section>
+
+        <section id="m1-1-3-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.3 Sustraccion con sentido</h3>
+                <a href="traductor.html#m1-1-3" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.3</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                La resta sirve para medir diferencia o cambio. Debes elegir bien el orden para que el signo tenga sentido.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Cambio</p>
+                <p class="mt-1">$\Delta = \text{nuevo} - \text{antiguo}$.</p>
+                <p>Si $\Delta < 0$, hubo disminucion.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Faltan</p>
+                    <p class="mt-1">$\text{requerido} - \text{actual}$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Sobran</p>
+                    <p class="mt-1">$\text{actual} - \text{requerido}$.</p>
+                </div>
+            </div>
+            <p class="text-sm text-slate-700">
+                Ejemplo: si se necesitan 140 cupos y hay 120, faltan $140 - 120 = 20$.
+            </p>
+        </section>
+
+        <section id="m1-1-4-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.4 Multiplicacion y escalas</h3>
+                <a href="traductor.html#m1-1-4" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.4</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Multiplicar escala una cantidad. El resultado cambia de unidad: precio por cantidad da costo total;
+                velocidad por tiempo da distancia.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Cancelacion de unidades</p>
+                <p class="mt-1">$\frac{\text{km}}{\text{h}} \times \text{h} = \text{km}$.</p>
+            </div>
+            <div class="text-sm text-slate-700">
+                <p class="font-bold">Ejemplo Saber 11</p>
+                <p>Si cada estudiante paga $\$35\,000$ y van 50, entonces $50 \cdot 35\,000 = 1\,750\,000$ pesos.</p>
+            </div>
+            <div class="text-sm text-slate-700">
+                <p class="font-bold">Micro-practica</p>
+                <p>Calcula el costo de 3 paquetes a $\$45\,000$ cada uno: $3 \cdot 45\,000 = 135\,000$.</p>
+            </div>
+        </section>
+
+        <section id="m1-1-5-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.5 Division y tasas</h3>
+                <a href="traductor.html#m1-1-5" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.5</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                La division responde dos preguntas: repartir en partes iguales o medir cuantas veces cabe una cantidad.
+                En costos, casi siempre buscas el valor por persona.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Reparto</p>
+                <p class="mt-1">$\text{cuota} = \frac{\text{total}}{\text{personas}}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Medicion (tasa)</p>
+                <p class="mt-1">$\text{costo unitario} = \frac{\text{costo total}}{\text{cantidad}}$.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                Ejemplo: $1\,800\,000$ entre 50 personas da $36\,000$ por persona.
+            </p>
+        </section>
+
+        <section id="m1-1-6-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.6 Orden de operaciones</h3>
+                <a href="traductor.html#m1-1-6" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.6</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                El enunciado define el orden. Si el descuento aplica solo a entradas, debes separarlas con parentesis.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Modelo correcto</p>
+                <p class="mt-1">$C = (\text{entradas}) - 0.10(\text{entradas}) + \text{transporte}$.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                Error tipico: descontar el transporte cuando no esta en el texto.
+            </p>
+        </section>
+
+        <section id="m1-1-7-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.7 Tramos y paradas</h3>
+                <a href="traductor.html#m1-1-7" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.7</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Si hay $E$ estaciones, hay $E-1$ tramos. Cada parada agrega tiempo. Cuenta solo las paradas que ocurren.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Formula</p>
+                <p class="mt-1">$T = (E-1)\cdot t_{tramo} + P\cdot t_{parada}$.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                En Saber 11, el error clasico es contar 10 tramos cuando hay 10 estaciones.
+            </p>
+        </section>
+
+        <section id="m1-1-8-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.8 Conversion de unidades</h3>
+                <a href="traductor.html#m1-1-8" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.8</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Convierte a una sola unidad antes de operar. Usa factores que valen 1.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Ejemplo</p>
+                <p class="mt-1">$4\text{ min} = 240\text{ s}$ y $30\text{ s} = 30\text{ s}$.</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Metodo general</p>
+                <p class="mt-1">$90 \frac{\text{km}}{\text{h}} \times \frac{1000\text{ m}}{1\text{ km}} \times \frac{1\text{ h}}{3600\text{ s}}$.</p>
+            </div>
+        </section>
+
+        <section id="m1-1-9-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.9 Estimacion inteligente</h3>
+                <a href="traductor.html#m1-1-9" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.9</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Estimar es redondear para verificar rango. Si el resultado real es 5.95 millones, una buena estimacion es 6 millones.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Atajo</p>
+                <p class="mt-1">Redondea cada factor a 1 cifra: $140 \cdot 40000 \approx 5.6$ millones.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                En preguntas de opcion multiple, elimina respuestas que esten lejos del orden de magnitud.
+            </p>
+        </section>
+
+        <section id="m1-1-10-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.10 Reparto equitativo con cupos</h3>
+                <a href="traductor.html#m1-1-10" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.10</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Si existe un maximo de personas por curso, el numero de cursos se calcula con techo.
+                Esto asegura que todos entren.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Formula</p>
+                <p class="mt-1">$n_{cursos} = \lceil N / 30 \rceil$.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                Luego: $\text{Total} = n_{cursos} \cdot (\text{horas} \cdot \text{valor/hora})$ y el pago individual es total dividido entre N.
+            </p>
+        </section>
+
+        <section id="m1-1-11-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.11 Promedio ponderado</h3>
+                <a href="traductor.html#m1-1-11" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.11</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Cuando hay distintos precios y cantidades, el promedio correcto es ponderado. No promedies precios sin pesos.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Formula</p>
+                <p class="mt-1">$\bar{p} = \frac{\sum n_i p_i}{\sum n_i}$.</p>
+            </div>
+            <p class="text-sm text-slate-700">
+                Ejemplo: si 50 pagan 35.000 y 30 pagan 50.000, el promedio se acerca mas a 35.000 porque hay mas personas en ese grupo.
+            </p>
+        </section>
+
+        <section id="m1-1-12-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.12 Traduccion de enunciados a operaciones</h3>
+                <a href="traductor.html#m1-1-12" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.12</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Traducir bien el texto es la mitad del problema. Identifica palabras clave y asigna una operacion.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div class="bg-white border border-slate-200 rounded p-3">
+                    <p class="font-bold">"por cada"</p>
+                    <p class="text-slate-600">Multiplicacion</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3">
+                    <p class="font-bold">"repartir"</p>
+                    <p class="text-slate-600">Division</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3">
+                    <p class="font-bold">"en total"</p>
+                    <p class="text-slate-600">Suma</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-3">
+                    <p class="font-bold">"diferencia"</p>
+                    <p class="text-slate-600">Resta</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="m1-1-13-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.13 Control de errores</h3>
+                <a href="traductor.html#m1-1-13" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.13</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Antes de elegir opcion, valida con tres filtros: unidad, rango y texto.
+            </p>
+            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                <li><strong>Unidad:</strong> el resultado debe tener la unidad correcta.</li>
+                <li><strong>Rango:</strong> debe estar cerca de la estimacion.</li>
+                <li><strong>Texto:</strong> confirma si hay descuentos, cupos o paradas.</li>
+            </ul>
+            <p class="text-sm text-slate-700">
+                Si falla un filtro, revisa el planteamiento antes de calcular otra vez.
+            </p>
+        </section>
+
+        <section id="m1-1-14-deep" class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.14 Caso ICFES guiado (Pregunta 3)</h3>
+                <a href="traductor.html#m1-1-14" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.14</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                El objetivo es minimizar costo. No basta con que los cupos sumen 140; debes comparar combinaciones posibles.
+            </p>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-2">
+                <li>Calcula costos por franja: $C_i = (precio_i)(cupo_i)$.</li>
+                <li>Elige combinaciones que permitan cubrir a 140 estudiantes.</li>
+                <li>Si sobran cupos, puedes dejar cupos vacios (no se cobran).</li>
+                <li>Compara costo total o promedio por estudiante.</li>
+            </ol>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Comparacion clave</p>
+                <p class="mt-1">Cambiar franja 3 por franja 2 reduce costo total. Por eso la opcion correcta es B.</p>
+            </div>
+        </section>
+
+        <section id="m1-1-15-deep" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800">1.15 Practica y rutina</h3>
+                <a href="traductor.html#m1-1-15" class="text-sm text-blue-700 font-semibold hover:underline">Volver a 1.15</a>
+            </div>
+            <p class="text-sm text-slate-700">
+                Practica corta y frecuente. Primero modela, luego calcula, al final valida con estimacion.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm space-y-2">
+                <p class="font-bold">Ejercicios</p>
+                <p>1) 3 cursos de 900.000 para 70 personas. ¿Pago individual?</p>
+                <p>2) 12 tramos de 4 min y 6 paradas de 30 s. ¿Tiempo total?</p>
+                <p>3) Un precio sube de 35.000 a 50.000. ¿Cambio absoluto?</p>
+                <p>4) 80 estudiantes pagan 40.000 y 60 pagan 50.000. ¿Promedio ponderado?</p>
+                <p>5) Una tasa es $90\,\text{km/h}$ durante 2.5 h. ¿Distancia?</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Respuestas</p>
+                <p>1) $\frac{3 \cdot 900000}{70} \approx 38571$.</p>
+                <p>2) $12 \cdot 4 + 6 \cdot 0.5 = 51$ minutos.</p>
+                <p>3) $50\,000 - 35\,000 = 15\,000$.</p>
+                <p>4) $\frac{80\cdot 40000 + 60\cdot 50000}{140} = 44285.7$.</p>
+                <p>5) $90 \cdot 2.5 = 225$ km.</p>
+            </div>
+        </section>
+
+        <div class="text-center text-sm text-slate-500">
+            Fin del submodulo. Si quieres mas profundidad en otras unidades, avisame.
+        </div>
+    </main>
+</body>
+</html>
