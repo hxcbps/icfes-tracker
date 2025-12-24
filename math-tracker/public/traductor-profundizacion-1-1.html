@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profundizacion 1.1 | Discreto vs Continuo</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        window.MathJax = {
+            loader: { load: ['[tex]/ams'] },
+            tex: {
+                packages: { '[+]': ['ams'] },
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            chtml: {
+                scale: 1.05,
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        mjx-container {
+            outline: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <p class="text-xs uppercase tracking-widest text-slate-400">Modulo 1 - Seccion 1.1</p>
+            <h1 class="text-3xl md:text-4xl font-black">Discreto vs Continuo (decision correcta)</h1>
+            <p class="text-slate-300 mt-2">Guia extendida para Saber 11 con criterios, ejemplos y practica aplicada.</p>
+            <div class="mt-4">
+                <a href="traductor.html#m1-1-1" class="text-sm font-semibold text-blue-300 hover:underline">Volver al modulo principal</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">Objetivo didactico</h2>
+            <p class="text-sm text-slate-700">
+                Aprender a decidir si una variable pertenece a $\mathbb{Z}$ (discreta) o $\mathbb{R}$ (continua),
+                y aplicar esa decision para aceptar decimales, redondear o usar techo en problemas de contexto.
+            </p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-emerald-900">Mundo Discreto ($\mathbb{Z}$)</h3>
+                <p class="text-sm text-slate-700 mt-2">
+                    Se cuenta. Hay unidades indivisibles. La respuesta suele ser entera.
+                </p>
+                <ul class="list-disc pl-5 text-sm text-slate-700 mt-3 space-y-1">
+                    <li>Personas, buses, sillas, goles, libros.</li>
+                    <li>No existe “medio bus” o “media persona”.</li>
+                    <li>Si aparece un decimal, se interpreta o se corrige.</li>
+                </ul>
+                <div class="mt-4 bg-white border border-emerald-200 rounded p-3 text-sm">
+                    <p class="font-bold text-emerald-900">Regla tipica</p>
+                    <p class="mt-1">Si se necesita completar grupos o cupos: $\lceil x \rceil$.</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-blue-900">Mundo Continuo ($\mathbb{R}$)</h3>
+                <p class="text-sm text-slate-700 mt-2">
+                    Se mide. Hay precision decimal. La respuesta puede ser fraccionaria.
+                </p>
+                <ul class="list-disc pl-5 text-sm text-slate-700 mt-3 space-y-1">
+                    <li>Tiempo, distancia, peso, temperatura, volumen.</li>
+                    <li>Se expresa con unidades y decimales.</li>
+                    <li>Se acepta aproximacion si el problema lo pide.</li>
+                </ul>
+                <div class="mt-4 bg-white border border-blue-200 rounded p-3 text-sm">
+                    <p class="font-bold text-blue-900">Regla tipica</p>
+                    <p class="mt-1">Si se mide, conserva decimales y reporta la unidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Arbol de decision rapido</h2>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-2">
+                <li><strong>Se cuenta o se mide?</strong> Contar -> discreto. Medir -> continuo.</li>
+                <li><strong>Existe unidad minima indivisible?</strong> Si, es discreto.</li>
+                <li><strong>Se puede partir fisicamente?</strong> Si, es continuo.</li>
+                <li><strong>El contexto exige entero?</strong> Si, usa techo o redondeo segun el texto.</li>
+            </ol>
+            <div class="mt-4 bg-slate-50 border border-slate-200 rounded p-4 text-sm">
+                <p class="font-bold">Ejemplo de contexto</p>
+                <p class="mt-1">48 estudiantes, bus de 10 -> $48/10=4.8$ buses. Respuesta: $\lceil 4.8 \rceil = 5$.</p>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-slate-800">Casos frontera (Saber 11)</h3>
+                <ul class="list-disc pl-5 text-sm text-slate-700 mt-3 space-y-2">
+                    <li><strong>Dinero efectivo:</strong> discreto por la moneda minima.</li>
+                    <li><strong>Dinero digital:</strong> continuo por decimales posibles.</li>
+                    <li><strong>Promedios:</strong> pueden ser reales aunque los datos sean enteros.</li>
+                    <li><strong>Capacidad:</strong> casi siempre exige entero hacia arriba.</li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-bold text-slate-800">Errores frecuentes</h3>
+                <ul class="list-disc pl-5 text-sm text-slate-700 mt-3 space-y-2">
+                    <li>Redondear hacia abajo cuando se requiere completar grupos.</li>
+                    <li>Tratar tiempo o distancia como enteros por costumbre.</li>
+                    <li>Mezclar unidades y terminar con resultados sin sentido.</li>
+                    <li>Ignorar la palabra “aprox.” o “como minimo”.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Techo, piso y redondeo</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Techo</p>
+                    <p class="mt-1">$\lceil 4.1 \rceil = 5$</p>
+                    <p class="text-slate-600 mt-1">Se usa para completar cupos.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Piso</p>
+                    <p class="mt-1">$\lfloor 4.9 \rfloor = 4$</p>
+                    <p class="text-slate-600 mt-1">Se usa si se exige no exceder.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Redondeo</p>
+                    <p class="mt-1">$4.4 \to 4$, $4.5 \to 5$</p>
+                    <p class="text-slate-600 mt-1">Solo si el enunciado dice “aprox.”</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Practica guiada</h2>
+            <div class="space-y-3 text-sm text-slate-700">
+                <p><strong>1)</strong> Se necesitan 3.2 camiones para transportar carga. Que respuesta es valida?</p>
+                <p class="text-slate-500">Discreto -> se necesita 4 camiones (techo).</p>
+                <p><strong>2)</strong> El recorrido es de 12.5 km. Es valido reportar decimales?</p>
+                <p class="text-slate-500">Si, distancia es continua.</p>
+                <p><strong>3)</strong> El promedio de notas enteras da 3.7. Es invalido?</p>
+                <p class="text-slate-500">No, el promedio puede ser real aunque los datos sean enteros.</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
+            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
+                <li>Subraya el objeto: se cuenta o se mide?</li>
+                <li>Escribe la unidad y revisa si puede fraccionarse.</li>
+                <li>Si hay cupos o personas, usa techo.</li>
+                <li>Si hay mediciones, conserva decimales y la unidad.</li>
+            </ul>
+        </section>
+
+        <div class="text-center text-sm text-slate-500">
+            Fin de la seccion 1.1. Cuando quieras, continuamos con 1.2.
+        </div>
+    </main>
+</body>
+</html>
