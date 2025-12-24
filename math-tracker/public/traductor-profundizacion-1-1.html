@@ -318,7 +318,7 @@
                 <li>La variable es numero de buses -> discreta.</li>
                 <li>Operacion: $73/20 = 3.65$.</li>
                 <li>Como no pueden faltar, se usa techo.</li>
-                <li>Resultado: $\lceil 3.65 ceil = 4$ buses.</li>
+                <li>Resultado: $\lceil 3.65 \rceil = 4$ buses.</li>
             </ol>
             <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
                 <p class="font-bold">Clave</p>
@@ -334,11 +334,107 @@
             <ol class="list-decimal pl-5 text-sm text-slate-700 mt-3 space-y-2">
                 <li>Velocidad es una tasa continua.</li>
                 <li>Operacion: $245/3.5 = 70$.</li>
-                <li>Se reporta con unidad: $70\ 	ext{km/h}$.</li>
+                <li>Se reporta con unidad: $70\ \text{km/h}$.</li>
             </ol>
             <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4">
                 <p class="font-bold">Clave</p>
                 <p class="mt-1">Las tasas casi siempre son continuas.</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Unidad minima y cuantizacion</h2>
+            <p class="text-sm text-slate-700">
+                Una variable puede ser discreta porque tiene una <strong>unidad minima</strong>. Eso se llama
+                <em>cuantizacion</em>: solo existen saltos de tamano fijo.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 1</p>
+                    <p class="mt-2">Moneda minima: $0.01$.</p>
+                    <p class="text-slate-600">Dinero en efectivo: valores $k(0.01)$.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 2</p>
+                    <p class="mt-2">Buses: unidad minima $1$.</p>
+                    <p class="text-slate-600">No existe $0.5$ bus.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 3</p>
+                    <p class="mt-2">Tornillos por caja: unidad $1$.</p>
+                    <p class="text-slate-600">El conteo solo admite enteros.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Idea clave: si puedes escribir los posibles valores como $k\Delta$, la variable es discreta.
+            </p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Cuando un continuo se vuelve discreto</h2>
+            <p class="text-sm text-slate-700">
+                A veces una variable continua se <strong>registra en saltos</strong> por regla del problema.
+                En ese caso, se comporta como discreta.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Parqueadero por hora</p>
+                    <p class="mt-2">Tiempo real: $1.2$ h (continuo).</p>
+                    <p class="text-slate-600">Cobro: $2$ horas (discreto por politica).</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Boletas por bloque</p>
+                    <p class="mt-2">Evento vende por bloques de $5$.</p>
+                    <p class="text-slate-600">Cantidad posible: $0, 5, 10, 15, ...$</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Lee el enunciado: si dice "por bloques", "por paquete", o "por hora completa", se discretiza.
+            </p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Metodo de 3 pasos (rapido y seguro)</h2>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-2">
+                <li><strong>Objeto:</strong> que cosa estas contando o midiendo?</li>
+                <li><strong>Unidad:</strong> la unidad admite fracciones?</li>
+                <li><strong>Verbo:</strong> el texto pide completar, no exceder o aproximar?</li>
+            </ol>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Ejemplo guiado</p>
+                <p class="mt-1">"Se necesitan estantes para 58 libros. Cada estante soporta 12."</p>
+                <p>Objeto: estantes (discreto). Unidad: 1 estante. Verbo: completar -> techo.</p>
+                <p class="text-slate-600 mt-1">Operacion: $58/12 = 4.83$, respuesta: $\lceil 4.83 \rceil = 5$.</p>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Ejercicios tipo Saber 11 (seleccion multiple)</h2>
+            <div class="space-y-4 text-sm text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 1</p>
+                    <p>Un grupo de 86 estudiantes debe viajar. Cada bus lleva 24. Cuantos buses se necesitan?</p>
+                    <p class="mt-2">A) 3 &nbsp; B) 3.58 &nbsp; C) 4 &nbsp; D) 5</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. Es discreto y se usa techo.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 2</p>
+                    <p>Se mide una mesa: 1.75 m. La variable es:</p>
+                    <p class="mt-2">A) Discreta &nbsp; B) Continua</p>
+                    <p class="text-slate-500 mt-2">Respuesta: B. Se mide y admite decimales.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 3</p>
+                    <p>Un tanque tiene 2.3 L. Cual es la clasificacion correcta?</p>
+                    <p class="mt-2">A) Discreta &nbsp; B) Continua</p>
+                    <p class="text-slate-500 mt-2">Respuesta: B. Volumen es continuo.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 4</p>
+                    <p>Una empresa vende cajas de 12 unidades. Piden 30 unidades.</p>
+                    <p class="mt-2">A) 2 cajas &nbsp; B) 2.5 cajas &nbsp; C) 3 cajas &nbsp; D) 4 cajas</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. Se necesita completar.</p>
+                </div>
             </div>
         </section>
 
@@ -442,13 +538,13 @@
         <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Relaciones entre conjuntos</h2>
             <p class="text-sm text-slate-700">
-                Recuerda: los enteros estan dentro de los reales. Es decir, $\\mathbb{Z} \\subset \\mathbb{R}$.
+                Recuerda: los enteros estan dentro de los reales. Es decir, $\mathbb{Z} \subset \mathbb{R}$.
                 Por eso un promedio de enteros puede ser real sin problema.
             </p>
             <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-3">
                 <p class="font-bold">Ejemplo</p>
-                <p class="mt-1">$\\frac{3 + 4 + 5}{3} = 4$ (entero)</p>
-                <p>$\\frac{3 + 4 + 6}{3} = 4.33$ (real)</p>
+                <p class="mt-1">$\frac{3 + 4 + 5}{3} = 4$ (entero)</p>
+                <p>$\frac{3 + 4 + 6}{3} = 4.33$ (real)</p>
             </div>
         </section>
 
@@ -471,6 +567,69 @@
                 <li>Hay palabra clave (minimo/maximo)? -> define techo o piso.</li>
                 <li>El resultado debe ser entero para tener sentido fisico?</li>
             </ul>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Problemas mixtos (dos variables a la vez)</h2>
+            <p class="text-sm text-slate-700">
+                En un mismo problema puedes tener variables discretas y continuas. Identificalas por separado.
+            </p>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Ejemplo</p>
+                <p class="mt-1">"73 estudiantes viajan durante 4.5 horas en buses de 20."</p>
+                <div class="mt-3 overflow-x-auto">
+                    <table class="w-full text-sm text-left border rounded bg-white">
+                        <thead class="bg-slate-100">
+                            <tr>
+                                <th class="p-2">Variable</th>
+                                <th class="p-2">Tipo</th>
+                                <th class="p-2">Decision</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-2">Numero de buses</td>
+                                <td class="p-2">Discreta</td>
+                                <td class="p-2">Techo: $\lceil 73/20 \rceil = 4$</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Tiempo total</td>
+                                <td class="p-2">Continua</td>
+                                <td class="p-2">Mantener $4.5$ h</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Tip: clasifica cada variable por separado antes de operar con ellas.
+            </p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Guia rapida de decision (4 escenarios)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Completar grupos</p>
+                    <p class="mt-1">"Necesarios", "cupos completos", "no pueden faltar".</p>
+                    <p class="text-slate-600">Usa techo: $\lceil x \rceil$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">No exceder limite</p>
+                    <p class="mt-1">"A lo sumo", "maximo", "sin pasarse".</p>
+                    <p class="text-slate-600">Usa piso: $\lfloor x \rfloor$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Mediciones reales</p>
+                    <p class="mt-1">Tiempo, distancia, peso, volumen.</p>
+                    <p class="text-slate-600">Conserva decimales y unidad.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Aproximacion pedida</p>
+                    <p class="mt-1">"Aprox.", "redondea a", "cerca de".</p>
+                    <p class="text-slate-600">Redondea segun la consigna.</p>
+                </div>
+            </div>
         </section>
 
         <section class="bg-white border border-slate-200 rounded-xl p-6">
