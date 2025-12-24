@@ -633,6 +633,161 @@
         </section>
 
         <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Decimales con contexto (dinero, tiempo y conteo)</h2>
+            <p class="text-sm text-slate-700">
+                Un decimal puede ser valido o invalido segun el objeto. La misma cifra significa cosas distintas
+                si se trata de medir o de contar.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Dinero</p>
+                    <p class="mt-2">$\$2{,}500.75$ es valido en dinero digital.</p>
+                    <p class="text-slate-600">En efectivo depende de la moneda minima.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Tiempo</p>
+                    <p class="mt-2">$2.5$ horas es valido (2 h 30 min).</p>
+                    <p class="text-slate-600">Es continuo, se puede fraccionar.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Conteo</p>
+                    <p class="mt-2">$2.5$ personas no es valido.</p>
+                    <p class="text-slate-600">Se ajusta con techo o piso.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">Regla corta: medir -> decimal permitido, contar -> ajustar.</p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Metodo de verificacion (sentido fisico)</h2>
+            <p class="text-sm text-slate-700">
+                Antes de elegir una opcion, valida si el resultado tiene sentido real.
+            </p>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 mt-3 space-y-2">
+                <li>Escribe la unidad al lado del numero (ej: $4.2$ <em>buses</em>).</li>
+                <li>Pregunta: "Se puede partir ese objeto?"</li>
+                <li>Si la respuesta es no, ajusta con techo o piso.</li>
+                <li>Revisa si la palabra clave lo confirma (minimo/maximo/aprox.).</li>
+            </ol>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Chequeo rapido</p>
+                <p class="mt-1">Si al leer la respuesta suena raro ("2.3 estudiantes"), es discreto.</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Microtaller con solucion guiada</h2>
+            <div class="space-y-4 text-sm text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejercicio 1</p>
+                    <p>Se deben formar equipos de 6 con 53 estudiantes. Cuantos equipos se necesitan?</p>
+                    <p class="text-slate-500 mt-2">Solucion: $53/6 = 8.83$ -> $\lceil 8.83 \rceil = 9$ equipos.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejercicio 2</p>
+                    <p>Una carretera mide 125.6 km. Se puede reportar ese decimal?</p>
+                    <p class="text-slate-500 mt-2">Si. Distancia es continua y admite decimales.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejercicio 3</p>
+                    <p>Se compran cajas de 10 bombillos. Se necesitan 47 bombillos.</p>
+                    <p class="text-slate-500 mt-2">Solucion: $47/10 = 4.7$ -> $\lceil 4.7 \rceil = 5$ cajas.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejercicio 4</p>
+                    <p>Promedio de 18, 17, 19 y 16. Es valido el decimal?</p>
+                    <p class="text-slate-500 mt-2">Promedio: $70/4 = 17.5$. Es valido porque es continuo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Errores finos (los que mas confunden)</h2>
+            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
+                <li>Usar redondeo cuando el texto exige completar (debes usar techo).</li>
+                <li>Ignorar el verbo del enunciado: "al menos" cambia la decision.</li>
+                <li>Tratar promedios como enteros por costumbre.</li>
+                <li>Olvidar la unidad al final, lo que oculta el tipo de variable.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Glosario rapido</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Discreto</p>
+                    <p class="mt-1">Solo valores separados. Se cuenta.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Continuo</p>
+                    <p class="mt-1">Todos los valores intermedios. Se mide.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Techo</p>
+                    <p class="mt-1">Menor entero mayor o igual: $\lceil x \rceil$.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Piso</p>
+                    <p class="mt-1">Mayor entero menor o igual: $\lfloor x \rfloor$.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Practica tipo Saber 11 (mas retos)</h2>
+            <div class="space-y-4 text-sm text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 5</p>
+                    <p>Se venden cajas con 8 botellas. Se requieren 70 botellas. Cuantas cajas deben comprarse?</p>
+                    <p class="mt-2">A) 8 &nbsp; B) 8.75 &nbsp; C) 9 &nbsp; D) 10</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. Discreto y se completa.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 6</p>
+                    <p>Un atleta corre 12.4 km. La variable "distancia" es:</p>
+                    <p class="mt-2">A) Discreta &nbsp; B) Continua</p>
+                    <p class="text-slate-500 mt-2">Respuesta: B. Se mide y admite fracciones.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 7</p>
+                    <p>Se necesita transportar 215 personas en buses de 50. Cuantos buses se requieren?</p>
+                    <p class="mt-2">A) 4 &nbsp; B) 4.3 &nbsp; C) 5 &nbsp; D) 6</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. $\lceil 215/50 \rceil = 5$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 8</p>
+                    <p>Se mide una madera: 2.375 m. Este valor es:</p>
+                    <p class="mt-2">A) Invalido &nbsp; B) Valido</p>
+                    <p class="text-slate-500 mt-2">Respuesta: B. Longitud es continua.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 9</p>
+                    <p>Se paga un parqueadero por hora completa. Un carro estuvo 1.2 h.</p>
+                    <p class="mt-2">A) 1 hora &nbsp; B) 1.2 horas &nbsp; C) 2 horas &nbsp; D) 2.5 horas</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. Se discretiza por politica de cobro.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 10</p>
+                    <p>Se quieren repartir 95 caramelos en bolsas de 12. Cuantas bolsas completas hay?</p>
+                    <p class="mt-2">A) 7 &nbsp; B) 7.9 &nbsp; C) 8 &nbsp; D) 9</p>
+                    <p class="text-slate-500 mt-2">Respuesta: A. Si pide "completas", es piso: $\lfloor 95/12 \rfloor = 7$.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 11</p>
+                    <p>Un promedio de 18, 20 y 17 da 18.33. Este resultado es:</p>
+                    <p class="mt-2">A) Invalido &nbsp; B) Valido</p>
+                    <p class="text-slate-500 mt-2">Respuesta: B. El promedio puede ser real.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Pregunta 12</p>
+                    <p>Se compran paquetes de 5 tarjetas. Se necesitan 22 tarjetas. Cuantos paquetes?</p>
+                    <p class="mt-2">A) 4 &nbsp; B) 4.4 &nbsp; C) 5 &nbsp; D) 6</p>
+                    <p class="text-slate-500 mt-2">Respuesta: C. $\lceil 22/5 \rceil = 5$.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
             <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
                 <li>Subraya el objeto: se cuenta o se mide?</li>
