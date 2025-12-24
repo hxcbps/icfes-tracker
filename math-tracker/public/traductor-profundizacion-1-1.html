@@ -788,6 +788,93 @@
         </section>
 
         <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Preguntas abiertas (razonamiento paso a paso)</h2>
+            <p class="text-sm text-slate-700">
+                Aqui no hay opciones. Tu decides el tipo de variable, el ajuste y la respuesta final.
+            </p>
+            <div class="space-y-4 text-sm text-slate-700 mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Problema A</p>
+                    <p>Se tienen 138 estudiantes y aulas con capacidad de 32. Cuantas aulas se requieren?</p>
+                    <p class="text-slate-500 mt-2">Solucion: $138/32 = 4.3125$ -> $\lceil 4.3125 \rceil = 5$ aulas.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Problema B</p>
+                    <p>Una prueba dura 1.75 horas. Expresa el tiempo en minutos.</p>
+                    <p class="text-slate-500 mt-2">Solucion: $1.75 \times 60 = 105$ minutos. Continua.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Problema C</p>
+                    <p>Se venden paquetes de 9 cuadernos. Se necesitan 80 cuadernos.</p>
+                    <p class="text-slate-500 mt-2">Solucion: $80/9 = 8.88$ -> $\lceil 8.88 \rceil = 9$ paquetes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Lectura de graficas simples</h2>
+            <p class="text-sm text-slate-700">
+                Clasifica la variable del eje $x$ como discreta o continua segun la grafica descrita.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4 text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Grafica 1</p>
+                    <p>Solo puntos separados en $x = 1,2,3,4$.</p>
+                    <p class="text-slate-500 mt-2">Respuesta: discreta (conteo).</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Grafica 2</p>
+                    <p>Linea continua entre $x=0$ y $x=5$.</p>
+                    <p class="text-slate-500 mt-2">Respuesta: continua (medicion).</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Si la grafica permite infinitos valores entre dos puntos, es continua.
+            </p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Miniguia de conversiones (para no fallar)</h2>
+            <p class="text-sm text-slate-700">
+                Las conversiones no cambian el tipo de variable, pero si el numero. Conserva la unidad.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Tiempo</p>
+                    <p class="mt-2">$0.5$ h $= 30$ min.</p>
+                    <p class="text-slate-600">Sigue siendo continuo.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Distancia</p>
+                    <p class="mt-2">$1.2$ km $= 1200$ m.</p>
+                    <p class="text-slate-600">Sigue siendo continuo.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Conteo</p>
+                    <p class="mt-2">12 docenas $= 144$ unidades.</p>
+                    <p class="text-slate-600">Sigue siendo discreto.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Reto Saber 11 (contexto real)</h2>
+            <p class="text-sm text-slate-700">
+                Un colegio debe imprimir 520 guias. Cada paquete trae 48. Ademas, cada estudiante debe caminar
+                1.8 km en una salida pedagogica. Responde:
+            </p>
+            <ol class="list-decimal pl-5 text-sm text-slate-700 mt-3 space-y-2">
+                <li>Cuantos paquetes de guias se necesitan?</li>
+                <li>La distancia de 1.8 km es discreta o continua?</li>
+            </ol>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Solucion guiada</p>
+                <p class="mt-1">Paquetes: $520/48 = 10.83$ -> $\lceil 10.83 \rceil = 11$.</p>
+                <p>Distancia: continua (se mide y admite decimales).</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
             <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
                 <li>Subraya el objeto: se cuenta o se mide?</li>
