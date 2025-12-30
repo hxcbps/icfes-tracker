@@ -1171,6 +1171,270 @@
             </ol>
         </section>
 
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Diagrama de decision (si/entonces)</h2>
+            <p class="text-sm text-slate-700">
+                Lee de arriba hacia abajo y detente cuando encuentres la regla que aplica.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4 space-y-2 text-slate-700">
+                <p><strong>Si</strong> el objeto se cuenta (personas, buses, libros) <strong>entonces</strong> es discreto.</p>
+                <p><strong>Si</strong> se mide (tiempo, distancia, peso) <strong>entonces</strong> es continuo.</p>
+                <p><strong>Si</strong> dice "al menos" o "no pueden faltar" <strong>entonces</strong> usa techo.</p>
+                <p><strong>Si</strong> dice "como maximo" o "no exceder" <strong>entonces</strong> usa piso.</p>
+                <p><strong>Si</strong> dice "aprox." <strong>entonces</strong> redondea como piden.</p>
+            </div>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 1</p>
+                    <p>Hay 127 estudiantes. Buses de 30. "No pueden faltar".</p>
+                    <p class="text-slate-500 mt-2">Discreto + "no pueden faltar" -> $\lceil 127/30 \rceil = 5$.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 2</p>
+                    <p>Un atleta tarda 2.4 horas. Se pide "aprox. al minuto".</p>
+                    <p class="text-slate-500 mt-2">Continuo + redondeo -> $2.4 \times 60 = 144$ min.</p>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Mini-practica</p>
+                <p class="mt-1">Clasifica y decide: "Hay 89 personas, maximo 7 por mesa".</p>
+                <p class="text-slate-500 mt-2">Respuesta esperada: discreta + piso -> $\lfloor 89/7 \rfloor = 12$ mesas completas.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4 text-slate-700">
+                <p class="font-bold">Practica extra (sin respuesta)</p>
+                <ol class="list-decimal pl-5 space-y-1">
+                    <li>"Se necesitan al menos 18 cajas. Cada caja tiene 7 unidades."</li>
+                    <li>"Un tanque contiene 2.65 L. Reporta el valor."</li>
+                    <li>"Como maximo caben 120 personas en grupos de 11."</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Errores corregidos (antes y despues)</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border rounded-lg overflow-hidden bg-white">
+                    <thead class="bg-slate-100 text-slate-900 font-bold">
+                        <tr>
+                            <th class="p-3">Situacion</th>
+                            <th class="p-3">Error comun</th>
+                            <th class="p-3">Correccion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr>
+                            <td class="p-3">95 personas, buses de 24</td>
+                            <td class="p-3">Dejar $95/24 = 3.95$</td>
+                            <td class="p-3">Usar techo: $\lceil 3.95 \rceil = 4$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Tiempo: 1.5 h</td>
+                            <td class="p-3">Redondear a 2 h sin pedirlo</td>
+                            <td class="p-3">Mantener decimal o convertir: 90 min</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Presupuesto maximo</td>
+                            <td class="p-3">Usar techo por costumbre</td>
+                            <td class="p-3">Usar piso para no exceder</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Duracion de viaje 1.25 h</td>
+                            <td class="p-3">Tratarla como 1 h exacta</td>
+                            <td class="p-3">Mantener decimal o convertir: 75 min</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Paquetes de 10 para 101 items</td>
+                            <td class="p-3">Redondear a 10 paquetes</td>
+                            <td class="p-3">Techo: $\lceil 101/10 \rceil = 11$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Promedio de 3, 5 y 8</td>
+                            <td class="p-3">Forzar entero por costumbre</td>
+                            <td class="p-3">Mantener $16/3 = 5.33$</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">"A lo sumo 20 paquetes"</td>
+                            <td class="p-3">Usar techo para completar</td>
+                            <td class="p-3">Usar piso para no exceder</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Tip: si la correccion cambia el sentido del problema, revisa palabra clave y unidad.
+            </p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Relacion palabra clave -> decision</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-700">
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Techo</p>
+                    <p class="mt-1">minimo, completar, no pueden faltar</p>
+                    <p class="text-slate-600 mt-1">$\lceil x \rceil$</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Piso</p>
+                    <p class="mt-1">maximo, limite, no exceder</p>
+                    <p class="text-slate-600 mt-1">$\lfloor x \rfloor$</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded p-4">
+                    <p class="font-bold">Decimal</p>
+                    <p class="mt-1">aprox., estimado, redondear</p>
+                    <p class="text-slate-600 mt-1">Redondeo pedido</p>
+                </div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4 text-slate-700">
+                <p class="font-bold">Ejercicio rapido</p>
+                <p class="mt-1">Relaciona:</p>
+                <p>1) "Como minimo 8 grupos" -> ________</p>
+                <p>2) "A lo sumo 12" -> ________</p>
+                <p>3) "Redondea a la decima" -> ________</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4 text-slate-700">
+                <p class="font-bold">Banco de palabras</p>
+                <p class="mt-1">Techo: completo, necesario, no pueden faltar, al menos.</p>
+                <p>Piso: limite, tope, maximo, no exceder.</p>
+                <p>Decimal: aproximado, estimado, redondea.</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Mini-casos con justificacion</h2>
+            <div class="space-y-4 text-sm text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 1</p>
+                    <p>Se necesitan 28 grupos de 5 personas para un evento. Hay 137 personas.</p>
+                    <p class="text-slate-500 mt-2">$\lceil 137/5 \rceil = 28$ grupos. Discreto, completar.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 2</p>
+                    <p>Una botella contiene 1.2 L de agua. Es valida la cifra?</p>
+                    <p class="text-slate-500 mt-2">Si, volumen es continuo.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 3</p>
+                    <p>Se deben entregar paquetes completos de 15. Hay 62 items.</p>
+                    <p class="text-slate-500 mt-2">$\lceil 62/15 \rceil = 5$ paquetes. Discreto.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 4</p>
+                    <p>Hay presupuesto maximo para 9 almuerzos. Cada almuerzo cuesta igual.</p>
+                    <p class="text-slate-500 mt-2">Discreto + "maximo" -> piso (no exceder).</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 5</p>
+                    <p>Un tanque tiene 3.75 L. Es valido reportar decimales?</p>
+                    <p class="text-slate-500 mt-2">Si, volumen es continuo.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 6</p>
+                    <p>Se reparte una pizza en 8 partes iguales. Se cuentan porciones.</p>
+                    <p class="text-slate-500 mt-2">Discreto: se cuentan porciones completas.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Caso 7</p>
+                    <p>Se mide la altura de una pared: 2.48 m.</p>
+                    <p class="text-slate-500 mt-2">Continua: altura se mide y admite decimales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Autoexplicacion (escribe tu razon)</h2>
+            <p class="text-sm text-slate-700">
+                Completa cada frase con tu propia explicacion antes de ver la respuesta.
+            </p>
+            <div class="space-y-3 text-sm text-slate-700 mt-4">
+                <p>1) "El resultado debe ser entero porque __________".</p>
+                <p>2) "Uso techo ya que el enunciado dice __________".</p>
+                <p>3) "Mantengo el decimal porque estoy midiendo __________".</p>
+                <p>4) "Uso piso porque hay un limite de __________".</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Extra</p>
+                <p>5) "Descarto el decimal porque estoy contando __________".</p>
+                <p>6) "Elijo piso porque el problema dice __________".</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded p-4 text-sm mt-4 text-slate-700">
+                <p class="font-bold">Aplicalo a estos enunciados</p>
+                <p class="mt-1">a) "Se necesitan al menos 15 cajas de 9."</p>
+                <p>b) "La distancia fue 1.35 km."</p>
+                <p>c) "Como maximo 10 grupos de 6."</p>
+            </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Decimales en conteo (interpretacion correcta)</h2>
+            <p class="text-sm text-slate-700">
+                A veces aparece un decimal en un conteo, pero se interpreta con otra unidad.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4 text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 1</p>
+                    <p>Se compran 2.5 docenas de huevos.</p>
+                    <p class="text-slate-500 mt-2">Operacion: $2.5 \times 12 = 30$ huevos (conteo entero).</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo 2</p>
+                    <p>Se piden 1.5 paquetes de 20 hojas.</p>
+                    <p class="text-slate-500 mt-2">Interpretacion: 1 paquete y medio = 30 hojas, pero el pedido real debe ser en paquetes completos.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Regla: si el decimal esta en la unidad de agrupacion, conviertelo a unidades antes de decidir.
+            </p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Conteo con sobras (cuando no piden completar)</h2>
+            <p class="text-sm text-slate-700">
+                No siempre se pide completar. A veces la respuesta incluye sobrantes.
+            </p>
+            <div class="bg-white border border-slate-200 rounded p-4 text-sm mt-4">
+                <p class="font-bold">Ejemplo</p>
+                <p class="mt-1">Se reparten 250 cuadernos entre 48 estudiantes.</p>
+                <p>Operacion: $250/48 = 5$ y sobran $10$ cuadernos.</p>
+                <p class="text-slate-600 mt-1">Si no pide completar, la respuesta es "5 por estudiante y sobran 10".</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Palabras clave: "sobran", "restan", "se reparten por igual".
+            </p>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Tasas y razones (personas por bus)</h2>
+            <p class="text-sm text-slate-700">
+                Cuando aparece "por", suele ser una tasa. La decision depende del numerador.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4 text-slate-700">
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo discreto</p>
+                    <p>Capacidad: 24 personas por bus.</p>
+                    <p class="text-slate-500 mt-2">Buses son discretos -> techo si no pueden faltar.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded p-4">
+                    <p class="font-bold">Ejemplo continuo</p>
+                    <p>Velocidad: 70 km por hora.</p>
+                    <p class="text-slate-500 mt-2">Es tasa continua, admite decimales.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-3">
+                Mira que se esta contando o midiendo, no la palabra "por".
+            </p>
+        </section>
+
+        <section class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-slate-800 mb-3">Ejercicios de decision rapida (con respuesta)</h2>
+            <div class="space-y-3 text-sm text-slate-700">
+                <p><strong>1)</strong> "Necesario 9 paquetes de 7" -> techo.</p>
+                <p><strong>2)</strong> "A lo sumo 50 estudiantes en grupos de 6" -> piso.</p>
+                <p><strong>3)</strong> "Tiempo total 1.6 h" -> continuo.</p>
+                <p><strong>4)</strong> "Se pide redondear a 0.1" -> redondeo.</p>
+                <p><strong>5)</strong> "Se reparten 100 fichas, sobran?" -> discreto con sobrante.</p>
+            </div>
+        </section>
+
         <section class="bg-white border border-slate-200 rounded-xl p-6">
             <h2 class="text-xl font-bold text-slate-800 mb-3">Checklist del tutor</h2>
             <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
